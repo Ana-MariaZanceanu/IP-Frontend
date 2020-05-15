@@ -2,11 +2,18 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import res1 from "./../resources/img/res3.jpeg";
+import history from "../../../history";
 export class RestaurantCard extends Component {
   addDefaultSrc(ev) {
     console.log("here");
     ev.target.src = res1;
   }
+  handleClick = (e) => {
+    e.preventDefault();
+    const { id } = this.props;
+    history.push("/restaurant/" + id);
+    window.location.reload(true);
+  };
   render() {
     const { title, desc, img } = this.props;
     return (
@@ -24,6 +31,7 @@ export class RestaurantCard extends Component {
             <Button
               className="float-right restaurant-card-button"
               style={styles.button}
+              onClick={this.handleClick}
             >
               See more
             </Button>

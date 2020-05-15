@@ -25,6 +25,7 @@ export class ChooseUsRestaurants extends Component {
         });
         const restaurantsCopy = [];
         for (var i = 0; i < 3; i++) {
+          const id = this.state.items[i % 2]._id;
           const name = this.state.items[i % 2].name;
           const img = this.state.items[i % 2].details.images[0];
           const desc = this.state.items[i % 2].details.description.substring(
@@ -33,7 +34,7 @@ export class ChooseUsRestaurants extends Component {
           );
           restaurantsCopy.push(
             <Col md>
-              <RestaurantCard title={name} img={img} desc={desc} />
+              <RestaurantCard title={name} img={img} desc={desc} id={id} />
             </Col>
           );
         }

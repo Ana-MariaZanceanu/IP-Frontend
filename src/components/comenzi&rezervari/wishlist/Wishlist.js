@@ -1,37 +1,38 @@
-import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import { FaCartPlus, FaTimes } from 'react-icons/fa';
-import Image from 'react-bootstrap/Image';
-import './Wishlist.css';
-import axios from 'axios';
-const urlDeleteFavorite = 'http://localhost:3000/api/v1/favorites/';
+import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
+import { FaCartPlus, FaTimes } from "react-icons/fa";
+import Image from "react-bootstrap/Image";
+import "./Wishlist.css";
+import axios from "axios";
+const urlDeleteFavorite = "http://localhost:3000/api/v1/favorites/";
 const urlCart = "http://localhost:3000/api/v1/cart/";
 class Wishlist extends Component {
   constructor(props) {
     super(props);
-    this.message="";
+    this.message = "";
   }
 
-  deleteFavoriteProduct(productId){
+  deleteFavoriteProduct(product) {
     return async (e) => {
       await axios({
-        method: 'delete',
-        url: urlDeleteFavorite + 'delete-product/' + productId,
-        //withCredentials: true,
-        data:{  
-            userId:"5eb16fdf4afbf654966cb68d",
-        }
+        method: "delete",
+        url: urlDeleteFavorite + "delete-product/" + product.id,
+        withCredentials: true,
+        data: {
+          userId: "5eb16fdf4afbf654966cb68d",
+        },
       })
         .then((result) => {
           console.log(result);
+          product.item.price = null;
+          this.forceUpdate();
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.data.mesaj);
         });
-      this.forceUpdate();
     };
   }
-  addToCart= async (idProduct) => {
+  addToCart = async (idProduct) => {
     await axios({
       method: "get",
       url: urlCart + "add-product/" + idProduct,
@@ -58,30 +59,32 @@ class Wishlist extends Component {
     let { products } = this.props;
     if (products != null) {
       cartProductRows = products.map((p, i) => {
-        console.log(p);
-
-        return (
-          <tr key={i}>
-            <td>
-              <Button
-                className="deleteProduct"
-                onClick={this.deleteFavoriteProduct(p.item.id)}
-              >
-                <FaTimes />
-              </Button>
-            </td>
-            <td>
-              <Image src={p.item.image} rounded className={'productImage'} />
-            </td>
-            <td>{p.item.name}</td>
-            <td> {p.item.price}$ </td>
-            <td>
-              <Button className="addToCart">
-                <FaCartPlus /> Add
-              </Button>
-            </td>
-          </tr>
-        );
+        if (p.item.price) {
+          return (
+            <tr key={i}>
+              <td>
+                <Button
+                  className="deleteProduct"
+                  onClick={this.deleteFavoriteProduct(p)}
+                >
+                  <FaTimes />
+                </Button>
+              </td>
+              <td>
+                <Image src={p.item.image} rounded className={"productImage"} />
+              </td>
+              <td>{p.item.name}</td>
+              <td> {p.item.price}$ </td>
+              <td>
+                <Button className="addToCart">
+                  <FaCartPlus /> Add
+                </Button>
+              </td>
+            </tr>
+          );
+        } else {
+          return null;
+        }
       });
     }
 
@@ -103,9 +106,7 @@ class Wishlist extends Component {
         <br />
         <tfoot>
           <Button className="clearWishlist">clear wishlist</Button>
-          <p>
-            {this.message}
-          </p>
+          <p>{this.message}</p>
         </tfoot>
       </table>
     );
@@ -116,6 +117,6 @@ export default Wishlist;
 
 const styles = {
   detalii: {
-    color: 'black !important',
+    color: "black !important",
   },
 };

@@ -5,6 +5,7 @@ import ChooseUsComp from "./ChooseUsComp";
 import OurSpecials from "./OurSpecials";
 import RecomandationComp from "./RecomandationComp";
 import FooterComp from "./FooterComp";
+import "./style.css";
 export class MainPage extends Component {
   render() {
     return (

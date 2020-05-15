@@ -8,6 +8,7 @@ import { FaShoppingCart, FaHeart } from "react-icons/fa";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ShoppingCartModal from "../shoppingCart/ShoppingCartModal";
 import WishlistModal from "../wishlist/WishlistModal";
+import RestaurantPage from "../../informatii&recenzii/RestaurantPage";
 import axios from "axios";
 
 const urlGetCart = "http://localhost:3000/api/v1/cart/session";
@@ -46,9 +47,7 @@ export class NavBarComp extends Component {
       url: getUrlWishlist + "5eb16fdf4afbf654966cb68d",
     })
       .then((response) => {
-        
         products = response.data.data.favorites[0].items;
-        console.log(products);
       })
       .catch((error) => {
         console.log(error);
@@ -104,7 +103,7 @@ export class NavBarComp extends Component {
                       );
                     }}
                   >
-                    <Link to="/" className="iconHeart">
+                    <Link to="/wishlist" className="iconHeart">
                       <FaHeart />
                     </Link>
                   </Nav.Link>
@@ -132,7 +131,7 @@ export class NavBarComp extends Component {
               />
             </Route>
 
-            <Route path={"/"}>
+            <Route path={"/wishlist"}>
               <WishlistModal
                 show={this.state.modalShow}
                 onHide={() => {
