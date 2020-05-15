@@ -1,0 +1,76 @@
+.modalSizes{
+    width: 60%!important;
+    max-width: none!important;
+    border-radius: 0.8rem!important;
+}
+
+.list-group-item{
+    border: none!important;
+    color: #386150;
+    font-weight: bold;
+}
+
+
+.modalHeader {
+    border: none!important;
+}
+.nameStyle {
+    font-family: Pacifico;
+    font-size: 2.5rem;
+    color: #A71D31;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 1vh;
+}
+.imageStyle {
+    width: 100%;
+    height: 100%;
+}
+.priceStyle {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 1.2rem;
+    color: #2B2633;
+}
+.messageProductAdded {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 1.1rem;
+    color: #386150;
+    margin-top: 2vh;
+}
+
+.descriptionTitleStyle {
+    padding-top: 1vh;
+    margin-top: 3vh;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #A71D31;
+}
+.descriptionTextStyle {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 1rem;
+    flex-direction: row!important;
+    flex-wrap: wrap;
+}
+.buttons_cart{
+    margin-top: 3vh;
+}
+
+.chefImg{
+    width: 22vw;
+    height: 50vh;
+}
+
+.description{
+    border-top: 1px solid #dee2e6;
+    margin-top: 3vh;
+}
+
+.ingredientListItem{
+    padding: 0 0.5rem 0 0!important;
+}
+
+@media screen and (max-width: 700px){
+    .modalSizes{
+        width: 90%!important;
+    }
+}
