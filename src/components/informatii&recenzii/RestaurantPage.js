@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
+import NavBarComp from "../comenzi&rezervari/mainPage/NavBarComp";
 
 /*  var courses = [ {name: "Supa crema de procini cu julien de pancetta", price: 19, image: "https://savoriurbane.com/wp-content/uploads/2017/08/supa-crema-de-legume-reteta-simpla-savori-urbane.jpg"},
   {name: "Bifteki de legume", price: 25, image: "http://petrisorcatering.ro/wp-content/uploads/2017/11/biftec_cu_legume_la_gratar_petrisor_catering-51-01-600x600.jpg"},
@@ -97,7 +98,8 @@ export class RestaurantPage extends Component {
             ></meta>
           </Helmet>
           <div className="page">
-            <BackButton />
+            <NavBarComp/>
+            {/* <BackButton /> */}
             <div id="wrapper">
               <Content
                 providerName={this.state.providerName}

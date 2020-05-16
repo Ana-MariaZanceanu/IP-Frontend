@@ -26,7 +26,7 @@ export class Schedule extends Component {
                 <hr></hr>
                 <div class="schbuttons">
                     <Reserve />
-                    <Order />
+                    {/* <Order /> */}
                 </div>
             </div>
         );

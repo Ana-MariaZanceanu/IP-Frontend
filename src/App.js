@@ -26,8 +26,8 @@ function App() {
             )}
           />
         </Switch>
-        <ShowModalProduct id={"5eb17a5c6f436666294bc421"} />
-        <ShowModalProduct id={"5eb17a5c6f436666294bc420"} />
+        {/* <ShowModalProduct id={"5eb17a5c6f436666294bc421"} />
+        <ShowModalProduct id={"5eb17a5c6f436666294bc420"} /> */}
       </Router>
       {/*<RestaurantPage providerId={"5eb175094afbf654966cb690"} />*/}
     </div>

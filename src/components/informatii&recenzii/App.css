@@ -93,27 +93,23 @@ html, body {
 }
 
 #schedule {
-  background-color: rgb(231, 215, 200);
+  background-color: white;
   margin-right: auto;
   padding: 10px;
   margin: 5px;
   border-radius: 10px;
   margin-bottom: 10px;
-  -moz-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  -webkit-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
+ 
 }
 
 #information {
-  background-color: rgb(231, 215, 200);
+  background-color: white;
   margin-right: auto;
   padding: 10px;
   margin: 5px;
   border-radius: 10px;
   margin-bottom: 10px;
-  -moz-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  -webkit-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
+
 }
 
 p.inline{
@@ -152,27 +148,29 @@ h2.restauranttitle{
 }
 
 #content {
-  background-color: rgb(231, 215, 200);
+  background-color: white;
   margin-bottom: auto;
   padding: 5px;
   margin: 5px;
   margin-bottom: 25px;
   border-radius: 10px;
-  -moz-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  -webkit-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
+  
 }
 
 #menu {
   position: relative;
-  background-color: rgb(231, 215, 200);
+  background-color: white;
   padding: 5px;
   align-self: center;
-  margin: 5px;
-  -moz-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  -webkit-box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
-  box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
+  margin: 5px;  
   border-radius: 10px;
+}
+.menuTitle{
+  text-align: center;
+  font-family:'Pacifico';
+  font-size:2rem;
+  color: #a71d31 ;
+
 }
 
 ul.inline-block{
@@ -188,17 +186,13 @@ ul span{
 .tag{
   opacity: 0.85;
   cursor: pointer;
-  background-color: rgba(255, 142, 114, 1);
   transition: 0.25s;
   border-radius: 25px;
   padding: 4px;
   padding-left: 8px;
   padding-right: 8px;
-}
-
-.tag:hover{
-  opacity: 1;
-  transition: 0.35s;
+  color:#a71d31;
+  font-family:'Pacifico';
 }
 
 
@@ -209,16 +203,19 @@ ul span{
 }
 
 #ordres {
-  border-radius: 15px;
-  max-width: 120px;
-  min-width: 35px;
-  width: 120px;
-  background-color: rgba(56, 97, 80, 1);
-  opacity: 0.85;
+  width: 15vw!important;
+  height: 7vh;
+  border:none!important;
+  background-color:rgba(56, 97, 80, 1);
   transition: 0.3s;
   padding: 5px;
   margin-left: auto;
   margin-right: auto;
+
+}
+.description{
+  color:black;
+  font-family:'Pacifico';
 }
 
 @media screen and (max-width: 1085px) {
@@ -229,7 +226,7 @@ ul span{
 
 
 #ordres:hover {
-  border-radius: 25%;
+
   opacity: 1;
   width: 150px;
   transition: 0.3s;
