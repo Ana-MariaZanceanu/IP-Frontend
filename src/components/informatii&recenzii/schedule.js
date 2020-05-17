@@ -21,7 +21,7 @@ export class Schedule extends Component {
 
     render() {
         return (
-            <div id="schedule">
+            <div id="schedule" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
                 {this.state.schedule.map(item => (<p>{item.day}: {item.startHour} - {item.endHour}</p>) )}
                 <hr></hr>
                 <div class="schbuttons">

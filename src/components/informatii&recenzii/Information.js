@@ -165,7 +165,7 @@ export class Information extends Component {
 
   render() {
     return (
-      <div id="information">
+      <div id="information" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
         <ul className="inline-block">
          
           {this.state.specials.map((item) => (

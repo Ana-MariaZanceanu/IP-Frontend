@@ -31,7 +31,7 @@ class StarRating extends Component {
   render() { //This will require more work, since it isn't responsive and for some reason pictures get shrunk down to 0px on smaller resolutions
     return (
       <Container
-        style={{ background: "rgba(255, 142, 114, 1)", display: "flex" }}
+        style={{display: "flex" }}
       >
         <div style={{ flex: "1", margin: "1%" }}>
           {
@@ -197,20 +197,20 @@ class Review extends Component {
     return (
       <Container
         style={{
-          background: "rgba(247, 231, 217, 1)",
           display: "flex",
           flexDirection: "column",
           justifyContent: "stretch",
           marginTop: "10px",
+          width: "auto",
+          padding: "0",
         }}
       >
         <div
           style={{
-            background: "rgba(255, 142, 114, 1)",
             display: "flex",
             flexDirection: "row",
             height: "75px",
-            width: "100%",
+            width: "auto",
             padding: "1%",
           }}
         >
@@ -218,7 +218,7 @@ class Review extends Component {
             <Image
               src={this.state.userPicture}
               alt={"Profile Picture"}
-              style={{ height: "100%", width: "100%" }}
+              style={{ height: "100%", width: "100%", borderRadius: "50%" }}
             />
           </div>
           <div style={{ flex: "1", margin: "1%" }}>{this.state.username}</div>
@@ -230,9 +230,9 @@ class Review extends Component {
           }
         </div>
 
-        <Row>
+        <div>
           {!expanded && (
-            <div>
+            <div style={{marginLeft: "3%"}}>
               {this.state.content.substring(0, 100)}
               {this.state.content.length > 100 && (
                 <a
@@ -257,7 +257,7 @@ class Review extends Component {
               </a>
             </div>
           )}
-        </Row>
+        </div>
       </Container>
     );
   }

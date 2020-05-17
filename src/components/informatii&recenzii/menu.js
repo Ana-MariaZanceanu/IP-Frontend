@@ -12,7 +12,7 @@ export class Menu extends Component {
 
   render() {
     return (
-      <div id="menu">
+      <div id="menu" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
         <p className="menuTitle">Our menu</p>
         <div id="items">
           {this.state.courses.map((item) => {

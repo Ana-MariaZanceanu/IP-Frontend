@@ -43,7 +43,7 @@ html, body {
 }
 
 .page {
-  background-color: rgba(43, 38, 51, 1);
+  background-color: #fff;
   min-height: 100vh;
 }
 
@@ -93,7 +93,7 @@ html, body {
 }
 
 #schedule {
-  background-color: white;
+  background-color: #F3F3F3;
   margin-right: auto;
   padding: 10px;
   margin: 5px;
@@ -103,7 +103,7 @@ html, body {
 }
 
 #information {
-  background-color: white;
+  background-color: #F3F3F3;
   margin-right: auto;
   padding: 10px;
   margin: 5px;
@@ -117,7 +117,7 @@ p.inline{
 }
 
 #reviewsdiv{
-  background-color: rgb(231, 215, 200);
+  background-color: #F3F3F3;
   margin-bottom: auto;
   padding: 10px;
   margin: 5px;
@@ -131,7 +131,7 @@ p.inline{
 
 
 h2.restauranttitle{
-  color: white;
+  color: #F3F3F3;
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   z-index: 5;
@@ -148,7 +148,7 @@ h2.restauranttitle{
 }
 
 #content {
-  background-color: white;
+  background-color: #F3F3F3;
   margin-bottom: auto;
   padding: 5px;
   margin: 5px;
@@ -159,7 +159,7 @@ h2.restauranttitle{
 
 #menu {
   position: relative;
-  background-color: white;
+  background-color: #F3F3F3;
   padding: 5px;
   align-self: center;
   margin: 5px;  
@@ -297,7 +297,7 @@ ul span{
 .utility .name{
   font-size: 24px; 
   flex: 4;
-  color: rgba(167, 29, 49, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 .utility .price{
@@ -306,7 +306,7 @@ ul span{
   flex: 1;
   color: rgba(167, 29, 49, 1);
   font-size: 18px;
-  border: 1px solid rgba(255, 142, 114, 1);
+ 
   margin-top: auto;
 }
 
@@ -360,4 +360,14 @@ ul span{
 .schbuttons{
   display: flex;
   flex-direction: row;
+}
+
+.line{
+  width: 95%;
+  height: 3px;
+  background-color: rgba(167, 29, 49, 1);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
