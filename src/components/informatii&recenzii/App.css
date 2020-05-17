@@ -28,7 +28,6 @@
   color: #61dafb;
 }
 
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -38,7 +37,8 @@
   }
 }
 
-html, body {
+html,
+body {
   margin: 0;
 }
 
@@ -55,31 +55,14 @@ html, body {
   color: white;
 }
 
-#backbutton {
-  background-color: rgba(56, 97, 80, 1);
-  position: sticky;
-  margin-left: 25px;
-  height: 50px;
-}
-
-.backbuttonstyle {
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 1);
-  max-width: 40px;
-  min-width: 25px;
-  width: 100%;
-}
 
 
 #wrapper {
-  
-  
   width: 80vw;
   border-radius: 25px;
   margin-left: auto;
   margin-right: auto;
 }
-
 
 #center {
   display: flex;
@@ -93,31 +76,29 @@ html, body {
 }
 
 #schedule {
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   margin-right: auto;
   padding: 10px;
   margin: 5px;
   border-radius: 10px;
   margin-bottom: 10px;
- 
 }
 
 #information {
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   margin-right: auto;
   padding: 10px;
   margin: 5px;
   border-radius: 10px;
   margin-bottom: 10px;
-
 }
 
-p.inline{
+p.inline {
   display: inline;
 }
 
-#reviewsdiv{
-  background-color: #F3F3F3;
+#reviewsdiv {
+  background-color: #f3f3f3;
   margin-bottom: auto;
   padding: 10px;
   margin: 5px;
@@ -128,10 +109,8 @@ p.inline{
   box-shadow: 0px 0px 15px rgba(255, 142, 114, 0.8);
 }
 
-
-
-h2.restauranttitle{
-  color: #F3F3F3;
+h2.restauranttitle {
+  color: #f3f3f3;
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   z-index: 5;
@@ -142,48 +121,44 @@ h2.restauranttitle{
   border-radius: 5px;
 }
 
-.header{
+.header {
   position: relative;
-
 }
 
 #content {
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   margin-bottom: auto;
   padding: 5px;
   margin: 5px;
   margin-bottom: 25px;
   border-radius: 10px;
-  
 }
 
 #menu {
   position: relative;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   padding: 5px;
   align-self: center;
-  margin: 5px;  
+  margin: 5px;
   border-radius: 10px;
 }
-.menuTitle{
+.menuTitle {
   text-align: center;
-  font-family:'Pacifico';
-  font-size:2rem;
-  color: #a71d31 ;
-
+  font-family: 'Pacifico';
+  font-size: 2rem;
+  color: #a71d31;
 }
 
-ul.inline-block{
+ul.inline-block {
   display: inline;
   padding-left: 0;
-
 }
 
-ul span{
+ul span {
   margin: 1%;
 }
 
-.tag{
+.tag {
   opacity: 0.85;
   cursor: pointer;
   transition: 0.25s;
@@ -191,58 +166,30 @@ ul span{
   padding: 4px;
   padding-left: 8px;
   padding-right: 8px;
-  color:#a71d31;
-  font-family:'Pacifico';
+  color: #a71d31;
+  font-family: 'Pacifico';
 }
 
-
-.schbuttons{
+.schbuttons {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
-#ordres {
-  width: 15vw!important;
-  height: 7vh;
-  border:none!important;
-  background-color:rgba(56, 97, 80, 1);
-  transition: 0.3s;
-  padding: 5px;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-.description{
-  color:black;
-  font-family:'Pacifico';
-}
-
-@media screen and (max-width: 1085px) {
-  #ordres{
-    margin-top: 15px;
-  }
+.description {
+  color: black;
+  font-family: 'Pacifico';
 }
 
 
-#ordres:hover {
 
-  opacity: 1;
-  width: 150px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-#ordres:focus{
-  background-color: rgb(56, 148, 110);
-}
-
-#items{
+#items {
   display: flex;
   flex-wrap: wrap;
 }
 
-#menuitem{
+#menuitem {
   cursor: pointer;
   padding: 10px;
   margin: 2%;
@@ -259,11 +206,11 @@ ul span{
   flex-basis: 29%;
 }
 
-#menuitem:nth-last-child(-n+3){
+#menuitem:nth-last-child(-n + 3) {
   flex-grow: 0;
 }
 
-#menuitem:hover{
+#menuitem:hover {
   -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
@@ -274,17 +221,17 @@ ul span{
   transform: scale(1.1);
 }
 
-#menuitem .photo{
+#menuitem .photo {
   max-width: 100%;
   max-height: 75%;
 }
 
-#menuitem .photo img{
+#menuitem .photo img {
   width: 100%;
   height: 180px;
 }
 
-#menuitem .utility{
+#menuitem .utility {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -294,45 +241,44 @@ ul span{
   text-align: center;
 }
 
-.utility .name{
-  font-size: 24px; 
+.utility .name {
+  font-size: 24px;
   flex: 4;
   color: rgba(0, 0, 0, 1);
 }
 
-.utility .price{
+.utility .price {
   padding: 5px;
   border-radius: 15px;
   flex: 1;
   color: rgba(167, 29, 49, 1);
   font-size: 18px;
- 
+
   margin-top: auto;
 }
 
 .utility .name,
-.price{
+.price {
   font-family: 'Roboto', sans-serif;
 }
 
-
-#menuitem:hover{
+#menuitem:hover {
   opacity: 1;
   transition: 0.15s;
 }
 
 @media screen and (min-width: 980px) {
   #items {
-      flex-basis: 33%;
+    flex-basis: 33%;
   }
 }
 
 @media screen and (max-width: 979px) {
   #items {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
-  #menuitem{
+  #menuitem {
     align-self: center;
     max-width: 60%;
     width: 60%;
@@ -340,29 +286,28 @@ ul span{
 }
 
 @media screen and (max-width: 530px) {
-  #menuitem{
+  #menuitem {
     align-self: center;
     max-width: 70%;
     width: 70%;
   }
 
-  #wrapper{
+  #wrapper {
     width: 95vw;
   }
 }
 
-
-#content p{
+#content p {
   margin-top: 10px;
   padding: 10px;
 }
 
-.schbuttons{
+.schbuttons {
   display: flex;
   flex-direction: row;
 }
 
-.line{
+.line {
   width: 95%;
   height: 3px;
   background-color: rgba(167, 29, 49, 1);

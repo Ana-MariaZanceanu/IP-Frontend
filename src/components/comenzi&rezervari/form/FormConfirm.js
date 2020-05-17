@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import ListGroup from "react-bootstrap/ListGroup";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import axios from "axios";
-
-const urlReservations = "http://localhost:3000/api/v1/reservations";
+import React, { Component } from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import './form.css';
+const urlReservations = 'http://localhost:3100/api/v1/reservations';
 
 class FormConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       success: false,
-      message: "",
+      message: '',
     };
   }
 
@@ -28,9 +28,10 @@ class FormConfirm extends Component {
 
   addFormDetails = (e, data) => {
     e.preventDefault();
+    console.log(data);
     this.props.addFormDetails(e, data);
     axios({
-      method: "post",
+      method: 'post',
       url: urlReservations,
       data,
     })
@@ -74,14 +75,14 @@ class FormConfirm extends Component {
       userLastName: userLastName,
       email: email,
       phoneNumber: phoneNumber,
-      reservationDate: reservationDate + "T" + hour,//pe server apare cu 3 ore in urma!
+      reservationDate: reservationDate + 'T' + hour, //pe server apare cu 3 ore in urma!
       numberOfSeats: numberOfSeats,
-      restaurantId: "5e8b6ecd5935d8350c6c2c2a",
+      restaurantId: this.props.providerId,
     };
     return (
       <div>
-        <Card.Title style={styles.text}>Confirm reservation data</Card.Title>
-        <ListGroup className="list-group-flush" style={styles.text}>
+        <Card.Title className="textConfirm">Confirm reservation data</Card.Title>
+        <ListGroup className="list-group-flush textConfirm" >
           <ListGroup.Item>First Name: {userFirstName}</ListGroup.Item>
           <ListGroup.Item>Last Name: {userLastName}</ListGroup.Item>
           <ListGroup.Item>Email: {email}</ListGroup.Item>
@@ -96,7 +97,7 @@ class FormConfirm extends Component {
           }}
           variant="primary"
           type="submit"
-          style={styles.buttonGreen}
+          className="buttonGreen"
         >
           Confirm
         </Button>
@@ -104,7 +105,7 @@ class FormConfirm extends Component {
           onClick={this.back}
           variant="primary"
           type="button"
-          style={styles.buttonRed}
+          className="buttonRed" 
         >
           Back
         </Button>
@@ -112,29 +113,5 @@ class FormConfirm extends Component {
     );
   }
 }
-
-const styles = {
-  buttonGreen: {
-    backgroundColor: "#386150",
-    color: "#F7E7D9",
-    border: "none",
-    marginRight: "1vw",
-    marginTop: "2vh",
-    width: "auto",
-    height: "auto",
-  },
-  buttonRed: {
-    backgroundColor: "#A71D31",
-    color: "#F7E7D9",
-    border: "none",
-    marginRight: "1vw",
-    marginTop: "2vh",
-    width: "auto",
-    height: "auto",
-  },
-  text: {
-    color: "#2B2633",
-  },
-};
 
 export default FormConfirm;

@@ -95,6 +95,7 @@ class UserForm extends Component {
             addFormDetails={this.addFormDetails}
             values={values}
             modifySuccess={this.modifySuccess}
+            providerId={this.props.providerId}
           />
         );
       case 3:

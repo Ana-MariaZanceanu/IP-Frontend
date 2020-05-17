@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-
+import './form.css';
 class FormFail extends Component {
-    /*constructor(props) {
-        super(props);
-    }*/
+  
 
     back = (e) => {
         e.preventDefault();
@@ -15,12 +13,12 @@ class FormFail extends Component {
     render() {
         return (
             <div>
-                <Card.Title style={styles.text}>{this.props.response}</Card.Title>
+                <Card.Title className="failText">{this.props.response}</Card.Title>
                 <Button
                     onClick={this.back}
                     variant="primary"
                     type="button"
-                    style={styles.button}
+                    className="backButton"
                 >
                     Back
                 </Button>
@@ -29,19 +27,5 @@ class FormFail extends Component {
     }
 }
 
-const styles = {
-    button: {
-        backgroundColor: "#A71D31",
-        color: "#F7E7D9",
-        border: "none",
-        marginRight: "1vw",
-        marginTop: "2vh",
-        width: "auto",
-        height: "auto",
-    },
-    text: {
-        color: "#A71D31",
-    },
-};
 
 export default FormFail;

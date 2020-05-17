@@ -123,7 +123,7 @@ export class RestaurantPage extends Component {
                     rating={this.state.rating}
                     specials={this.state.specials}
                   />
-                  <Schedule schedule={this.state.schedule} />
+                  <Schedule schedule={this.state.schedule} providerId={this.state.providerId} />
                   <ReviewHolder />
                 </Col>
               </Row>

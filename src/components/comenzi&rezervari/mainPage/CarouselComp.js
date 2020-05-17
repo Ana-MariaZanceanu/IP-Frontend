@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import slide1 from "./../resources/img/slide1.jpeg";
 import slide2 from "./../resources/img/slide3.jpeg";
 import slide3 from "./../resources/img/food3.jpg";
+import './mainPage.css';
 
 export class CarouselComp extends Component {
   render() {
@@ -13,29 +14,26 @@ export class CarouselComp extends Component {
           <Carousel.Item>
             <img
               height={600}
-              className="d-block w-100"
-              style={styles.background}
+              className="d-block w-100 background"
               src={slide1}
               alt="First slide"
             />
-            <Carousel.Caption style={styles.carusel}>
-              <h1 style={styles.h1} className="animated fadeInDown">
+            <Carousel.Caption  className="carusel">
+              <h1  className="animated fadeInDown title">
                 First slide label
               </h1>
-              <p style={styles.p} className="animated fadeInUp">
+              <p  className="animated fadeInUp paragraf">
                 Nulla vitae elit libero, a pharetra augue mollis interdum.
               </p>
               <Button
-                variant="outline-danger"
-                style={styles.button}
-                className="animated fadeIn"
+                variant="outline-danger "
+                className="animated fadeIn button"
               >
                 See Restaurants
               </Button>{" "}
               <Button
                 variant="danger"
-                style={styles.button}
-                className="animated fadeIn"
+                className="animated fadeIn button"
               >
                 Book a table
               </Button>
@@ -44,30 +42,27 @@ export class CarouselComp extends Component {
           <Carousel.Item>
             <img
               height={600}
-              className="d-block w-100"
+              className="d-block w-100 background"
               src={slide2}
-              style={styles.background}
               alt="Third slide"
             />
 
-            <Carousel.Caption style={styles.carusel}>
-              <h1 style={styles.h1} className="animated fadeInDown">
+            <Carousel.Caption className="carusel">
+              <h1  className="animated fadeInDown title">
                 Second slide label
               </h1>
-              <p style={styles.p} className="animated fadeInUp">
+              <p className="animated fadeInUp paragraf">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
               <Button
                 variant="outline-danger"
-                style={styles.button}
-                className="animated fadeIn"
+                className="animated fadeIn button"
               >
                 See Restaurants
               </Button>{" "}
               <Button
                 variant="danger"
-                style={styles.button}
-                className="animated fadeIn"
+                className="animated fadeIn button"
               >
                 Book a table
               </Button>
@@ -76,29 +71,26 @@ export class CarouselComp extends Component {
           <Carousel.Item>
             <img
               height={600}
-              className="d-block w-100"
+              className="d-block w-100 background"
               src={slide3}
-              style={styles.background}
               alt="Third slide"
             />
-            <Carousel.Caption style={styles.carusel}>
-              <h1 style={styles.h1} className="animated fadeInDown">
+            <Carousel.Caption className="carusel">
+              <h1  className="animated fadeInDown title">
                 Third slide label
               </h1>
-              <p style={styles.p} className="animated fadeInUp">
+              <p className="animated fadeInUp paragraf">
                 Praesent commodo cursus magna, vel scelerisque nisl consectetur.
               </p>
               <Button
                 variant="outline-danger"
-                style={styles.button}
-                className="animated fadeIn"
+                className="animated fadeIn button"
               >
                 See Restaurants
               </Button>{" "}
               <Button
                 variant="danger"
-                style={styles.button}
-                className="animated fadeIn"
+                className="animated fadeIn button"
               >
                 Book a table
               </Button>
@@ -111,26 +103,3 @@ export class CarouselComp extends Component {
 }
 
 export default CarouselComp;
-
-const styles = {
-  carusel: {
-    top: "50%",
-    transform: "translateY(-50%)",
-  },
-  background: {
-    filter: "brightness(50%)",
-  },
-  h1: {
-    fontFamily: "Pacifico",
-  },
-  p: {
-    fontFamily: "Noto Sans KR",
-    fontWeight: "500px",
-  },
-  button: {
-    color: "#fff",
-    fontFamily: "Noto Sans KR",
-    fontWeight: "300",
-    borderRadius: "1rem",
-  },
-};
