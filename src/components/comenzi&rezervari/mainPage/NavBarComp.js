@@ -10,6 +10,7 @@ import ShoppingCartModal from '../shoppingCart/ShoppingCartModal';
 import WishlistModal from '../wishlist/WishlistModal';
 import RestaurantPage from '../../informatii&recenzii/RestaurantPage';
 import axios from 'axios';
+import './mainPage.css';
 
 const urlGetCart = 'http://localhost:3000/api/v1/cart/session';
 const getUrlWishlist = 'http://localhost:3101/api/v1/favorites/';
@@ -67,23 +68,23 @@ export class NavBarComp extends Component {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto" />
                 <Nav>
-                  <Nav.Link style={styles.nav} href="#home">
+                  <Nav.Link className="nav" href="#home">
                     Home
                   </Nav.Link>
-                  <Nav.Link style={styles.nav} href="#link">
+                  <Nav.Link className="nav" href="#link">
                     About
                   </Nav.Link>
-                  <Nav.Link style={styles.nav} href="#link">
+                  <Nav.Link className="nav" href="#link">
                     Restaurants
                   </Nav.Link>
-                  <Nav.Link style={styles.nav} href="#link">
+                  <Nav.Link className="nav" href="#link">
                     Specials
                   </Nav.Link>
-                  <Nav.Link style={styles.nav} href="#link">
+                  <Nav.Link className="nav" href="#link">
                     Contact
                   </Nav.Link>
                   <Nav.Link
-                    style={styles.nav}
+                    className="nav"
                     onClick={() => {
                       this.setState({ modalShow: true });
                       this.getCart().then((result) =>
@@ -96,7 +97,7 @@ export class NavBarComp extends Component {
                     </Link>
                   </Nav.Link>
                   <Nav.Link
-                    style={styles.nav}
+                   className="nav"
                     onClick={() => {
                       this.setState({ modalShow: true });
                       this.getWishlist().then((result) =>
@@ -149,11 +150,6 @@ export class NavBarComp extends Component {
   }
 }
 
-const styles = {
-  nav: {
-    color: '#f7e7d9',
-    marginRight: '5px',
-  },
-};
+
 
 export default NavBarComp;
