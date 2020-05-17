@@ -4,7 +4,7 @@ import { FaCartPlus, FaTimes } from 'react-icons/fa';
 import Image from 'react-bootstrap/Image';
 import './Wishlist.css';
 import axios from 'axios';
-const urlFavorite = 'http://localhost:3000/api/v1/favorites/';
+const urlFavorite = 'http://localhost:3101/api/v1/favorites/';
 const urlCart = 'http://localhost:3000/api/v1/cart/';
 class Wishlist extends Component {
   constructor(props) {

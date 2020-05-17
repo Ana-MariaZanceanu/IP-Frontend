@@ -1,18 +1,8 @@
-import React, { Component } from "react";
-//import { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
-
-/*const ReactCalendar = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  return (
-    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-  );
-};*/
+import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import './form.css';
 
 class FormDetails extends Component {
   constructor(props) {
@@ -41,7 +31,11 @@ class FormDetails extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <Form validated={this.state.validated} onSubmit={this.handleSubmit}>
+      <Form
+        validated={this.state.validated}
+        onSubmit={this.handleSubmit}
+        className="formReservation"
+      >
         <Form.Row>
           <Form.Group as={Col} controlId="userFirstName">
             <Form.Label>First Name</Form.Label>
@@ -50,7 +44,7 @@ class FormDetails extends Component {
               placeholder="First name"
               value={values.userFirstName}
               name="userFirstName"
-              onChange={handleChange("userFirstName")}
+              onChange={handleChange('userFirstName')}
               required
             />
           </Form.Group>
@@ -62,7 +56,7 @@ class FormDetails extends Component {
               placeholder="Last name"
               value={values.userLastName}
               name="userLastName"
-              onChange={handleChange("userLastName")}
+              onChange={handleChange('userLastName')}
               required
             />
           </Form.Group>
@@ -75,7 +69,7 @@ class FormDetails extends Component {
               placeholder="Email"
               value={values.email}
               name="email"
-              onChange={handleChange("email")}
+              onChange={handleChange('email')}
               required
             />
           </Form.Group>
@@ -86,7 +80,7 @@ class FormDetails extends Component {
               placeholder="Phone number"
               value={values.phoneNumber}
               name="phoneNumber"
-              onChange={handleChange("phoneNumber")}
+              onChange={handleChange('phoneNumber')}
               required
             />
           </Form.Group>
@@ -98,7 +92,7 @@ class FormDetails extends Component {
               placeholder="Number of seats"
               value={values.numberOfSeats}
               name="numberOfSeats"
-              onChange={handleChange("numberOfSeats")}
+              onChange={handleChange('numberOfSeats')}
               required
             />
           </Form.Group>
@@ -111,7 +105,7 @@ class FormDetails extends Component {
               placeholder="Date"
               value={values.reservationDate}
               name="reservationDate"
-              onChange={handleChange("reservationDate")}
+              onChange={handleChange('reservationDate')}
               required
             />
           </Form.Group>
@@ -123,7 +117,7 @@ class FormDetails extends Component {
               placeholder="Hour"
               value={values.hour}
               name="hour"
-              onChange={handleChange("hour")}
+              onChange={handleChange('hour')}
               required
             />
           </Form.Group>
@@ -133,7 +127,7 @@ class FormDetails extends Component {
           onClick={this.handleClick}
           variant="primary"
           type="submit"
-          style={styles.button}
+          className="confirmButton"
         >
           Continue
         </Button>
@@ -142,16 +136,5 @@ class FormDetails extends Component {
   }
 }
 
-const styles = {
-  button: {
-    backgroundColor: "#A71D31",
-    color: "#F7E7D9",
-    border: "none",
-    marginRight: "1vw",
-    marginTop: "2vh",
-    width: "auto",
-    height: "auto",
-  },
-};
 
 export default FormDetails;

@@ -1,0 +1,82 @@
+.modalReservation {
+  width: 60%!important;
+  max-width: none!important;
+}
+
+.reserveButton{
+    background-color: #A71D31;
+    width: 100%;
+    height: 8vh;
+    color:white;
+    padding: 12px 10px;
+    align-self: center;
+    text-align: center;
+    border: none;
+    margin-left: 3vw;
+}
+.reserveButton:hover,
+.reserveButton:focus{
+    opacity:0.4;
+    background-color: #A71D31!important;
+}
+.textConfirm{
+    color: #2B2633;
+
+}
+.buttonRed,
+.confirmButton,
+.backButton{
+    background-color: #A71D31;
+    color: white;
+    border: none;
+    margin-right: 1vw;
+    margin-top: 2vh;
+    width: auto;
+    height: auto;
+}
+.buttonGreen{
+    background-color: #386150;
+    color: white;
+    border: none;
+    margin-right: 1vw;
+    margin-top: 2vh;
+    width: auto;
+    height: auto;
+}
+.failText{
+    color: #A71D31;
+}
+.succesText{
+    color:#386150;
+}
+@media screen and (max-width: 700px)
+{
+
+.modalReservation{
+    width: 90%!important;
+    max-width: none!important;
+    font-size: 0.6rem!important;
+    margin-left:4vw!important;
+    margin-top: 10vh!important;
+}
+.modalReservation input{
+    font-size: 0.7rem!important;
+}
+
+.reserveButton{
+    background-color: #A71D31!important;
+    width: 100%;
+    height: 8vh;
+    color:white;
+    padding: 12px 10px;
+    align-self: center;
+    text-align: center;
+    border: none;
+    margin-left: 11vw;
+}
+.reserveButton:hover,
+.reserveButton:focus{
+    opacity:0.4;
+    background-color: #A71D31!important;
+}
+}

@@ -16,7 +16,7 @@ export class Menu extends Component {
         <p className="menuTitle">Our menu</p>
         <div id="items">
           {this.state.courses.map((item) => {
-            console.log('aiiiiiccccciiiiiii' + item._id);
+          
             return (
               <Item
                 itemId={item._id}

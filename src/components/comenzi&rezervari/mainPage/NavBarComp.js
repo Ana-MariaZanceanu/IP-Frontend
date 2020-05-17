@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import ShoppingCartModal from "../shoppingCart/ShoppingCartModal";
-import WishlistModal from "../wishlist/WishlistModal";
-import RestaurantPage from "../../informatii&recenzii/RestaurantPage";
-import axios from "axios";
+import React, { Component } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { FaShoppingCart, FaHeart } from 'react-icons/fa';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import ShoppingCartModal from '../shoppingCart/ShoppingCartModal';
+import WishlistModal from '../wishlist/WishlistModal';
+import RestaurantPage from '../../informatii&recenzii/RestaurantPage';
+import axios from 'axios';
 
-const urlGetCart = "http://localhost:3000/api/v1/cart/session";
-const getUrlWishlist = "http://localhost:3000/api/v1/favorites/";
+const urlGetCart = 'http://localhost:3000/api/v1/cart/session';
+const getUrlWishlist = 'http://localhost:3101/api/v1/favorites/';
 
 export class NavBarComp extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export class NavBarComp extends Component {
   getCart = async () => {
     let products = [];
     await axios({
-      method: "get",
+      method: 'get',
       url: urlGetCart,
       withCredentials: true,
     })
@@ -43,10 +43,11 @@ export class NavBarComp extends Component {
   getWishlist = async () => {
     let products = [];
     await axios({
-      method: "get",
-      url: getUrlWishlist + "5eb16fdf4afbf654966cb68d",
+      method: 'get',
+      url: getUrlWishlist + '5eb16fdf4afbf654966cb68d',
     })
       .then((response) => {
+        console.log(response);
         products = response.data.data.favorites[0].items;
       })
       .catch((error) => {
@@ -90,7 +91,7 @@ export class NavBarComp extends Component {
                       );
                     }}
                   >
-                    <Link to={"/cart"} className="iconCart">
+                    <Link to={'/cart'} className="iconCart">
                       <FaShoppingCart />
                     </Link>
                   </Nav.Link>
@@ -121,7 +122,7 @@ export class NavBarComp extends Component {
           </Navbar>
 
           <Switch>
-            <Route path={"/cart"}>
+            <Route path={'/cart'}>
               <ShoppingCartModal
                 show={this.state.modalShow}
                 onHide={() => {
@@ -131,7 +132,7 @@ export class NavBarComp extends Component {
               />
             </Route>
 
-            <Route path={"/wishlist"}>
+            <Route path={'/wishlist'}>
               <WishlistModal
                 show={this.state.modalShow}
                 onHide={() => {
@@ -149,8 +150,8 @@ export class NavBarComp extends Component {
 
 const styles = {
   nav: {
-    color: "#f7e7d9",
-    marginRight: "5px",
+    color: '#f7e7d9',
+    marginRight: '5px',
   },
 };
 
