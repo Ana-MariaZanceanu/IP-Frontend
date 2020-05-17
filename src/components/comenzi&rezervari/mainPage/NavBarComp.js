@@ -22,6 +22,7 @@ export class NavBarComp extends Component {
       products: [],
       wishedProducts: [],
     };
+    this.providerId = "";
   }
 
   getCart = async () => {
@@ -57,6 +58,7 @@ export class NavBarComp extends Component {
   };
 
   render() {
+    this.providerId += this.props.providerId;
     return (
       <Router>
         <div>
@@ -129,7 +131,6 @@ export class NavBarComp extends Component {
                   this.setState({ modalShow: false });
                 }}
                 products={this.state.products}
-                providerId={this.props.providerId}
               />
             </Route>
 

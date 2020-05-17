@@ -199,7 +199,6 @@ class ShoppingCart extends Component {
                 <Order func={() => { setTimeout(() => {
                   this.emptyCart(products);
                 },5000)}}
-                       providerId={this.props.providerId}
                 />
               </Route>
             </Switch>

@@ -86,6 +86,7 @@ export class RestaurantPage extends Component {
     if (this.state.isLoading) {
       return <p>Loading...</p>;
     } else {
+      localStorage.setItem("restaurantId",this.state.providerId);
       return (
         <div>
           <Helmet>
@@ -96,7 +97,7 @@ export class RestaurantPage extends Component {
             ></meta>
           </Helmet>
           <div className="page">
-            <NavBarComp providerId={this.state.providerId}/>
+            <NavBarComp/>
             {/* <BackButton /> */}
             <div id="wrapper">
               <Content

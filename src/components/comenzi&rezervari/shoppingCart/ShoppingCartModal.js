@@ -22,7 +22,7 @@ class ShoppingCartModal extends Component {
           >
             <Modal.Header closeButton className={"modalHeader"}/>
             <Modal.Body>
-              <ShoppingCart products={products} providerId={this.props.providerId}/>
+              <ShoppingCart products={products}/>
             </Modal.Body>
           </Modal>
       );

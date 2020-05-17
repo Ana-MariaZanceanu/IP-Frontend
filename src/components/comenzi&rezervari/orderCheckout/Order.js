@@ -240,13 +240,14 @@ class Order extends Component {
       userDeliveryAdress,
       paymentMethod,
     };
+    let restaurantId = localStorage.getItem("restaurantId");
     let formValues = {
         userFirstName: userFirstName,
         userLastName: userLastName,
         email: email,
         phoneNumber: phoneNumber,
         paymentMethod: paymentMethod,
-        restaurantId: this.props.providerId,
+        restaurantId: restaurantId,
     };
     if(this.state.homeDelivery){
         formValues.userDeliveryAdress = userDeliveryAdress;
@@ -364,7 +365,7 @@ class Order extends Component {
               <Button
                 onClick={async (event) => {
                   await this.handleSubmit(event, formValues);
-                  this.props.func();
+
                 }}
                 style={buttonStyle}
               >
@@ -375,7 +376,7 @@ class Order extends Component {
         }
       case 3:
         return this.success === true ? (
-          <Success />
+          <Success func={() => { this.props.func(); } }/>
         ) : (
           <Fail response={this.message} prevStep={this.prevStep} />
         );

@@ -15,6 +15,7 @@ class FormSucces extends Component {
             <p>You will get an email with further information.</p>
           </Card.Body>
         </Card>
+        {this.props.func()}
       </div>
     );
   }
