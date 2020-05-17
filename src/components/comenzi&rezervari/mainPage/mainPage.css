@@ -27,3 +27,49 @@
     text-align:center;
     font-weight: 400;
 }
+.footer{
+  background-color: black;
+  color: #757575;
+  text-align: center;
+}
+.socialLink{
+  color: #a1a1a1;
+  background-color: #333;
+  font-size: 2rem;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+.footerTitle{
+  font-family: Pacifico;
+  color: #a71d31;
+}
+.nav{
+  color: #f7e7d9;
+  margin-right: 5px;
+}
+.ourSpecials{
+  border-right: 3px solid #a71d31;
+}
+.specialNav{
+  color: #333;
+  font-size: 1rem;
+}
+.card {
+  min-height: 474px;
+  border: none;
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.cardImg{ min-height: 225px}
+.titleRestaurant {
+  font-family: Pacifico;
+}
+.desc{
+  min-height: 100px;
+  font-family: Noto Sans KR;
+  font-weight: 400;
+}
+.buttonRestaurant{
+  background-color: #a71d31;
+  border: none;
+}

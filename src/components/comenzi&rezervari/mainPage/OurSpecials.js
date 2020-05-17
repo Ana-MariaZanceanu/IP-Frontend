@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import OurSpecialsNav from "./OurSpecialsNav";
 import CompTitle from "./CompTitle";
+import './mainPage.css';
 export class OurSpecials extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +51,7 @@ export class OurSpecials extends Component {
         <Container fluid="md">
           <CompTitle title={this.state.title} desc={this.state.desc} />
           <Row className="mt-3">
-            <Col lg="3" style={styles.nav}>
+            <Col lg="3" className="ourSpecials">
               <OurSpecialsNav
                 specials={this.state.specials}
                 handleChangeKey={this.handleChangeKey}
@@ -68,10 +69,6 @@ export class OurSpecials extends Component {
   }
 }
 
-const styles = {
-  nav: {
-    borderRight: "3px solid #a71d31",
-  },
-};
+
 
 export default OurSpecials;

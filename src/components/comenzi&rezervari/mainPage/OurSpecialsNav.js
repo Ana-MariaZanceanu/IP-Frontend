@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Nav from "react-bootstrap/Nav";
+import './mainPage.css';
 export class OurSpecialsNav extends Component {
   render() {
     const { specials, handleChangeKey } = this.props;
@@ -13,19 +14,19 @@ export class OurSpecialsNav extends Component {
           className="flex-column"
           onSelect={(selectedKey) => handleChangeKey(selectedKey)}
         >
-          <Nav.Link style={styles.nav} eventKey="0">
+          <Nav.Link className="specialNav" eventKey="0">
             {navItems[0]}
           </Nav.Link>
-          <Nav.Link style={styles.nav} eventKey="1">
+          <Nav.Link className="specialNav" eventKey="1">
             {navItems[1]}
           </Nav.Link>
-          <Nav.Link style={styles.nav} eventKey="2">
+          <Nav.Link className="specialNav" eventKey="2">
             {navItems[2]}
           </Nav.Link>
-          <Nav.Link style={styles.nav} eventKey="3">
+          <Nav.Link className="specialNav" eventKey="3">
             {navItems[3]}
           </Nav.Link>
-          <Nav.Link style={styles.nav} eventKey="4">
+          <Nav.Link className="specialNav" eventKey="4">
             {navItems[4]}
           </Nav.Link>
         </Nav>
@@ -34,11 +35,6 @@ export class OurSpecialsNav extends Component {
   }
 }
 
-const styles = {
-  nav: {
-    color: "#333",
-    fontSize: "1rem",
-  },
-};
+
 
 export default OurSpecialsNav;

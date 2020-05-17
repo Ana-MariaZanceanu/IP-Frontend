@@ -15,11 +15,11 @@ export class FooterComp extends Component {
   }
   render() {
     return (
-      <div style={styles.footer}>
+      <div className="footer">
         <Container>
           <Row className="justify-content-md-center pt-5">
             <Col>
-              <h2 style={styles.footerTitle}>{this.state.title}</h2>
+              <h2 className="footerTitle">{this.state.title}</h2>
             </Col>
           </Row>
           <Row className="justify-content-md-center pb-3">
@@ -28,34 +28,14 @@ export class FooterComp extends Component {
             </Col>
           </Row>
           <div className="justify-content-md-center pb-5">
-            <i style={styles.socialLink} class="bx bxl-facebook"></i>
-            <i style={styles.socialLink} class="bx bxl-twitter"></i>
-            <i style={styles.socialLink} class="bx bxl-instagram"></i>
+            <i className="socialLink" class="bx bxl-facebook socialLink "></i>
+            <i class="bx bxl-twitter socialLink socialLink"></i>
+            <i class="bx bxl-instagram socialLink socialLink"></i>
           </div>
         </Container>
       </div>
     );
   }
 }
-
-const styles = {
-  footer: {
-    backgroundColor: "black",
-    color: "#757575",
-    textAlign: "Center",
-  },
-  socialLink: {
-    color: "#a1a1a1",
-    backgroundColor: "#333",
-    fontSize: "2rem",
-    borderRadius: "50%",
-    padding: "10px",
-    cursor: "pointer",
-  },
-  footerTitle: {
-    fontFamily: "Pacifico",
-    color: "#a71d31",
-  },
-};
 
 export default FooterComp;
