@@ -14,7 +14,8 @@ export class Content extends Component {
 
     render() {
         return (
-            <div id="content">
+            
+            <div id="content" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
                 <div className="header">
                     <h2 className="text-center restauranttitle" >{this.state.providerName}</h2>
                     <Carousel>
@@ -28,9 +29,9 @@ export class Content extends Component {
                         </Carousel.Item>) )}
                     </Carousel>
                 </div>
-           
-           
             </div>
+           
+           
         );
     }
 }

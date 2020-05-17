@@ -9,6 +9,7 @@ import goldStar from "./Images/Gold_Star.png";
 import halfStar from "./Images/Half_Star.png";
 import { Image } from "react-bootstrap";
 import { Badge } from "react-bootstrap";
+import {FaHashtag} from 'react-icons/fa';
 
 class StarRating extends Component {
   constructor(props) {
@@ -164,17 +165,18 @@ export class Information extends Component {
 
   render() {
     return (
-      <div id="information">
+      <div id="information" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
         <ul className="inline-block">
-          <p className="inline">Tags: </p>
+         
           {this.state.specials.map((item) => (
             <Badge pill variant="info" bsPrefix="tag">
+              <FaHashtag/>
               {item}
             </Badge>
           ))}
         </ul>
         <hr></hr>
-        <p>{this.state.description}</p>
+        <p className="description">{this.state.description}</p>
         <hr></hr>
         <StarRating score={this.state.rating} />
       </div>
