@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Success from "./Success";
 import Fail from "./Fail";
 import axios from "axios";
+import "./orderCheckout.css";
 
 const urlOrders = "http://localhost:3000/api/v1/orders";
 
@@ -240,14 +241,13 @@ class Order extends Component {
       userDeliveryAdress,
       paymentMethod,
     };
-    let restaurantId = localStorage.getItem("restaurantId");
     let formValues = {
         userFirstName: userFirstName,
         userLastName: userLastName,
         email: email,
         phoneNumber: phoneNumber,
         paymentMethod: paymentMethod,
-        restaurantId: restaurantId,
+        restaurantId: "5eb175094afbf654966cb690"
     };
     if(this.state.homeDelivery){
         formValues.userDeliveryAdress = userDeliveryAdress;
@@ -265,7 +265,7 @@ class Order extends Component {
               homeDisabled={this.homeDisabled}
               restaurantDisabled={this.restaurantDisabled}
             />
-            <Card.Text style={errorStyle}>
+            <Card.Text className="errorStyle">
               {this.state.deliveryMessage}
             </Card.Text>
             <PersonalData
@@ -274,7 +274,7 @@ class Order extends Component {
               disabled={"disabled"}
               disabledAddress={"disabled"}
             />
-            <Card.Text style={errorStyle}>
+            <Card.Text className="errorStyle">
               {this.state.personalDataMessage}
             </Card.Text>
             <PaymentMethod
@@ -282,14 +282,14 @@ class Order extends Component {
               handleChange={this.handleChange}
               modifyTokenID={this.modifyTokenID}
             />
-            <Card.Text style={errorStyle}>
+            <Card.Text className="errorStyle">
               {this.state.paymentMessage}
             </Card.Text>
             <Button
               onClick={(event) => {
                 this.handleSubmit(event, formValues);
               }}
-              style={buttonStyle}
+              className="buttonStyle"
             >
               Submit
             </Button>
@@ -304,7 +304,7 @@ class Order extends Component {
                 homeDisabled={this.homeDisabled}
                 restaurantDisabled={this.restaurantDisabled}
               />
-              <Card.Text style={errorStyle}>
+              <Card.Text className="errorStyle">
                 {this.state.deliveryMessage}
               </Card.Text>
               <PersonalData
@@ -313,7 +313,7 @@ class Order extends Component {
                 disabled={""}
                 disabledAddress={""}
               />
-              <Card.Text style={errorStyle}>
+              <Card.Text className="errorStyle">
                 {this.state.personalDataMessage}
               </Card.Text>
               <PaymentMethod
@@ -321,14 +321,14 @@ class Order extends Component {
                 handleChange={this.handleChange}
                 modifyTokenID={this.modifyTokenID}
               />
-              <Card.Text style={errorStyle}>
+              <Card.Text className="errorStyle">
                 {this.state.paymentMessage}
               </Card.Text>
               <Button
                 onClick={(event) => {
                   this.handleSubmit(event, formValues);
                 }}
-                style={buttonStyle}
+                className="buttonStyle"
               >
                 Submit
               </Button>
@@ -342,7 +342,7 @@ class Order extends Component {
                 homeDisabled={this.homeDisabled}
                 restaurantDisabled={this.restaurantDisabled}
               />
-              <Card.Text style={errorStyle}>
+              <Card.Text className="errorStyle">
                 {this.state.deliveryMessage}
               </Card.Text>
               <PersonalData
@@ -351,7 +351,7 @@ class Order extends Component {
                 disabled={""}
                 disabledAddress={"disabled"}
               />
-              <Card.Text style={errorStyle}>
+              <Card.Text className="errorStyle">
                 {this.state.personalDataMessage}
               </Card.Text>
               <PaymentMethod
@@ -359,7 +359,7 @@ class Order extends Component {
                 handleChange={this.handleChange}
                 modifyTokenID={this.modifyTokenID}
               />
-              <Card.Text style={errorStyle}>
+              <Card.Text className="errorStyle">
                 {this.state.paymentMessage}
               </Card.Text>
               <Button
@@ -367,7 +367,7 @@ class Order extends Component {
                   await this.handleSubmit(event, formValues);
 
                 }}
-                style={buttonStyle}
+                className="buttonStyle"
               >
                 Submit
               </Button>
@@ -385,14 +385,5 @@ class Order extends Component {
     }
   }
 }
-
-const buttonStyle = {
-  backgroundColor: "#A71D31",
-  color: "#F7E7D9",
-};
-
-const errorStyle = {
-  color: "#FF0000",
-};
 
 export default Order;

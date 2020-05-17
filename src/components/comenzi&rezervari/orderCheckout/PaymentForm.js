@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+import "./orderCheckout.css";
 
 import {
   CardNumberElement,
@@ -67,7 +68,7 @@ export class PaymentForm extends Component {
               <Col md>
                 <Form.Group>
                   <Form.Label>Enter card number*</Form.Label>
-                  <div style={cardComponentStyle}>
+                  <div className="cardComponentStyle">
                     <CardNumberElement options={cardElementStyle} />
                   </div>
                 </Form.Group>
@@ -77,7 +78,7 @@ export class PaymentForm extends Component {
               <Col md>
                 <Form.Group>
                   <Form.Label>Enter card expiry date*</Form.Label>
-                  <div style={cardComponentStyle}>
+                  <div className="cardComponentStyle">
                     <CardExpiryElement options={cardElementStyle} />
                   </div>
                 </Form.Group>
@@ -85,17 +86,17 @@ export class PaymentForm extends Component {
               <Col md>
                 <Form.Group>
                   <Form.Label>Enter card expiry date*</Form.Label>
-                  <div style={cardComponentStyle}>
+                  <div className="cardComponentStyle">
                     <CardCvcElement options={cardElementStyle} />
                   </div>
                 </Form.Group>
               </Col>
             </Row>
           </Form>
-          <Card.Text style={this.state.error ? errorStyle : succesStyle}>
+          <Card.Text className={this.state.error ? "errorStyle" : "succesStyle"}>
             {this.state.submitMessage}
           </Card.Text>
-          <Button style={buttonStyle} onClick={this.handleClick}>
+          <Button className="buttonStyle" onClick={this.handleClick}>
             Confirm
           </Button>
         </Container>
@@ -103,24 +104,6 @@ export class PaymentForm extends Component {
     );
   }
 }
-
-const cardComponentStyle = {
-  border: "1px solid #ced4da",
-  padding: ".375rem .75rem",
-  borderRadius: ".25rem",
-};
-
-const errorStyle = {
-  color: "#FF0000",
-};
-const succesStyle = {
-  color: "#008000",
-};
-
-const buttonStyle = {
-  backgroundColor: "#A71D31",
-  color: "#F7E7D9",
-};
 
 const cardElementStyle = {
   style: {

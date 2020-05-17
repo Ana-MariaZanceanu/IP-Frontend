@@ -10,7 +10,7 @@
 }
 .paragraf {
   font-family: Noto Sans KR;
-  font-weight: 500px;
+  font-weight: 500;
 }
 .button {
   color: #fff;
@@ -70,6 +70,6 @@
   font-weight: 400;
 }
 .buttonRestaurant{
-  background-color: #a71d31;
-  border: none;
+  background-color: #a71d31!important;
+  border: none!important;
 }

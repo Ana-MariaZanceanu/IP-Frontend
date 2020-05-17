@@ -8,9 +8,9 @@ import { FaShoppingCart, FaHeart } from 'react-icons/fa';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import ShoppingCartModal from '../shoppingCart/ShoppingCartModal';
 import WishlistModal from '../wishlist/WishlistModal';
-import RestaurantPage from '../../informatii&recenzii/RestaurantPage';
 import axios from 'axios';
-import './mainPage.css';
+import "./mainPage.css";
+import "./style.css";
 
 const urlGetCart = 'http://localhost:3000/api/v1/cart/session';
 const getUrlWishlist = 'http://localhost:3101/api/v1/favorites/';

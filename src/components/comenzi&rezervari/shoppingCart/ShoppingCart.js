@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Order from "../orderCheckout/Order";
-import Card from "react-bootstrap/Card";
+import { FaTimes } from 'react-icons/fa';
 
 const TAX_RATE = 0.06;
 const TAX_TEXT = "6% sales tax";
@@ -107,7 +107,7 @@ class ShoppingCart extends Component {
           <tr key={i}>
             <td>
               <Button onClick={this.zeroProduct(p)} className="deleteProduct">
-                x
+                <FaTimes/>
               </Button>
             </td>
             <td> {name} </td>

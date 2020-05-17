@@ -22,9 +22,9 @@ i:hover {
   background-color: #a71d31 !important;
   color: white !important;
 }
-.iconCart {
+.iconCart,.iconHeart {
   color: white !important;
 }
-.iconCart:hover {
+.iconCart:hover, .iconHeart:hover {
   color: #a71d31 !important;
 }

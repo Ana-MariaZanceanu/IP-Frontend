@@ -1,0 +1,43 @@
+.buttonStyle{
+    background-color: #A71D31;
+    color: white;
+}
+.errorStyle{
+    color: #FF0000;
+}
+.buttonFail{
+    background-color: #A71D31;
+    color: #F7E7D9;
+    border: none;
+    margin-right: 1vw;
+    margin-top: 2vh;
+    width: auto;
+    height: auto;
+}
+.textFail{
+    color: #A71D31;
+}
+.cardComponentStyle{
+    border: 1px solid #ced4da;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+}
+
+.errorStyle{
+    color: #FF0000;
+}
+.succesStyle{
+    color: #008000;
+}
+.buttonStyle{
+    background-color: #386150!important;
+    color: #F7E7D9;
+    border: none!important;
+}
+
+.textSuccess{
+    color: #386150;
+}
+.card{
+    min-height: auto!important;
+}

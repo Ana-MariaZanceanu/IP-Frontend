@@ -118,7 +118,7 @@ class Wishlist extends Component {
         return <div className="emptyCart">Empty wishlist!</div>;
       }
       return (
-        <table>
+        <table className="tableWishlist">
           <thead>
             <tr>
               <th className="deleteArea"></th>
@@ -134,12 +134,17 @@ class Wishlist extends Component {
           </tbody>
           <br />
           <tfoot>
-            <Button
-              className="clearWishlist"
-              onClick={this.deleteWishlist(products)}
-            >
-              clear wishlist
-            </Button>
+          <tr>
+              <td></td>
+              <td>
+                  <Button
+                      className="clearWishlist"
+                      onClick={this.deleteWishlist(products)}
+                  >
+                      clear wishlist
+                  </Button>
+              </td>
+          </tr>
             <p>{this.message}</p>
           </tfoot>
         </table>

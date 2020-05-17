@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import "./orderCheckout.css";
 
 class FormFail extends Component {
   back = (e) => {
@@ -13,12 +14,12 @@ class FormFail extends Component {
       <div>
         <Card>
           <Card.Body>
-            <h2 style={styles.text}>{this.props.response}</h2>
+            <h2 className="textFail">{this.props.response}</h2>
             <Button
               onClick={this.back}
               variant="primary"
               type="button"
-              style={styles.button}
+              className="buttonFail"
             >
               Back
             </Button>
@@ -28,20 +29,5 @@ class FormFail extends Component {
     );
   }
 }
-
-const styles = {
-  button: {
-    backgroundColor: "#A71D31",
-    color: "#F7E7D9",
-    border: "none",
-    marginRight: "1vw",
-    marginTop: "2vh",
-    width: "auto",
-    height: "auto",
-  },
-  text: {
-    color: "#A71D31",
-  },
-};
 
 export default FormFail;

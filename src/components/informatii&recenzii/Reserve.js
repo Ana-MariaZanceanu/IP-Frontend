@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { MdRestaurantMenu } from 'react-icons/md';
 import FormReservation from '../comenzi&rezervari/form/FormReservation';
 import Modal from 'react-bootstrap/Modal';
-import '../comenzi&rezervari/form/form.css';
+import './App.css';
 class Reserve extends Component {
   constructor(props) {
     super(props);

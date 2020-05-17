@@ -30,7 +30,7 @@ export class RestaurantCard extends Component {
             <Card.Title className="titleRestaurant">{title}</Card.Title>
             <Card.Text className="desc">{desc}</Card.Text>
             <Button
-              className="float-right restaurant-card-button buttobRestaurant"
+              className="float-right restaurant-card-button buttonRestaurant"
              
               onClick={this.handleClick}
             >

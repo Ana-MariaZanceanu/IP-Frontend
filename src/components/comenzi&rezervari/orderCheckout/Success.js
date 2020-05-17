@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
+import "./orderCheckout.css";
 
 class FormSucces extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class FormSucces extends Component {
       <div>
         <Card>
           <Card.Body>
-            <h2 style={styles.text}>Order successfully registered!</h2>
+            <h2 className="textSuccess">Order successfully registered!</h2>
             <p>You will get an email with further information.</p>
           </Card.Body>
         </Card>
@@ -20,11 +21,5 @@ class FormSucces extends Component {
     );
   }
 }
-
-const styles = {
-  text: {
-    color: "#386150",
-  },
-};
 
 export default FormSucces;

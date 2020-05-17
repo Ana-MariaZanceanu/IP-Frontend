@@ -46,6 +46,7 @@ class FormConfirm extends Component {
         );
       })
       .catch((err) => {
+        console.log(err)
         this.setState(
           {
             success: false,

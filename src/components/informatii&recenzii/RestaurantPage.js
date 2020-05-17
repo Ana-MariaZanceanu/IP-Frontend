@@ -86,7 +86,6 @@ export class RestaurantPage extends Component {
     if (this.state.isLoading) {
       return <p>Loading...</p>;
     } else {
-      localStorage.setItem("restaurantId",this.state.providerId);
       return (
         <div>
           <Helmet>
