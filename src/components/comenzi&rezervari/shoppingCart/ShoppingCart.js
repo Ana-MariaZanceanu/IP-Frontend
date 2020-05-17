@@ -198,7 +198,9 @@ class ShoppingCart extends Component {
               <Route path="/checkout">
                 <Order func={() => { setTimeout(() => {
                   this.emptyCart(products);
-                },5000)}}/>
+                },5000)}}
+                       providerId={this.props.providerId}
+                />
               </Route>
             </Switch>
           </div>

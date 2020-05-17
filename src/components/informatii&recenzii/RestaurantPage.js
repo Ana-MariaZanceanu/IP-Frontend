@@ -96,7 +96,7 @@ export class RestaurantPage extends Component {
             ></meta>
           </Helmet>
           <div className="page">
-            <NavBarComp/>
+            <NavBarComp providerId={this.state.providerId}/>
             {/* <BackButton /> */}
             <div id="wrapper">
               <Content

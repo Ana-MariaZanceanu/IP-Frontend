@@ -129,6 +129,7 @@ export class NavBarComp extends Component {
                   this.setState({ modalShow: false });
                 }}
                 products={this.state.products}
+                providerId={this.props.providerId}
               />
             </Route>
 

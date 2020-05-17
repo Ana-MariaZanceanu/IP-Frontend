@@ -240,28 +240,19 @@ class Order extends Component {
       userDeliveryAdress,
       paymentMethod,
     };
-    let formValues;
-    if (this.state.restaurantDelivery === true) {
-      formValues = {
+    let formValues = {
         userFirstName: userFirstName,
         userLastName: userLastName,
         email: email,
         phoneNumber: phoneNumber,
         paymentMethod: paymentMethod,
-        paymentToken: tokenId,
-        restaurantId: "5e8b6ecd5935d8350c6c2c2a",
-      };
-    } else {
-      formValues = {
-        userFirstName: userFirstName,
-        userLastName: userLastName,
-        email: email,
-        phoneNumber: phoneNumber,
-        userDeliveryAdress: userDeliveryAdress,
-        paymentMethod: paymentMethod,
-        paymentToken: tokenId,
-        restaurantId: "5e8b6ecd5935d8350c6c2c2a",
-      };
+        restaurantId: this.props.providerId,
+    };
+    if(this.state.homeDelivery){
+        formValues.userDeliveryAdress = userDeliveryAdress;
+    }
+    if(this.state.card){
+        formValues.paymentToken = tokenId;
     }
     const { step } = this.state;
     switch (step) {
