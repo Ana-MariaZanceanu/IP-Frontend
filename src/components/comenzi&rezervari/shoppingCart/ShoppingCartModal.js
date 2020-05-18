@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import ShoppingCart from "./ShoppingCart";
 import "./ShoppingCart.css";
-import MainPage from "../mainPage/MainPage";
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 
 class ShoppingCartModal extends Component {
@@ -31,7 +30,7 @@ class ShoppingCartModal extends Component {
           <Router>
             <Switch>
               <Route>
-                  <Redirect to={"/home"} />
+                  <Redirect to={this.props.windowUrl} />
               </Route>
             </Switch>
           </Router>

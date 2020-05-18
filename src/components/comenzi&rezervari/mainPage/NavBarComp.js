@@ -22,8 +22,8 @@ export class NavBarComp extends Component {
       modalShow: false,
       products: [],
       wishedProducts: [],
+      windowUrl: "",
     };
-    this.providerId = "";
   }
 
   getCart = async () => {
@@ -59,7 +59,8 @@ export class NavBarComp extends Component {
   };
 
   render() {
-    this.providerId += this.props.providerId;
+    const windowUrl = window.location.href;
+    const redirectUrl = windowUrl.substring(21);
     return (
       <Router>
         <div>
@@ -88,7 +89,7 @@ export class NavBarComp extends Component {
                   <Nav.Link
                     className="nav"
                     onClick={() => {
-                      this.setState({ modalShow: true });
+                      this.setState({ modalShow: true, windowUrl: redirectUrl });
                       this.getCart().then((result) =>
                         this.setState({ products: result })
                       );
@@ -101,7 +102,7 @@ export class NavBarComp extends Component {
                   <Nav.Link
                    className="nav"
                     onClick={() => {
-                      this.setState({ modalShow: true });
+                      this.setState({ modalShow: true,  windowUrl: redirectUrl });
                       this.getWishlist().then((result) =>
                         this.setState({ wishedProducts: result })
                       );
@@ -132,6 +133,7 @@ export class NavBarComp extends Component {
                   this.setState({ modalShow: false });
                 }}
                 products={this.state.products}
+                windowUrl = {this.state.windowUrl}
               />
             </Route>
 
@@ -142,6 +144,7 @@ export class NavBarComp extends Component {
                   this.setState({ modalShow: false });
                 }}
                 products={this.state.wishedProducts}
+                windowUrl = {this.state.windowUrl}
               />
             </Route>
           </Switch>
