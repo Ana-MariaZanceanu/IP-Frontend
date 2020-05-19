@@ -1,0 +1,7 @@
+.editBtn {
+  margin: 1%;
+}
+.saveBtnContainer {
+  display: flex;
+  justify-content: center;
+}

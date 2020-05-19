@@ -11,11 +11,14 @@ import WishlistModal from '../wishlist/WishlistModal';
 import axios from 'axios';
 import "./mainPage.css";
 import "./style.css";
+import UserContext from '../../UserContext';
 
 const urlGetCart = 'http://localhost:3000/api/v1/cart/session';
 const getUrlWishlist = 'http://localhost:3101/api/v1/favorites/';
 
 export class NavBarComp extends Component {
+  static contextType = UserContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -120,6 +123,21 @@ export class NavBarComp extends Component {
                     className="mr-sm-2"
                   />
                   <Button variant="danger">Search</Button>
+                  <Button variant="outline-danger" style={{marginLeft:10}} 
+                      onClick={()=>{
+                        localStorage.removeItem('userToken');
+                        this.context.setUser({});
+                        window.location.reload(false);
+                        }}>
+                   Logout
+                   </Button>
+                   <Button variant="outline-danger" style={{marginLeft:10}} 
+                      onClick={()=>{
+                        window.location.href = "http://localhost:3000/profile";
+                        }}>
+                        Profile
+                        {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
+                   </Button>
                 </Form>
               </Navbar.Collapse>
             </Container>

@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import './App.css';
 import './Animation.css';
-import ShowModalProduct from './components/comenzi&rezervari/productModal/ShowModalProduct';
-import MainPage from './components/comenzi&rezervari/mainPage/MainPage';
-import RestaurantPage from './components/informatii&recenzii/RestaurantPage';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-} from 'react-router-dom';
+import * as api from './accounts/api/index';
+
 import UserContext from './components/UserContext';
-import history from './history';
+import Navigation from './accounts/components/navigation/Navigation';
 const Child = ({ match }) => (
 	<div>
 		<h3>ID: {match.params.id}</h3>
@@ -20,43 +13,45 @@ const Child = ({ match }) => (
 
 const initialUser = {};
 
-function App() {
-	const [user, setUser] = useState({ _id: 'dsafads' });
+async function checkIfItIsLogged(){
+	const value = localStorage.getItem('userToken');
+	if(value === null){
+		return false;
+	} else {
+		const answer = await api.getUser();
+		return answer.user;
+	}
+}
 
-	return (
-		<div>
-			<UserContext.Provider value={{ user, setUser }}>
-				<Router history={history}>
-					<Link to={'/home'} />
-					<Switch>
-						<Route
-							exact
-							path={'/'}
-							component={MainPage}
-						/>
-						<Route
-							exact
-							path={'/home'}
-							component={MainPage}
-						/>
-						<Route
-							path="/restaurant/:id"
-							component={(routerProps) => (
-								<RestaurantPage
-									providerId={
-										routerProps.match.params.id
-									}
-								/>
-							)}
-						/>
-					</Switch>
-					{/* <ShowModalProduct id={"5eb17a5c6f436666294bc421"} />
-        <ShowModalProduct id={"5eb17a5c6f436666294bc420"} /> */}
-				</Router>
-				{/*<RestaurantPage providerId={"5eb175094afbf654966cb690"} />*/}
-			</UserContext.Provider>
-		</div>
-	);
+function App() {
+	const [user, setUser] = useState({});
+	const [isLogged,setIsLogged] = useState(false);
+	const [loaded,setLoaded] = useState(false);
+
+	useEffect(async () => {
+		const answer = await checkIfItIsLogged();
+		if(answer === false){
+			setIsLogged(false);
+			setLoaded(true);
+		} else {
+			setUser(answer);
+			setIsLogged(true);
+			setLoaded(true);
+		}
+	}, [])
+
+	if(loaded === true){
+		return (
+			<div>
+			{/* <button onClick={()=>{checkIfItIsLogged()}}>
+	
+			</button> */}
+				<UserContext.Provider value={{ user, setUser }}>
+					<Navigation logged={isLogged} />
+				</UserContext.Provider>
+			</div>
+		);
+	} else return(<div></div>);
 }
 
 export default App;

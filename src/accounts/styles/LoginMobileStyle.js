@@ -1,0 +1,49 @@
+const styleMobile ={
+    containerStyle:{
+        width:'100%',height:'65%',backgroundColor:'#FBF3E6',display:'flex',justifyContent:'center'
+    },
+    whiteContainer:{
+        width:'95%',height:'100%',backgroundColor:'white',borderTopRightRadius:25,borderTopLeftRadius:25,display:'flex',alignItems:'center',flexDirection:'column'
+    },
+    loginText:{
+        fontSize:22,fontWeight:'bold',marginBottom:'10%'
+    },
+    loginButton:{
+        width:250,marginBottom:'1%',marginTop:'5%'
+    },
+    dontHaveAccount:{
+        color:'#858585',fontSize:11,marginTop:'1%',backgroundColor:'transparent',borderWidth:0
+    },
+    buttonsRoleContainer:{
+        flexDirection:'row',width:'100%',display:'flex',height:'50%',alignItems:'center',justifyContent:'center',marginBottom:'5%'
+    },
+    createAccountText:{
+        fontSize:20,fontWeight:'bold',marginLeft:15,marginRight:15,marginTop:10,display:'block'
+    },
+    registerButton:{
+        width:220,marginBottom:'1%',marginTop:'5%'
+    },
+    spinnerStyle:{
+        marginTop:'5%'
+    },
+    chefContainer:{
+        width:'100%',height:'35%',backgroundColor:'#FBF3E6'
+    },
+    closeButtonLostPassword:{
+        backgroundColor:'#079604'
+    },
+    sendButtonLostPassword:{
+        backgroundColor:'#D9054F'
+    },
+    iconStyle:{
+        color:'#D9054F'
+    },
+    fieldButton:{
+        width:'100%',marginBottom:0,borderWidth:0
+    },
+    inputGroupText:{
+        backgroundColor:'#F9F9F9',borderLeftWidth:0
+    }
+};
+
+export default styleMobile;
