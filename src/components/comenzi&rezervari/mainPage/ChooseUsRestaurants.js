@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Container from "react-bootstrap/Container";
+import res1 from "./../resources/img/res2.jpeg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -11,34 +12,20 @@ export class ChooseUsRestaurants extends Component {
       error: null,
       isLoaded: false,
       items: [],
-      restaurants: [],
     };
   }
 
   async componentDidMount() {
-    await fetch("http://localhost:4000/api/providers")
+    await fetch("https://ip-accounts.herokuapp.com/api/providers")
       .then((res) => res.json())
       .then((result) => {
         this.setState({
           isLoaded: true,
           items: result.data.providers,
         });
-        const restaurantsCopy = [];
-        for (var i = 0; i < 3; i++) {
-          const id = this.state.items[i % 2]._id;
-          const name = this.state.items[i % 2].name;
-          const img = this.state.items[i % 2].details.images[0];
-          const desc = this.state.items[i % 2].details.description.substring(
-            1,
-            150
-          );
-          restaurantsCopy.push(
-            <Col md>
-              <RestaurantCard title={name} img={img} desc={desc} id={id} />
-            </Col>
-          );
-        }
-        this.setState({ restaurants: restaurantsCopy });
+        /*console.log("!!!!AICI");
+        console.log(this.state.items[0]);
+        console.log("!!!!AICI");*/
       })
       .catch((error) => {
         this.setState({
@@ -48,16 +35,31 @@ export class ChooseUsRestaurants extends Component {
       });
   }
   render() {
+    let rowItems = [];
+    let listItems = [];
+    var start;
+    let item = this.state.items;
+    for (var i = 0; i < 2; i++) {
+      start = i * 3;
+      listItems = this.state.items.slice(start, start + 3).map((item, i) => {
+        const name = item.name ? item.name : "Restaurant";
+        const desc = item.details?.description
+          ? item.details.description.substring(0, 150)
+          : "default description";
+        const img = item.details?.images[0] ? item.details.images[0] : res1;
+        return (
+          <Col md>
+            <RestaurantCard title={name} desc={desc} img={img} id={item.id} />
+          </Col>
+        );
+      });
+      rowItems.push(
+        <Row className="justify-content-md-center mt-5">{listItems}</Row>
+      );
+    }
     return (
       <div>
-        <Container>
-          <Row className="justify-content-md-center mt-5">
-            {this.state.restaurants}
-          </Row>
-          <Row className="justify-content-md-center mt-5">
-            {this.state.restaurants}
-          </Row>
-        </Container>
+        <Container>{rowItems}</Container>
       </div>
     );
   }

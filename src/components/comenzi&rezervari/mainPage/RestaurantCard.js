@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import res1 from "./../resources/img/res3.jpeg";
 import history from "../../../history";
-import './mainPage.css';
+import "./mainPage.css";
 export class RestaurantCard extends Component {
   addDefaultSrc(ev) {
     console.log("here");
@@ -19,7 +19,7 @@ export class RestaurantCard extends Component {
     const { title, desc, img } = this.props;
     return (
       <div>
-        <Card   className="animated fadeInUp card">
+        <Card className="animated fadeInUp card">
           <Card.Img
             src={img}
             className="cardImg"
@@ -31,7 +31,6 @@ export class RestaurantCard extends Component {
             <Card.Text className="desc">{desc}</Card.Text>
             <Button
               className="float-right restaurant-card-button buttonRestaurant"
-             
               onClick={this.handleClick}
             >
               See more
@@ -42,6 +41,5 @@ export class RestaurantCard extends Component {
     );
   }
 }
-
 
 export default RestaurantCard;
