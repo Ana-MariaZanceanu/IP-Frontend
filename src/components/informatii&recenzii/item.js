@@ -4,7 +4,7 @@ import { Image } from 'react-bootstrap';
 import ModalProduct from '../comenzi&rezervari/productModal/ModalProduct';
 import axios from 'axios';
 
-const urlApiCourses = 'http://localhost:4000/api/courses/';
+const urlApiCourses = 'https://ip-accounts.herokuapp.com/api/courses/';
 
 const getProduct = async (id) => {
   let product = {};

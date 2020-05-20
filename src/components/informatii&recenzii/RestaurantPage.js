@@ -67,7 +67,7 @@ export class RestaurantPage extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/api/providers/" + this.state.providerId)
+      .get("https://ip-accounts.herokuapp.com/api/providers/" + this.state.providerId)
       .then((response) => {
         this.setState({
           courses: response.data.data.provider.details.menu.courses,

@@ -16,7 +16,7 @@ export class ChooseUsRestaurants extends Component {
   }
 
   async componentDidMount() {
-    await fetch("http://localhost:4000/api/providers")
+    await fetch("https://ip-accounts.herokuapp.com/api/providers")//changed to herokuapp
       .then((res) => res.json())
       .then((result) => {
         this.setState({
