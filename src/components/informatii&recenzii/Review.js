@@ -3,13 +3,15 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
+import profileTemp from "./Images/derp.jpg";
+import {Button} from 'react-bootstrap';
 import emptyStar from "./Images/Empty_Star.png";
 import goldStar from "./Images/Gold_Star.png";
 import halfStar from "./Images/Half_Star.png";
 import { Image } from "react-bootstrap";
+import upArrow from "./Images/UpArrow.png";
+import downArrow from "./Images/DownArrow.png";
+import axios from "axios";
 
 const Divider = (
   { color } //not currently used, literally just a line originally intended to divide username+score and body
@@ -31,9 +33,9 @@ class StarRating extends Component {
   render() { //This will require more work, since it isn't responsive and for some reason pictures get shrunk down to 0px on smaller resolutions
     return (
       <Container
-        style={{display: "flex" }}
+        style={{display: "flex"}}
       >
-        <div style={{ flex: "1", margin: "1%" }}>
+        <div style={{ flex: "1", margin: "1%", height: "40px"}}>
           {
             this.props.score >= 1 ? (
               this.props.score >= 2 ? (
@@ -163,27 +165,33 @@ class StarRating extends Component {
   }
 }
 
+
+
 class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
       reviewID: props.id,
       userID: props.userID,
-      userPicture: props.userPicture, //perhaps this is superflous; look at it later
-      username: props.username, //perhaps this is superfluous; look at it later
+      userPicture: null, //perhaps this is superflous; look at it later
+      username: null, //perhaps this is superfluous; look at it later
       score: props.score,
       content: props.content,
       expanded: false,
+      isLoaded: false
     };
   }
 
   componentDidMount() {
-    //This is where the API fetch will be in the future, if a single-review route is made; otherwise, it will take the data as props from a father component that fetched all reviews for a provider first
-    //    this.setState({userID : 1})
-    //   this.setState({username : "Mike Oxlong"})
-    //    this.setState({userPicture: profileTemp})
-    //    this.setState({score : 3})
-    //    this.setState({content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."})
+    axios
+      .get("https://ip-accounts.herokuapp.com/api/clients/" + this.state.userID)
+      .then((response) => {
+        this.setState({
+          userPicture: response.data.data.client.details.avatar,
+          username: response.data.data.client.name,
+          isLoaded: true,
+        });
+      });
   }
 
   //function for expanding/contracting the text
@@ -194,72 +202,84 @@ class Review extends Component {
   render() {
     //please note that colors are magenta, red and blue so that they're obviously visible and this should be changed when styled, to fit the rest of the page
     const { expanded } = this.state;
-    return (
-      <Container
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "stretch",
-          marginTop: "10px",
-          width: "auto",
-          padding: "0",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            height: "75px",
-            width: "auto",
-            padding: "1%",
-          }}
-        >
-          <div style={{ flex: "2", margin: "1%" }}>
-            <Image
-              src={this.state.userPicture}
-              alt={"Profile Picture"}
-              style={{ height: "100%", width: "100%", borderRadius: "50%" }}
-            />
+    if (!this.state.isLoaded) {
+      return <p>Loading review...</p>;
+    } else {
+      var picture = this.state.userPicture;
+      if(picture == ""){
+        console.log("Got here");
+        picture = profileTemp;
+      }
+      var hasContent = true;
+      if(this.state.content == "" || this.state.content == null) hasContent = false;
+      return (
+        <Container className="reviewholder">
+          <div className="reviewheader">
+            <div className="helpfulness">
+              <Button variant="outline-secondary" bsPrefix="voteup">
+              <Image
+                  src={upArrow}
+                  alt={""}
+                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                />
+              </Button>
+              <div style={{textAlign: "center"}}>5</div>
+              <Button variant="outline-secondary" bsPrefix="votedown">
+              <Image
+                  src={downArrow}
+                  alt={""}
+                  style={{ height: "20px", width: "100%" }}
+                />
+              </Button>
+            </div>
+            <div style={{ flex: "2", margin: "1%" }}>
+              <Image
+                src={picture}
+                alt={"Profile Picture"}
+                style={{ height: "100%", width: "100%", borderRadius: "50%" }}
+              />
+            </div>
+            <div style={{ flex: "1", margin: "1%", textAlign: "center"}}>{this.state.username}</div>
+            <div style={{ flex: "8", margin: "1%" }}>
+              <StarRating score={this.state.score} />{" "}
+            </div>
+          
+            {
+              //Look at the xs breakpoint thing, since the way it is now isn't proper; also, look into how to write actual comments in these returns
+            }
           </div>
-          <div style={{ flex: "1", margin: "1%" }}>{this.state.username}</div>
-          <div style={{ flex: "8", margin: "1%" }}>
-            <StarRating score={this.state.score} />{" "}
-          </div>
-          {
-            //Look at the xs breakpoint thing, since the way it is now isn't proper; also, look into how to write actual comments in these returns
-          }
-        </div>
 
-        <div>
-          {!expanded && (
-            <div style={{marginLeft: "3%"}}>
-              {this.state.content.substring(0, 100)}
-              {this.state.content.length > 100 && (
+          <div>
+            {!expanded && hasContent && (
+              <div style={{marginLeft: "3%", marginTop: "3%"}}>
+                {this.state.content.substring(0, 100)}
+                {this.state.content.length > 100 && (
+                  <a
+                    style={{ color: "blue", cursor: "pointer" }}
+                    onClick={this.showButton}
+                  >
+                    {" "}
+                    Read more
+                  </a>
+                )}
+              </div>
+            )}
+            {!expanded && hasContent && (
+              <div style={{marginLeft: "3%", marginTop: "3%"}}>
+                {this.state.content}
                 <a
                   style={{ color: "blue", cursor: "pointer" }}
                   onClick={this.showButton}
                 >
                   {" "}
-                  Read more
+                  Read less
                 </a>
-              )}
-            </div>
-          )}
-          {expanded && (
-            <div>
-              {this.state.content}
-              <a
-                style={{ color: "blue", cursor: "pointer" }}
-                onClick={this.showButton}
-              >
-                {" "}
-                Read less
-              </a>
-            </div>
-          )}
-        </div>
-      </Container>
-    );
+              </div>
+            )}
+          </div>
+        </Container>
+      );
+    }
   }
 }
 

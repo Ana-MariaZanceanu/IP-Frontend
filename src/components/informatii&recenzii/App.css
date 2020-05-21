@@ -267,11 +267,11 @@ ul span {
   transition: 0.15s;
 }
 
-@media screen and (min-width: 980px) {
+/* @media screen and (min-width: 980px) {
   #items {
     flex-basis: 33%;
   }
-}
+} */
 
 @media screen and (max-width: 979px) {
   #items {
@@ -351,4 +351,37 @@ ul span {
     opacity:0.4;
     background-color: #A71D31!important;
   }
+}
+
+.voteup{
+  max-height: 30px;
+  border: 0;
+}
+
+.votedown{
+  max-height: 30px;
+  border: 0;
+}
+
+.reviewholder{
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  margin-top: 10px;
+  width: auto;
+  padding: 0;
+}
+
+.reviewheader{
+  display: flex;
+  flex-direction: row;
+  height: 75px;
+  width: auto;
+  padding: 1%;
+}
+
+.helpfulness{
+  flex: 1;
+  display: flex;
+  flex-direction:column;
 }

@@ -106,17 +106,17 @@ export class RestaurantPage extends Component {
               <Row xl={2} lg={2} md={2} sm={2} xs={1}>
                 <Col
                   xl={{ span: 8 }}
-                  lg={{ span: 8 }}
-                  md={{ span: 8 }}
-                  sm={{ span: 8 }}
+                  lg={{ span: 6 }}
+                  md={{ span: 6 }}
+                  sm={{ span: 6 }}
                 >
                   <Menu courses={this.state.courses} />
                 </Col>
                 <Col
                   xl={{ span: 4 }}
-                  lg={{ span: 4 }}
-                  md={{ span: 4 }}
-                  sm={{ span: 4 }}
+                  lg={{ span: 6 }}
+                  md={{ span: 6 }}
+                  sm={{ span: 6 }}
                 >
                   <Information
                     description={this.state.description}
@@ -124,7 +124,7 @@ export class RestaurantPage extends Component {
                     specials={this.state.specials}
                   />
                   <Schedule schedule={this.state.schedule} providerId={this.state.providerId} />
-                  <ReviewHolder />
+                  <ReviewHolder providerId={this.state.providerId} />
                 </Col>
               </Row>
             </div>
