@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { setAuthorizationToken } from '../helpers/auth';
 
-const host = "https://ip-accounts.herokuapp.com/"
+const host = 'https://ip-accounts.herokuapp.com/';
 
 const login = async (email, password) => {
 	try {
@@ -10,7 +10,7 @@ const login = async (email, password) => {
 			data: { user, token },
 		} = await axios({
 			method: 'post',
-			url: host+'api/users/login',
+			url: host + 'api/users/login',
 			data: {
 				email,
 				password,
@@ -30,7 +30,7 @@ const lostPassword = async (email) => {
 	try {
 		await axios({
 			method: 'post',
-			url: host+"api/users/lostpassword",
+			url: host + 'api/users/lostpassword',
 			data: {
 				email,
 			},
@@ -45,19 +45,24 @@ const lostPassword = async (email) => {
 const register = async (username, role, email, password) => {
 	try {
 		const {
-			data: { user },
+			data: { user, token },
 		} = await axios({
 			method: 'post',
-			url: host+"api/users/register",
+			url: host + 'api/users/register',
 			data: {
 				email,
 				username,
 				password,
-				role,
+				role: role[0].toUpperCase() + role.slice(1),
 			},
 		});
 
-		//localStorage.setItem('userToken', token);
+		console.log('\n\n\n\n');
+		console.log(user);
+		console.log(token);
+		console.log('\n\n\n\n');
+
+		localStorage.setItem('userToken', token);
 
 		return { success: true, user };
 	} catch (error) {
@@ -77,7 +82,7 @@ const getUser = async () => {
 			},
 		} = await axios({
 			method: 'get',
-			url: host+"api/users/"+ _id,
+			url: host + 'api/users/' + _id,
 		});
 
 		return { success: true, user };
@@ -97,7 +102,7 @@ const getAllUsers = async () => {
 			},
 		} = await axios({
 			method: 'get',
-			url: host+"api/users/",
+			url: host + 'api/users/',
 		});
 
 		return { success: true, users };
@@ -117,7 +122,7 @@ const changeEmail = async (userData) => {
 			},
 		} = await axios({
 			method: 'post',
-			url: host+"api/users/changeemail",
+			url: host + 'api/users/changeemail',
 			data: userData,
 		});
 		return { success: true, userDetails };
@@ -137,7 +142,7 @@ const changeName = async (userData) => {
 			},
 		} = await axios({
 			method: 'post',
-			url: host+ "api/users/changename",
+			url: host + 'api/users/changename',
 			data: userData,
 		});
 		return { success: true, userDetails };
@@ -157,7 +162,7 @@ const changePassword = async (userData) => {
 			},
 		} = await axios({
 			method: 'post',
-			url: host+"api/users/changepassword",
+			url: host + 'api/users/changepassword',
 			data: userData,
 		});
 		return { success: true, userDetails };
@@ -176,7 +181,7 @@ const profile = async (userData) => {
 			},
 		} = await axios({
 			method: 'post',
-			url: host+"api/users/profile",
+			url: host + 'api/users/profile',
 			data: userData,
 		});
 		console.log(userDetails);
@@ -197,7 +202,7 @@ const uploadMenuPhoto = async (data) => {
 		};
 		await axios
 			.post(
-				host+"api/upload/uploadMenuPhoto/"+data.idCourse,
+				host + 'api/upload/uploadMenuPhoto/' + data.idCourse,
 				formData,
 				config,
 			)
@@ -223,7 +228,7 @@ const uploadSingle = async (data) => {
 		};
 		await axios
 			.post(
-				host+"api/upload/uploadSingle/"+data.userId,
+				host + 'api/upload/uploadSingle/' + data.userId,
 				formData,
 				config,
 			)
@@ -253,7 +258,7 @@ const uploadMultiple = async (data) => {
 		};
 		await axios
 			.post(
-				host+"api/upload/uploadMultiple/"+data.userId,
+				host + 'api/upload/uploadMultiple/' + data.userId,
 				formData,
 				config,
 			)
@@ -278,7 +283,7 @@ const addCourse = async (idMenu) => {
 			},
 		} = await axios({
 			method: 'post',
-			url: host+"api/courses/"+idMenu,
+			url: host + 'api/courses/' + idMenu,
 		});
 
 		return { success: true, courses };
@@ -297,7 +302,7 @@ const updateCourse = async (idCourse, courseData) => {
 			},
 		} = await axios({
 			method: 'patch',
-			url: host+"api/courses/"+idCourse,
+			url: host + 'api/courses/' + idCourse,
 			data: courseData,
 		});
 		return { success: true, userDetails };
@@ -316,7 +321,7 @@ const deleteCourse = async (idCourse) => {
 			},
 		} = await axios({
 			method: 'delete',
-			url: host+"api/courses/"+idCourse,
+			url: host + 'api/courses/' + idCourse,
 		});
 		return { success: true, courses };
 	} catch (error) {
