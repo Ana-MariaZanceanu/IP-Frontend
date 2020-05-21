@@ -186,11 +186,20 @@ class Review extends Component {
     axios
       .get("https://ip-accounts.herokuapp.com/api/clients/" + this.state.userID)
       .then((response) => {
-        this.setState({
-          userPicture: response.data.data.client.details.avatar,
-          username: response.data.data.client.name,
-          isLoaded: true,
-        });
+        if(response.data.data.client.details === null){
+          this.setState({
+         
+            username: response.data.data.client.name,
+            isLoaded: true,
+          });
+        }
+        else{
+          this.setState({
+            userPicture: response.data.data.client.details.avatar,
+            username: response.data.data.client.name,
+            isLoaded: true,
+          });
+        }
       });
   }
 
@@ -206,7 +215,7 @@ class Review extends Component {
       return <p>Loading review...</p>;
     } else {
       var picture = this.state.userPicture;
-      if(picture == ""){
+      if(picture == "" || picture == null){
         console.log("Got here");
         picture = profileTemp;
       }
@@ -264,7 +273,7 @@ class Review extends Component {
                 )}
               </div>
             )}
-            {!expanded && hasContent && (
+            {expanded && hasContent && (
               <div style={{marginLeft: "3%", marginTop: "3%"}}>
                 {this.state.content}
                 <a

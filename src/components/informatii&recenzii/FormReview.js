@@ -11,9 +11,10 @@ class UserForm extends Component {
     this.state = {
       step: 1,
       userName: "",
-      score: "",
+      score: 0,
       description: "",
       timeCreated: "",
+      provider: props.provider,
     };
   }
   state={
@@ -39,14 +40,10 @@ class UserForm extends Component {
 
   addFormDetails = (e, data) => {
     e.preventDefault();
-    var today = new Date();
-    let d = this.state.curTime
-    let h = data.timeModified.substr(11);
     this.setState({
       userName: data.userName,
       score: data.score,
       description: data.description,
-      timeCreated: d,
     });
   };
 
@@ -88,6 +85,7 @@ class UserForm extends Component {
             addFormDetails={this.addFormDetails}
             values={values}
             modifySuccess={this.modifySuccess}
+            provider={this.state.provider}
           />
         );
       case 3:

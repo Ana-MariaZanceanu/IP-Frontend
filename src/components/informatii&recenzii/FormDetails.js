@@ -45,16 +45,16 @@ class FormDetails extends Component {
              onChange={handleChange("score")}
              required
             >
-            <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
+            <option>1</option>
       <option>2</option>
-      <option>2.5</option>
       <option>3</option>
-      <option>3.5</option>
       <option>4</option>
-      <option>4.5</option>
       <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
     </Form.Control>
           </Form.Group>
 
@@ -81,9 +81,9 @@ class FormDetails extends Component {
           
         <Button
           onClick={this.handleClick}
-          variant="primary"
+          variant="outline-success"
           type="submit"
-          style={styles.button}
+          
         >
           Submit
         </Button>
@@ -92,16 +92,6 @@ class FormDetails extends Component {
   }
 }
 
-const styles = {
-  button: {
-    backgroundColor: "f7ead9",
-    color: "#f7d9f0",
-    border: "none",
-    marginRight: "1vw",
-    marginTop: "2vh",
-    width: "auto",
-    height: "auto",
-  },
-};
+
 
 export default FormDetails;

@@ -6,7 +6,8 @@ class ReviewButton extends Component{
   constructor(props){
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
+      providerId: props.providerId
     }
   }
 
@@ -18,10 +19,10 @@ class ReviewButton extends Component{
     return(
       <div>
         {!this.state.expanded && (
-          <Button variant="outline-info" onClick={this.showButton} block>Add a review! </Button>
+          <Button variant="outline-success" onClick={this.showButton} block>Add a review! </Button>
         )}
         {this.state.expanded && (
-          <FormReview />
+          <FormReview provider={this.state.providerId}/>
         )}
       </div>
     );

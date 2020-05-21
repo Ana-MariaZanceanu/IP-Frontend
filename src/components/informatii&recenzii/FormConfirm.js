@@ -3,15 +3,18 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import ListGroup from "react-bootstrap/ListGroup";
+import UserContext from "../UserContext";
 
 class FormConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       success: false,
-      message: " "
+      message: " ",
+      provider: props.provider
     };
   }
+  static contextType = UserContext;
   state={
     curTime : new Date().toLocaleString(),
   }
@@ -27,11 +30,12 @@ class FormConfirm extends Component {
   };
 
   addFormDetails = (e, data) => {
+    console.log(this.context.user._id);
     e.preventDefault();
     this.props.addFormDetails(e, data);
     axios({
       method: "post",
-      url: "http://localhost:3000/api/v1/reviews",
+      url: "https://ip-i-r-api.herokuapp.com/api/reviews/?providerId=" + this.state.provider,
       data
     })
       .then(response => {
@@ -60,38 +64,60 @@ class FormConfirm extends Component {
   render() {
      const {
       values: {
-    
-        userName,
+       
         score,
         description,
-        timeCreated,
+      
         timeModified,
         helpfulness
       }
     } = this.props;
     let formValues = {
-      reviewerId: "7a8h6dyd5935d8753l6c2c5k",
-      userName: userName,
-      score: score,
+      reviewerId: this.context.user._id,
+      score: parseInt(score, 10),
       description: description,
-      timeCreated: timeCreated,
+     
       timeModified: timeModified,
       helpfulness: helpfulness,
-      providerId: "5e8b6ecd5935d8350c6c2c2a"
+      providerId: this.state.provider
     };
     return (
       <div>
-        <Card.Title style={styles.text}>Review sent!</Card.Title>
+        <Card.Title style={styles.text}>Send review?</Card.Title>
         <ListGroup className="list-group-flush" style={styles.text}>
           <ListGroup.Item>Score: {score}</ListGroup.Item>
           <ListGroup.Item>Description: {description}</ListGroup.Item>
         </ListGroup>
+        <Button
+          onClick={event => {
+            this.addFormDetails(event, formValues);
+          }}
+          variant="outline-success"
+          type="submit"
+          style={styles.button}
+        >
+          Yes
+        </Button>
+        <Button
+          onClick={this.back}
+          variant="outline-danger"
+          type="button"
+          style={styles.button}
+        >
+          No
+        </Button>
       </div>
     );
   }
 }
 
 const styles = {
+  button: {
+    marginRight: "1vw",
+    marginTop: "2vh",
+    width: "auto",
+    height: "auto"
+  },
   text: {
     color: "#2B2633"
   }

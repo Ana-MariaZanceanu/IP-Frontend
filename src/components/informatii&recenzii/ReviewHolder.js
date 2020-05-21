@@ -37,7 +37,7 @@ export class Menu extends Component {
       return (
           <div id="reviewsdiv" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
           <p className="menuTitle">Reviews</p>
-         <ReviewButton />
+         <ReviewButton providerId={this.state.providerId} />
           {this.state.reviews.map(item =>(
               <div>
                 <div className="line"></div>
