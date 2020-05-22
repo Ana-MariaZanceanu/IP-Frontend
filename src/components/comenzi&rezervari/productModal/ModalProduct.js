@@ -12,7 +12,10 @@ import './style.css';
 import axios from 'axios';
 import UserContext from '../../UserContext';
 
-const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
+// const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
+// const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
+
+const urlCart = 'http://localhost:3000/api/v1/cart/';
 const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
 
 class ModalProduct extends Component {
@@ -88,6 +91,20 @@ class ModalProduct extends Component {
       .catch((error) => {
         console.log(error);
       });
+    let products = [];
+    await axios({
+      method: "get",
+      url: urlCart + "session",
+      withCredentials: true,
+    })
+        .then((response) => {
+          products = response.data.data.cart[0].items;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    console.log("hereee")
+    console.log(products)
   };
 
   postProductToWishlist = async (idProduct) => {
