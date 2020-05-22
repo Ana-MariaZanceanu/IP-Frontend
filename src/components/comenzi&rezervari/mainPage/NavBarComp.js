@@ -19,6 +19,8 @@ import "./mainPage.css";
 import "./style.css";
 import UserContext from "../../UserContext";
 
+//const urlGetCart = 'http://localhost:3000/api/v1/cart/';
+
 const urlGetCart = "https://orderip.herokuapp.com/api/v1/cart/";
 const getUrlWishlist = "http://favoriteip.herokuapp.com/api/v1/favorites/";
 
@@ -112,6 +114,7 @@ export class NavBarComp extends Component {
                   <Nav.Link className="nav" href="/restaurants">
                     Restaurants
                   </Nav.Link>
+
                   <Nav.Link
                     className="nav"
                     onClick={() => {
