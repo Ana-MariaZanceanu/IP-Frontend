@@ -22,9 +22,20 @@ i:hover {
   background-color: #a71d31 !important;
   color: white !important;
 }
-.iconCart,.iconHeart {
+.iconCart,
+.iconHeart {
   color: white !important;
 }
-.iconCart:hover, .iconHeart:hover {
+.iconCart:hover,
+.iconHeart:hover {
   color: #a71d31 !important;
+}
+.outlinedButtons {
+  margin-left: 10px;
+  color: #a71d31 !important;
+  border-color: #a71d31 !important;
+}
+.outlinedButtons:hover {
+  background-color: #a71d31 !important;
+  color: white !important;
 }

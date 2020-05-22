@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import slide1 from "./../resources/img/slide1.jpeg";
 import slide2 from "./../resources/img/slide3.jpeg";
 import slide3 from "./../resources/img/food3.jpg";
-import './mainPage.css';
+import "./mainPage.css";
 
 export class CarouselComp extends Component {
   render() {
@@ -18,22 +18,20 @@ export class CarouselComp extends Component {
               src={slide1}
               alt="First slide"
             />
-            <Carousel.Caption  className="carusel">
-              <h1  className="animated fadeInDown title">
-                First slide label
-              </h1>
-              <p  className="animated fadeInUp paragraf">
+            <Carousel.Caption className="carusel">
+              <h1 className="animated fadeInDown title">First slide label</h1>
+              <p className="animated fadeInUp paragraf">
                 Nulla vitae elit libero, a pharetra augue mollis interdum.
               </p>
               <Button
-                variant="outline-danger "
-                className="animated fadeIn button"
+                variant="outline-danger"
+                className="animated fadeIn button outlinedButtons"
               >
                 See Restaurants
               </Button>{" "}
               <Button
                 variant="danger"
-                className="animated fadeIn button"
+                className="animated fadeIn button restaurant-card-button buttonRestaurant"
               >
                 Book a table
               </Button>
@@ -48,9 +46,7 @@ export class CarouselComp extends Component {
             />
 
             <Carousel.Caption className="carusel">
-              <h1  className="animated fadeInDown title">
-                Second slide label
-              </h1>
+              <h1 className="animated fadeInDown title">Second slide label</h1>
               <p className="animated fadeInUp paragraf">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
@@ -60,10 +56,7 @@ export class CarouselComp extends Component {
               >
                 See Restaurants
               </Button>{" "}
-              <Button
-                variant="danger"
-                className="animated fadeIn button"
-              >
+              <Button variant="danger" className="animated fadeIn button">
                 Book a table
               </Button>
             </Carousel.Caption>
@@ -76,9 +69,7 @@ export class CarouselComp extends Component {
               alt="Third slide"
             />
             <Carousel.Caption className="carusel">
-              <h1  className="animated fadeInDown title">
-                Third slide label
-              </h1>
+              <h1 className="animated fadeInDown title">Third slide label</h1>
               <p className="animated fadeInUp paragraf">
                 Praesent commodo cursus magna, vel scelerisque nisl consectetur.
               </p>
@@ -88,10 +79,7 @@ export class CarouselComp extends Component {
               >
                 See Restaurants
               </Button>{" "}
-              <Button
-                variant="danger"
-                className="animated fadeIn button"
-              >
+              <Button variant="danger" className="animated fadeIn button">
                 Book a table
               </Button>
             </Carousel.Caption>

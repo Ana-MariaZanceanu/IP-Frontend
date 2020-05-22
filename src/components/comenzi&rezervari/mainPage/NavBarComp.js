@@ -5,7 +5,13 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { BrowserRouter as Router, Switch, Route, Link, withRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  withRouter,
+} from "react-router-dom";
 import ShoppingCartModal from "../shoppingCart/ShoppingCartModal";
 import WishlistModal from "../wishlist/WishlistModal";
 import axios from "axios";
@@ -26,7 +32,7 @@ export class NavBarComp extends Component {
       products: [],
       wishedProducts: [],
       redirectUrl: window.location.href.substring(21),
-      windowUrl: ""
+      windowUrl: "",
     };
     this.userToken = "";
   }
@@ -54,12 +60,12 @@ export class NavBarComp extends Component {
       url: urlGetCart + "user?token=" + this.userToken,
       withCredentials: true,
     })
-        .then((response) => {
-          products = response.data.data.cart[0].items;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .then((response) => {
+        products = response.data.data.cart[0].items;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     return products;
   };
 
@@ -83,37 +89,28 @@ export class NavBarComp extends Component {
     const { history } = this.props;
     let q = e.target.elements.search.value;
     history.push({
-      pathname: '/search', 
-      search: '?' + new URLSearchParams({ q })
+      pathname: "/search",
+      search: "?" + new URLSearchParams({ q }),
     });
-  }
+  };
   render() {
-    let { location: { search } } = this.props;
-    search =  (new URLSearchParams(search)).get('q');
+    let {
+      location: { search },
+    } = this.props;
+    search = new URLSearchParams(search).get("q");
     return (
       <Router>
         <div>
           <Navbar className="bg-navbar" variant="dark" expand="md" fixed="top">
             <Container>
-              <Navbar.Brand href="#home">Logo</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto" />
-                <Nav>
+                <Nav className="mr-auto">
                   <Nav.Link className="nav" href="/home">
                     Home
                   </Nav.Link>
-                  <Nav.Link className="nav" href="#link">
-                    About
-                  </Nav.Link>
                   <Nav.Link className="nav" href="/restaurants">
                     Restaurants
-                  </Nav.Link>
-                  <Nav.Link className="nav" href="#link">
-                    Specials
-                  </Nav.Link>
-                  <Nav.Link className="nav" href="#link">
-                    Contact
                   </Nav.Link>
                   <Nav.Link
                     className="nav"
@@ -122,14 +119,14 @@ export class NavBarComp extends Component {
                         modalShow: true,
                         windowUrl: this.state.redirectUrl,
                       });
-                      if(localStorage.getItem("userToken")){
+                      if (localStorage.getItem("userToken")) {
                         this.userToken = localStorage.getItem("userToken");
                         this.getCartForUser().then((result) =>
-                            this.setState({ products: result })
+                          this.setState({ products: result })
                         );
-                      }else{
+                      } else {
                         this.getCart().then((result) =>
-                            this.setState({ products: result })
+                          this.setState({ products: result })
                         );
                       }
                     }}
@@ -145,10 +142,10 @@ export class NavBarComp extends Component {
                         modalShow: true,
                         windowUrl: this.state.redirectUrl,
                       });
-                      if(localStorage.getItem("userToken")){
+                      if (localStorage.getItem("userToken")) {
                         this.userToken = localStorage.getItem("userToken");
                         this.getWishlist().then((result) =>
-                            this.setState({ wishedProducts: result })
+                          this.setState({ wishedProducts: result })
                         );
                       }
                     }}
@@ -166,29 +163,35 @@ export class NavBarComp extends Component {
                     name="search"
                     required
                   />
-                  <Button type="submit" variant="danger">Search</Button>
+                  <Button
+                    type="submit"
+                    variant="danger"
+                    className="restaurant-card-button buttonRestaurant"
+                  >
+                    Search
+                  </Button>
                 </Form>
-                  <Button
-                    variant="outline-danger"
-                    style={{ marginLeft: 10 }}
-                    onClick={() => {
-                      localStorage.removeItem("userToken");
-                      this.context.setUser({});
-                      window.location.reload(false);
-                    }}
-                  >
-                    Logout
-                  </Button>
-                  <Button
-                    variant="outline-danger"
-                    style={{ marginLeft: 10 }}
-                    onClick={() => {
-                      window.location.href = "http://localhost:3000/profile";
-                    }}
-                  >
-                    Profile
-                    {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
-                  </Button>
+                <Button
+                  variant="outline-danger"
+                  className="outlinedButtons"
+                  onClick={() => {
+                    localStorage.removeItem("userToken");
+                    this.context.setUser({});
+                    window.location.reload(false);
+                  }}
+                >
+                  Logout
+                </Button>
+                <Button
+                  className="outlinedButtons"
+                  variant="outline-danger"
+                  onClick={() => {
+                    window.location.href = "http://localhost:3000/profile";
+                  }}
+                >
+                  Profile
+                  {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
+                </Button>
               </Navbar.Collapse>
             </Container>
           </Navbar>
