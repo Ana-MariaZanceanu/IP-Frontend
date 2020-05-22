@@ -65,16 +65,23 @@ const Statistic = ({ data }) => {
             </div>
             <iframe
               src={ordersPerHour}
+              title={ordersPerHour}
               frameborder="0"
               width="100%"
               height="400"
               scrolling="no"
             ></iframe>
-            <div className="statistics_buttons">
-              <Button className="actual_button" onClick={handleAllRestaurants}>
+            <div className="statistics_button">
+              <Button
+                className="actual_statistics_button"
+                onClick={handleAllRestaurants}
+              >
                 All Restaurants
               </Button>
-              <Button className="actual_button" onClick={handleARestaurant}>
+              <Button
+                className="actual_statistics_button"
+                onClick={handleARestaurant}
+              >
                 Your Restaurant
               </Button>
             </div>
@@ -88,26 +95,27 @@ const Statistic = ({ data }) => {
             </div>
             <iframe
               src={coursesOrdered}
+              title={coursesOrdered}
               frameBorder="0"
               width="99%"
               height="300"
               scrolling="no"
             ></iframe>
-            <div className="statistics_buttons">
+            <div className="statistics_button">
               <Button
-                className="actual_button"
+                className="actual_statistics_button"
                 onClick={handleAllCoursesOrdered}
               >
                 All Restaurants
               </Button>
               <Button
-                className="actual_button"
+                className="actual_statistics_button"
                 onClick={handleARestaurantCoursesOrdered}
               >
                 Your Restaurant
               </Button>
             </div>
-            <div className="statistics_buttons">
+            <div className="statistics_button">
               <div className="profile_element">
                 <h5>Limit</h5>
                 <p className="profile_explanations">
@@ -167,16 +175,23 @@ const Statistic = ({ data }) => {
             </div>
             <iframe
               src={ordersPerHour}
+              title={ordersPerHour}
               frameborder="0"
               width="100%"
               height="400"
               scrolling="no"
             ></iframe>
-            <div className="statistics_buttons">
-              <Button className="actual_button" onClick={handleAllRestaurants}>
+            <div className="statistics_button">
+              <Button
+                className="actual_statistics_button"
+                onClick={handleAllRestaurants}
+              >
                 All Restaurants
               </Button>
-              <Button className="actual_button" onClick={handleARestaurant}>
+              <Button
+                className="actual_statistics_button"
+                onClick={handleARestaurant}
+              >
                 Your Restaurant
               </Button>
             </div>
@@ -190,12 +205,13 @@ const Statistic = ({ data }) => {
             </div>
             <iframe
               src={coursesOrdered}
+              title={coursesOrdered}
               frameBorder="0"
               width="99%"
               height="300"
               scrolling="no"
             ></iframe>
-            <div className="statistics_buttons">
+            <div className="statistics_button">
               <Button
                 className="actual_button"
                 onClick={handleAllCoursesOrdered}
@@ -209,7 +225,7 @@ const Statistic = ({ data }) => {
                 Your Restaurant
               </Button>
             </div>
-            <div className="statistics_buttons">
+            <div className="statistics_button">
               <div className="profile_element">
                 <h5>Limit</h5>
                 <p className="profile_explanations">

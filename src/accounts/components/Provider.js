@@ -605,13 +605,13 @@ const Provider = ({ data }) => {
                 <p className="profile_explanations">
                   <small>Upload some photos</small>
                 </p>
-                <MultipleImageUpload />
+                <div className="align_left_profile_input">
+                  <MultipleImageUpload />
+                </div>
               </div>
-              <div className="submit_button">
-                <Button className="actual_button" onClick={handleSaveDate}>
-                  Save
-                </Button>
-              </div>
+              <Button variant="outline-danger" onClick={handleSaveDate}>
+                Save
+              </Button>
             </Form>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import * as api from "../api";
 
 class MultipleImageUpload extends React.Component {
@@ -26,11 +27,14 @@ class MultipleImageUpload extends React.Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <p>Upload a photo</p>
-        <input type="file" name="myImage" multiple onChange={this.onChange} />
-        <button type="submit" class="btn btn-outline-primary">
-          Upload
-        </button>
+        <input
+          class="actual_button"
+          type="file"
+          name="myImage"
+          multiple
+          onChange={this.onChange}
+        />
+        <Button variant="outline-danger">Upload</Button>
       </form>
     );
   }
