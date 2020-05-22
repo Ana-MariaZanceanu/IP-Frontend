@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import DeliveryMethod from "./DeliveryMethod";
-import PersonalData from "./PersonalData";
-import PaymentMethod from "./PaymentMethod";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Success from "./Success";
-import Fail from "./Fail";
-import axios from "axios";
-import "./orderCheckout.css";
+import React, { Component } from 'react';
+import DeliveryMethod from './DeliveryMethod';
+import PersonalData from './PersonalData';
+import PaymentMethod from './PaymentMethod';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Success from './Success';
+import Fail from './Fail';
+import axios from 'axios';
+import './orderCheckout.css';
 
-const urlOrders = "https://orderip.herokuapp.com/api/v1/orders";
+const urlOrders = 'https://orderip.herokuapp.com/api/v1/orders';
 
 class Order extends Component {
   constructor(props) {
     super(props);
-    this.homeDisabled = "";
-    this.restaurantDisabled = "";
-    this.message = "";
+    this.homeDisabled = '';
+    this.restaurantDisabled = '';
+    this.message = '';
     this.success = false;
     this.state = {
       step: 1,
       homeDelivery: false,
       restaurantDelivery: false,
-      userFirstName: "",
-      userLastName: "",
-      userDeliveryAdress: "",
-      phoneNumber: "",
-      email: "",
-      paymentMethod: "",
-      tokenId: "",
-      deliveryMessage: "",
-      personalDataMessage: "",
-      paymentMessage: "",
+      userFirstName: '',
+      userLastName: '',
+      userDeliveryAdress: '',
+      phoneNumber: '',
+      email: '',
+      paymentMethod: '',
+      tokenId: '',
+      deliveryMessage: '',
+      personalDataMessage: '',
+      paymentMessage: '',
       cash: false,
       card: false,
     };
@@ -39,7 +39,7 @@ class Order extends Component {
 
   modifyTokenID = (token) => {
     this.setState({ tokenId: token });
-    console.log("tokenul este  " + token);
+    console.log('tokenul este  ' + token);
   };
 
   handleSubmit = (e, formValues) => {
@@ -48,49 +48,49 @@ class Order extends Component {
       this.state.restaurantDelivery === false
     ) {
       this.setState({
-        deliveryMessage: "You have to choose a delivery method",
+        deliveryMessage: 'You have to choose a delivery method',
       });
     } else {
       this.setState({
-        deliveryMessage: "",
+        deliveryMessage: '',
       });
     }
 
     if (
-      this.state.userFirstName === "" ||
-      this.state.userLastName === "" ||
-      this.state.phoneNumber === "" ||
-      this.state.email === ""
+      this.state.userFirstName === '' ||
+      this.state.userLastName === '' ||
+      this.state.phoneNumber === '' ||
+      this.state.email === ''
     ) {
       this.setState({
-        personalDataMessage: "You have to complete all your personal data",
+        personalDataMessage: 'You have to complete all your personal data',
       });
     } else {
       this.setState({
-        personalDataMessage: "",
+        personalDataMessage: '',
       });
     }
-    if (this.state.paymentMethod === "") {
+    if (this.state.paymentMethod === '') {
       this.setState({
-        paymentMessage: "You have to choose a payment method",
+        paymentMessage: 'You have to choose a payment method',
       });
     } else if (
-      this.state.paymentMethod === "card" &&
-      this.state.tokenId === ""
+      this.state.paymentMethod === 'card' &&
+      this.state.tokenId === ''
     ) {
       this.setState({
-        paymentMessage: "You have to complete and confirm your card info",
+        paymentMessage: 'You have to complete and confirm your card info',
       });
     } else {
       this.setState({
-        paymentMessage: "",
+        paymentMessage: '',
       });
     }
 
     if (
-      this.state.deliveryMessage === "" &&
-      this.state.personalDataMessage === "" &&
-      this.state.paymentMessage === ""
+      this.state.deliveryMessage === '' &&
+      this.state.personalDataMessage === '' &&
+      this.state.paymentMessage === ''
     ) {
       this.addFormDetails(e, formValues);
     }
@@ -120,44 +120,44 @@ class Order extends Component {
     }
   };
   handleChange = (input) => (e) => {
-    if (input === "homeDelivery" || input === "restaurantDelivery") {
-      if (input === "homeDelivery") {
+    if (input === 'homeDelivery' || input === 'restaurantDelivery') {
+      if (input === 'homeDelivery') {
         if (this.state.homeDelivery === true) {
-          this.homeDisabled = "";
-          this.restaurantDisabled = "";
+          this.homeDisabled = '';
+          this.restaurantDisabled = '';
         } else {
-          this.homeDisabled = "";
-          this.restaurantDisabled = "disabled";
+          this.homeDisabled = '';
+          this.restaurantDisabled = 'disabled';
         }
       } else {
         if (this.state.restaurantDelivery === true) {
-          this.homeDisabled = "";
-          this.restaurantDisabled = "";
+          this.homeDisabled = '';
+          this.restaurantDisabled = '';
         } else {
-          this.homeDisabled = "disabled";
-          this.restaurantDisabled = "";
+          this.homeDisabled = 'disabled';
+          this.restaurantDisabled = '';
         }
       }
       this.setState({ [input]: e.target.checked }, () => {
         this.changeStep();
       });
-    } else if (input === "cash" || input === "card") {
-      if (input === "cash") {
+    } else if (input === 'cash' || input === 'card') {
+      if (input === 'cash') {
         if (this.state.cash === false) {
           this.setState({ cash: true });
-          this.setState({ paymentMethod: "cash" });
+          this.setState({ paymentMethod: 'cash' });
         } else {
           this.setState({ cash: false });
-          this.setState({ paymentMethod: "" });
+          this.setState({ paymentMethod: '' });
         }
       }
-      if (input === "card") {
+      if (input === 'card') {
         if (this.state.card === false) {
           this.setState({ card: true });
-          this.setState({ paymentMethod: "card" });
+          this.setState({ paymentMethod: 'card' });
         } else {
           this.setState({ card: false });
-          this.setState({ paymentMethod: "" });
+          this.setState({ paymentMethod: '' });
         }
       }
     } else {
@@ -168,7 +168,7 @@ class Order extends Component {
   postData = async (e, data) => {
     e.preventDefault();
     await axios({
-      method: "post",
+      method: 'post',
       url: urlOrders,
       data,
     })
@@ -180,7 +180,8 @@ class Order extends Component {
       })
       .catch((err) => {
         this.success = false;
-        this.message = err.response.data.err.message;
+        this.message = err.response.data.error.message;
+        console.log(err);
         this.setState({
           step: 3,
         });
@@ -206,8 +207,8 @@ class Order extends Component {
   };
 
   prevStep = () => {
-    this.homeDisabled = "";
-    this.restaurantDisabled = "";
+    this.homeDisabled = '';
+    this.restaurantDisabled = '';
     this.setState(
       {
         homeDelivery: false,
@@ -242,17 +243,17 @@ class Order extends Component {
       paymentMethod,
     };
     let formValues = {
-        userFirstName: userFirstName,
-        userLastName: userLastName,
-        email: email,
-        phoneNumber: phoneNumber,
-        paymentMethod: paymentMethod,
+      userFirstName: userFirstName,
+      userLastName: userLastName,
+      email: email,
+      phoneNumber: phoneNumber,
+      paymentMethod: paymentMethod,
     };
-    if(this.state.homeDelivery){
-        formValues.userDeliveryAdress = userDeliveryAdress;
+    if (this.state.homeDelivery) {
+      formValues.userDeliveryAdress = userDeliveryAdress;
     }
-    if(this.state.card){
-        formValues.paymentToken = tokenId;
+    if (this.state.card) {
+      formValues.paymentToken = tokenId;
     }
     const { step } = this.state;
     switch (step) {
@@ -270,8 +271,8 @@ class Order extends Component {
             <PersonalData
               values={values}
               handleChange={this.handleChange}
-              disabled={"disabled"}
-              disabledAddress={"disabled"}
+              disabled={'disabled'}
+              disabledAddress={'disabled'}
             />
             <Card.Text className="errorStyle">
               {this.state.personalDataMessage}
@@ -309,8 +310,8 @@ class Order extends Component {
               <PersonalData
                 values={values}
                 handleChange={this.handleChange}
-                disabled={""}
-                disabledAddress={""}
+                disabled={''}
+                disabledAddress={''}
               />
               <Card.Text className="errorStyle">
                 {this.state.personalDataMessage}
@@ -347,8 +348,8 @@ class Order extends Component {
               <PersonalData
                 values={values}
                 handleChange={this.handleChange}
-                disabled={""}
-                disabledAddress={"disabled"}
+                disabled={''}
+                disabledAddress={'disabled'}
               />
               <Card.Text className="errorStyle">
                 {this.state.personalDataMessage}
@@ -364,7 +365,6 @@ class Order extends Component {
               <Button
                 onClick={async (event) => {
                   await this.handleSubmit(event, formValues);
-
                 }}
                 className="buttonStyle"
               >
@@ -375,7 +375,11 @@ class Order extends Component {
         }
       case 3:
         return this.success === true ? (
-          <Success func={() => { this.props.func(); } }/>
+          <Success
+            func={() => {
+              this.props.func();
+            }}
+          />
         ) : (
           <Fail response={this.message} prevStep={this.prevStep} />
         );
