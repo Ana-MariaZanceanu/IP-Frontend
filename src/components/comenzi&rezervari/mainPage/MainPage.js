@@ -12,9 +12,6 @@ export class MainPage extends Component {
 	static contextType = UserContext;
 
 	render() {
-		console.log('!!!!');
-		console.log(this.context);
-		console.log('!!!!');
 
 		return (
 			<>
