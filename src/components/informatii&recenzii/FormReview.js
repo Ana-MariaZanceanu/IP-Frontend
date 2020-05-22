@@ -15,6 +15,8 @@ class UserForm extends Component {
       description: "",
       timeCreated: "",
       provider: props.provider,
+      isEditing: props.isEditing,
+      revId: props.revId
     };
   }
   state={
@@ -75,6 +77,8 @@ class UserForm extends Component {
             nextStep={this.nextStep}
             handleChange={this.handleChange}
             values={values}
+            isEditing = {this.state.isEditing}
+            revId = {this.state.revId}
           />
         );
       case 2:
@@ -86,6 +90,8 @@ class UserForm extends Component {
             values={values}
             modifySuccess={this.modifySuccess}
             provider={this.state.provider}
+            isEditing = {this.state.isEditing}
+            revId = {this.state.revId}
           />
         );
       case 3:

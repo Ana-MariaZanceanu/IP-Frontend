@@ -155,7 +155,7 @@ export class RestaurantPage extends Component {
               </Row>
               <Row>
                 <iframe
-                  src={"http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation"}
+                  src={"http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=5ebcf11126e32517c46effff&alg_type=restaurant_food_recommendation"}
                   frameBorder="0"
                   width="1200"
                   height="500"

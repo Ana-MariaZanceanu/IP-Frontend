@@ -11,7 +11,9 @@ class FormConfirm extends Component {
     this.state = {
       success: false,
       message: " ",
-      provider: props.provider
+      provider: props.provider,
+      isEditing: props.isEditing,
+      revId: props.revId
     };
   }
   static contextType = UserContext;
@@ -61,6 +63,39 @@ class FormConfirm extends Component {
       });
   };
 
+
+  editFormDetails = (e, data) => {
+    console.log(this.context.user._id);
+    console.log(this.state.revId);
+    e.preventDefault();
+    axios({
+      method: "put",
+      url: "https://ip-i-r-api.herokuapp.com/api/reviews/" + this.state.revId,
+      data
+    })
+      .then(response => {
+        this.setState(
+          {
+            success: true
+          },
+          () => {
+            this.continue(e);
+          }
+        );
+      })
+      .catch(err => {
+        this.setState(
+          {
+            success: false,
+            message: err.response.data.error.message
+          },
+          () => {
+            this.continue(e);
+          }
+        );
+      });
+  };
+
   render() {
      const {
       values: {
@@ -76,37 +111,74 @@ class FormConfirm extends Component {
       reviewerId: this.context.user._id,
       score: parseInt(score, 10),
       description: description,
-     
       timeModified: timeModified,
       helpfulness: helpfulness,
       providerId: this.state.provider
     };
+
+    let formValuesEdit = {
+      score: parseInt(score, 10),
+      description: description
+    };
+
     return (
-      <div>
-        <Card.Title style={styles.text}>Send review?</Card.Title>
-        <ListGroup className="list-group-flush" style={styles.text}>
-          <ListGroup.Item>Score: {score}</ListGroup.Item>
-          <ListGroup.Item>Description: {description}</ListGroup.Item>
-        </ListGroup>
-        <Button
-          onClick={event => {
-            this.addFormDetails(event, formValues);
-          }}
-          variant="outline-success"
-          type="submit"
-          style={styles.button}
-        >
-          Yes
-        </Button>
-        <Button
-          onClick={this.back}
-          variant="outline-danger"
-          type="button"
-          style={styles.button}
-        >
-          No
-        </Button>
-      </div>
+        <div>
+          {!this.state.isEditing && (
+              <div>
+              <Card.Title style={styles.text}>Send review?</Card.Title>
+              <ListGroup className="list-group-flush" style={styles.text}>
+                <ListGroup.Item>Score: {score}</ListGroup.Item>
+                <ListGroup.Item>Description: {description}</ListGroup.Item>
+              </ListGroup>
+              <Button
+                onClick={event => {
+                  this.addFormDetails(event, formValues);
+                }}
+                variant="outline-success"
+                type="submit"
+                style={styles.button}
+              >
+                Yes
+              </Button>
+              <Button
+                onClick={this.back}
+                variant="outline-danger"
+                type="button"
+                style={styles.button}
+              >
+                No
+              </Button>
+              </div>
+            )}
+          {this.state.isEditing && (
+            <div>
+            <Card.Title style={styles.text}>Edit review?</Card.Title>
+            <ListGroup className="list-group-flush" style={styles.text}>
+              <ListGroup.Item>Score: {score}</ListGroup.Item>
+              <ListGroup.Item>Description: {description}</ListGroup.Item>
+            </ListGroup>
+            <Button
+              onClick={event => {
+                this.editFormDetails(event, formValuesEdit);
+              }}
+              variant="outline-success"
+              type="submit"
+              style={styles.button}
+            >
+              Yes
+            </Button>
+            <Button
+              onClick={this.back}
+              variant="outline-danger"
+              type="button"
+              style={styles.button}
+            >
+              No
+            </Button>
+            </div>
+          )}
+        </div>
+     
     );
   }
 }
