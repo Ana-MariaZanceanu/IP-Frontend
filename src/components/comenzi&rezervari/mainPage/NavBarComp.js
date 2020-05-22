@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, withRouter } from "react-router-dom";
 import ShoppingCartModal from "../shoppingCart/ShoppingCartModal";
 import WishlistModal from "../wishlist/WishlistModal";
 import axios from "axios";
@@ -78,8 +78,18 @@ export class NavBarComp extends Component {
       });
     return products;
   };
-
+  handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const { history } = this.props;
+    let q = e.target.elements.search.value;
+    history.push({
+      pathname: '/search', 
+      search: '?' + new URLSearchParams({ q })
+    });
+  }
   render() {
+    let { location: { search } } = this.props;
+    search =  (new URLSearchParams(search)).get('q');
     return (
       <Router>
         <div>
@@ -148,13 +158,16 @@ export class NavBarComp extends Component {
                     </Link>
                   </Nav.Link>
                 </Nav>
-                <Form inline>
+                <Form onSubmit={this.handleSearchSubmit} inline>
                   <Form.Control
                     type="text"
-                    placeholder="Search"
+                    placeholder={search ? search : "Search"}
                     className="mr-sm-2"
+                    name="search"
+                    required
                   />
-                  <Button variant="danger">Search</Button>
+                  <Button type="submit" variant="danger">Search</Button>
+                </Form>
                   <Button
                     variant="outline-danger"
                     style={{ marginLeft: 10 }}
@@ -176,7 +189,6 @@ export class NavBarComp extends Component {
                     Profile
                     {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
                   </Button>
-                </Form>
               </Navbar.Collapse>
             </Container>
           </Navbar>
@@ -210,4 +222,4 @@ export class NavBarComp extends Component {
   }
 }
 
-export default NavBarComp;
+export default withRouter(NavBarComp);
