@@ -43,31 +43,25 @@ const lostPassword = async (email) => {
 };
 
 const register = async (username, role, email, password) => {
-	try {
-		const {
-			data: { user, token },
-		} = await axios({
-			method: 'post',
-			url: host + 'api/users/register',
-			data: {
-				email,
-				username,
-				password,
-				role: role[0].toUpperCase() + role.slice(1),
-			},
+	console.log(username + " " + role + " " + email + " " + password)
+	try{
+		const data = await axios.post(host + 'api/users/register', {
+			email:email,
+			password:password,
+			role:role,
+			name:username,
+		})
+		.then( async (response) => {
+			console.log(response);
+		}).catch(error => {
+
 		});
-
-		console.log('\n\n\n\n');
-		console.log(user);
-		console.log(token);
-		console.log('\n\n\n\n');
-
-		localStorage.setItem('userToken', token);
-
-		return { success: true, user };
-	} catch (error) {
-		return { success: false, errorMessage: error.message };
+		return { success: true };
+	} catch(error){
+		return {success:false ,errorMessage: error.message};
 	}
+
+
 };
 
 const getUser = async () => {

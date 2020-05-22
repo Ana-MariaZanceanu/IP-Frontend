@@ -5,11 +5,6 @@ import * as api from './accounts/api/index';
 
 import UserContext from './components/UserContext';
 import Navigation from './accounts/components/navigation/Navigation';
-const Child = ({ match }) => (
-	<div>
-		<h3>ID: {match.params.id}</h3>
-	</div>
-);
 
 const initialUser = {};
 
@@ -28,6 +23,7 @@ function App() {
 	const [isLogged,setIsLogged] = useState(false);
 	const [loaded,setLoaded] = useState(false);
 
+	console.log("USER",user);
 	useEffect(async () => {
 		const answer = await checkIfItIsLogged();
 		if(answer === false){
