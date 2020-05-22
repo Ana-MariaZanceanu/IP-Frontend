@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import './form.css';
-const urlReservations = 'http://localhost:3100/api/v1/reservations';
+const urlReservations = 'https://reservationsip.herokuapp.com/api/v1/reservations';
 
 class FormConfirm extends Component {
   constructor(props) {
@@ -78,7 +78,7 @@ class FormConfirm extends Component {
       phoneNumber: phoneNumber,
       reservationDate: reservationDate + 'T' + hour, //pe server apare cu 3 ore in urma!
       numberOfSeats: numberOfSeats,
-      restaurantId: this.props.providerId,
+      restaurantId: this.props.providerId
     };
     return (
       <div>

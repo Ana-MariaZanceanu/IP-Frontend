@@ -15,36 +15,61 @@ import { FaTimes } from 'react-icons/fa';
 const TAX_RATE = 0.06;
 const TAX_TEXT = '6% sales tax';
 
-const urlCart = 'http://localhost:3000/api/v1/cart/';
+const urlCart = 'https://orderip.herokuapp.com/api/v1/cart';
 
 class ShoppingCart extends Component {
 	constructor(props) {
 		super(props);
 		this.message = '';
 		this.emptyCart = this.emptyCart.bind(this);
+		this.userToken = "";
 	}
-	zeroProduct(product) {
-		return async (e) => {
-			await axios({
-				method: 'get',
-				url: urlCart + 'delete-product/' + product.id,
-				withCredentials: true,
-			})
-				.then((result) => {
-					console.log(result);
-					product.item.price = 0;
-					product.item.quantity = 0;
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-			this.forceUpdate();
-		};
+
+	// postSession = async () => {
+	// 	await axios({
+	// 		method: 'post',
+	// 		url: urlCart,
+	// 		withCredentials: true,
+	// 		data: {
+	// 			token : this.userToken
+	// 		}
+	// 	}).then((response) => {
+	// 		console.log(response.data.success);
+	// 	}).catch((error) => {
+	// 		console.log(error);
+	// 	});
+	// }
+
+	patchSession = async () => {
+		await axios({
+			method: 'patch',
+			url: urlCart + "/user?token=" + this.userToken,
+			withCredentials: true,
+		}).then((response) => {
+			console.log(response.data.success);
+		}).catch((error) => {
+			console.log(error);
+		});
+	}
+
+	zeroProduct = async (product,e) => {
+		await axios({
+			method: 'get',
+			url: urlCart + '/delete-product/' + product.id,
+			withCredentials: true,
+		}).then((result) => {
+			console.log(result);
+			product.item.price = 0;
+			product.item.quantity = 0;
+		}).catch((error) => {
+			console.log(error);
+		});
+		this.forceUpdate();
 	}
 	emptyCart = async (products) => {
 		await axios({
 			method: 'get',
-			url: urlCart + 'clear',
+			url: urlCart + '/clear',
 			withCredentials: true,
 		})
 			.then((result) => {
@@ -58,42 +83,56 @@ class ShoppingCart extends Component {
 		});
 		this.forceUpdate();
 	};
-	cartChange = (product) => {
-		return async (e) => {
-			if (product.item.quantity < e) {
-				await axios({
-					method: 'get',
-					url: urlCart + 'add-quantity/' + product.id,
-					withCredentials: true,
-				})
-					.then((result) => {
-						console.log(result);
-						product.item.quantity += 1;
-					})
-					.catch((error) => {
-						console.log(error);
-					});
-			} else {
-				await axios({
-					method: 'get',
-					url: urlCart + 'substract-quantity/' + product.id,
-					withCredentials: true,
-				})
-					.then((result) => {
-						product.item.quantity -= 1;
-					})
-					.catch((error) => {
-						console.log(error);
-					});
-			}
-			this.forceUpdate();
-			return product.item.quantity;
-		};
+	emptyCartForUser = async (products) => {
+		await axios({
+			method: 'delete',
+			url: urlCart + '/user?token=' + this.userToken,
+			withCredentials: true,
+		})
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		products.map((p, i) => {
+			p.item.quantity = 0;
+		});
+		this.forceUpdate();
+	};
+	cartChange = async (product,e) => {
+		console.log("product");console.log(product)
+		console.log("e " + e)
+		console.log(window.location.href)
+		if (product.item.quantity < e) {
+			await axios({
+				method: 'get',
+				url: urlCart + '/add-quantity/' + product.id,
+				withCredentials: true,
+			}).then((result) => {
+				console.log(result);
+				product.item.quantity += 1;
+			}).catch((error) => {
+				console.log(error);
+			});
+		} else {
+			await axios({
+				method: 'get',
+				url: urlCart + '/substract-quantity/' + product.id,
+				withCredentials: true,
+			}).then((result) => {
+				product.item.quantity -= 1;
+			}).catch((error) => {
+				console.log(error);
+			});
+		}
+		this.forceUpdate();
 	};
 
 	render() {
 		let total = 0;
 		let { products } = this.props;
+
 		if (
 			products === null ||
 			products === undefined ||
@@ -116,7 +155,13 @@ class ShoppingCart extends Component {
 					<tr key={i}>
 						<td>
 							<Button
-								onClick={this.zeroProduct(p)}
+								onClick={async (e) => {
+									await this.zeroProduct(p,e);
+									if(localStorage.getItem("userToken")){
+										this.userToken = localStorage.getItem("userToken");
+										await this.patchSession();
+									}
+								}}
 								className="deleteProduct"
 							>
 								<FaTimes />
@@ -127,7 +172,13 @@ class ShoppingCart extends Component {
 							<NumericInput
 								min={0}
 								value={quantity}
-								onChange={this.cartChange(p)}
+								onChange={async (e) => {
+									await this.cartChange(p,e);
+									if(localStorage.getItem("userToken")){
+										this.userToken = localStorage.getItem("userToken");
+										await this.patchSession();
+									}
+								}}
 								className="numericInput"
 							/>
 						</td>
@@ -199,9 +250,12 @@ class ShoppingCart extends Component {
 										<Button
 											className="cart-empty"
 											onClick={async () => {
-												await this.emptyCart(
-													products,
-												);
+												if(localStorage.getItem("userToken")){
+													this.userToken = localStorage.getItem("userToken");
+													await this.emptyCartForUser(products);
+												}else{
+													await this.emptyCart(products);
+												}
 											}}
 										>
 											clear cart

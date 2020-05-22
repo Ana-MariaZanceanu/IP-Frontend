@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import ModalProduct from "./ModalProduct";
 import axios from "axios";
 
-const urlApiCourses = "http://localhost:4000/api/courses/";
+const urlApiCourses = "https://ip-accounts.herokuapp.com/";
 
 const getProduct = async (id) => {
   let product = {};

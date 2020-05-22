@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, withRouter } from "react-router-dom";
 import ShoppingCartModal from "../shoppingCart/ShoppingCartModal";
 import WishlistModal from "../wishlist/WishlistModal";
 import axios from "axios";
@@ -13,8 +13,8 @@ import "./mainPage.css";
 import "./style.css";
 import UserContext from "../../UserContext";
 
-const urlGetCart = "http://localhost:3000/api/v1/cart/session";
-const getUrlWishlist = "http://localhost:3101/api/v1/favorites/";
+const urlGetCart = "https://orderip.herokuapp.com/api/v1/cart/";
+const getUrlWishlist = "http://favoriteip.herokuapp.com/api/v1/favorites/";
 
 export class NavBarComp extends Component {
   static contextType = UserContext;
@@ -25,15 +25,17 @@ export class NavBarComp extends Component {
       modalShow: false,
       products: [],
       wishedProducts: [],
-      windowUrl: "",
+      redirectUrl: window.location.href.substring(21),
+      windowUrl: ""
     };
+    this.userToken = "";
   }
 
   getCart = async () => {
     let products = [];
     await axios({
       method: "get",
-      url: urlGetCart,
+      url: urlGetCart + "session",
       withCredentials: true,
     })
       .then((response) => {
@@ -45,11 +47,27 @@ export class NavBarComp extends Component {
     return products;
   };
 
+  getCartForUser = async () => {
+    let products = [];
+    await axios({
+      method: "get",
+      url: urlGetCart + "user?token=" + this.userToken,
+      withCredentials: true,
+    })
+        .then((response) => {
+          products = response.data.data.cart[0].items;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    return products;
+  };
+
   getWishlist = async () => {
     let products = [];
     await axios({
       method: "get",
-      url: getUrlWishlist + "5eb16fdf4afbf654966cb68d",
+      url: getUrlWishlist + "user?token=" + this.userToken,
     })
       .then((response) => {
         console.log(response);
@@ -60,10 +78,18 @@ export class NavBarComp extends Component {
       });
     return products;
   };
-
+  handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const { history } = this.props;
+    let q = e.target.elements.search.value;
+    history.push({
+      pathname: '/search', 
+      search: '?' + new URLSearchParams({ q })
+    });
+  }
   render() {
-    const windowUrl = window.location.href;
-    const redirectUrl = windowUrl.substring(21);
+    let { location: { search } } = this.props;
+    search =  (new URLSearchParams(search)).get('q');
     return (
       <Router>
         <div>
@@ -74,13 +100,13 @@ export class NavBarComp extends Component {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto" />
                 <Nav>
-                  <Nav.Link className="nav" href="home">
+                  <Nav.Link className="nav" href="/home">
                     Home
                   </Nav.Link>
                   <Nav.Link className="nav" href="#link">
                     About
                   </Nav.Link>
-                  <Nav.Link className="nav" href="restaurants">
+                  <Nav.Link className="nav" href="/restaurants">
                     Restaurants
                   </Nav.Link>
                   <Nav.Link className="nav" href="#link">
@@ -94,11 +120,18 @@ export class NavBarComp extends Component {
                     onClick={() => {
                       this.setState({
                         modalShow: true,
-                        windowUrl: redirectUrl,
+                        windowUrl: this.state.redirectUrl,
                       });
-                      this.getCart().then((result) =>
-                        this.setState({ products: result })
-                      );
+                      if(localStorage.getItem("userToken")){
+                        this.userToken = localStorage.getItem("userToken");
+                        this.getCartForUser().then((result) =>
+                            this.setState({ products: result })
+                        );
+                      }else{
+                        this.getCart().then((result) =>
+                            this.setState({ products: result })
+                        );
+                      }
                     }}
                   >
                     <Link to={"/cart"} className="iconCart">
@@ -110,11 +143,14 @@ export class NavBarComp extends Component {
                     onClick={() => {
                       this.setState({
                         modalShow: true,
-                        windowUrl: redirectUrl,
+                        windowUrl: this.state.redirectUrl,
                       });
-                      this.getWishlist().then((result) =>
-                        this.setState({ wishedProducts: result })
-                      );
+                      if(localStorage.getItem("userToken")){
+                        this.userToken = localStorage.getItem("userToken");
+                        this.getWishlist().then((result) =>
+                            this.setState({ wishedProducts: result })
+                        );
+                      }
                     }}
                   >
                     <Link to="/wishlist" className="iconHeart">
@@ -122,13 +158,16 @@ export class NavBarComp extends Component {
                     </Link>
                   </Nav.Link>
                 </Nav>
-                <Form inline>
+                <Form onSubmit={this.handleSearchSubmit} inline>
                   <Form.Control
                     type="text"
-                    placeholder="Search"
+                    placeholder={search ? search : "Search"}
                     className="mr-sm-2"
+                    name="search"
+                    required
                   />
-                  <Button variant="danger">Search</Button>
+                  <Button type="submit" variant="danger">Search</Button>
+                </Form>
                   <Button
                     variant="outline-danger"
                     style={{ marginLeft: 10 }}
@@ -150,7 +189,6 @@ export class NavBarComp extends Component {
                     Profile
                     {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
                   </Button>
-                </Form>
               </Navbar.Collapse>
             </Container>
           </Navbar>
@@ -184,4 +222,4 @@ export class NavBarComp extends Component {
   }
 }
 
-export default NavBarComp;
+export default withRouter(NavBarComp);

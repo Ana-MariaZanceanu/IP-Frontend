@@ -13,6 +13,7 @@ import "../../../Animation.css";
 import ShowModalProduct from "../../../components/comenzi&rezervari/productModal/ShowModalProduct";
 import MainPage from "../../../components/comenzi&rezervari/mainPage/MainPage";
 import AllRestaurants from "../../../components/comenzi&rezervari/restaurantsPage/RestaurantsPage";
+import SearchPage from "../../../components/recomandari/search/Index";
 import RestaurantPage from "../../../components/informatii&recenzii/RestaurantPage";
 import "../../styles/Profile.css";
 import "../../../Animation.css";
@@ -34,6 +35,7 @@ class NavigationLogged extends React.Component {
             <Route exact path={"/home"} component={MainPage} />
             <Route exact path={"/profile"} component={Profile} />
             <Route exact path={"/restaurants"} component={AllRestaurants} />
+            <Route exact path={"/search"} component={SearchPage}/>
 
             <Route
               path="/restaurant/:id"
