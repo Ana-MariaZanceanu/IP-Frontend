@@ -12,6 +12,9 @@ import { Image } from "react-bootstrap";
 import upArrow from "./Images/UpArrow.png";
 import downArrow from "./Images/DownArrow.png";
 import axios from "axios";
+import GreenArrow from "./Images/GreenArrow.png";
+import RedArrow from "./Images/RedArrow.png";
+import UserContext from "../UserContext";
 
 const Divider = (
   { color } //not currently used, literally just a line originally intended to divide username+score and body
@@ -178,9 +181,16 @@ class Review extends Component {
       score: props.score,
       content: props.content,
       expanded: false,
-      isLoaded: false
+      isLoaded: false,
+      upVote: false,
+      downVote: false,
+      helpfulness: props.helpfulness,
+      upvotes: props.upvotes,
+      downvotes: props.downvotes
     };
   }
+
+  static contextType = UserContext;
 
   componentDidMount() {
     axios
@@ -201,6 +211,20 @@ class Review extends Component {
           });
         }
       });
+      this.getInitialState();
+  }
+
+  getInitialState = () => {
+    var isInUp = false;
+    var isInDown = false;
+    this.state.upvotes.map((item, key) =>
+      {if(item == this.context.user._id) isInUp = true;}
+    );
+    if(isInUp) this.setState({upVote: true});
+    this.state.downvotes.map((item, key) => 
+      {if(item == this.context.user._id) isInDown = true;}
+    );
+    if(isInDown) this.setState({downVote: true});
   }
 
   //function for expanding/contracting the text
@@ -208,9 +232,68 @@ class Review extends Component {
     this.setState({ expanded: !this.state.expanded });
   };
 
+  
+
+  changeVoteUp = () => {
+    var vote = 0;
+    var doubleVote = false;
+    var sameVote = false;
+    if(this.state.upVote == true && this.state.downVote == false) {vote = 0; sameVote = true;}
+    else if(this.state.upVote == false && this.state.downVote == false) vote = 1;
+    else if(this.state.upVote == false && this.state.downVote == true) {vote = 1; doubleVote = true;}
+    axios
+      .patch("https://ip-i-r-api.herokuapp.com/api/reviews/" + this.state.reviewID, {
+        delta: vote,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+    if(vote == 1){
+      this.setState({downVote: false,
+      upVote: true});
+    }
+    else if(vote == 0){
+      this.setState({downVote: false,
+        upVote: false});
+    }
+    if(doubleVote == true) var helpfulness = this.state.helpfulness + (2*vote);
+    else if(doubleVote == false && sameVote == false) var helpfulness = this.state.helpfulness + vote;
+    else var helpfulness = this.state.helpfulness - 1;
+    this.setState({helpfulness: helpfulness});
+  }
+
+  changeVoteDown = () => {
+    var vote = 0;
+    var doubleVote = false;
+    var sameVote = false;
+    if(this.state.downVote == true && this.state.upVote == false) {vote = 0; sameVote = true;}
+    else if(this.state.downVote == false && this.state.upVote == false) vote = -1;
+    else if(this.state.downVote == false && this.state.upVote == true) {vote = -1; doubleVote = true;}
+    axios
+    .patch("https://ip-i-r-api.herokuapp.com/api/reviews/" + this.state.reviewID, {
+      delta: vote,
+    })
+    .then((response) => {
+      console.log(response);
+    });
+    if(vote == -1){
+      this.setState({downVote: true,
+      upVote: false});
+    }
+    else if(vote == 0){
+      this.setState({downVote: false,
+        upVote: false});
+    }
+    if(doubleVote == true) var helpfulness = this.state.helpfulness + (2*vote);
+    else if(doubleVote == false && sameVote == false) var helpfulness = this.state.helpfulness + vote;
+    else var helpfulness = this.state.helpfulness + 1;
+    this.setState({helpfulness: helpfulness});
+  }
+  
   render() {
     //please note that colors are magenta, red and blue so that they're obviously visible and this should be changed when styled, to fit the rest of the page
     const { expanded } = this.state;
+    
     if (!this.state.isLoaded) {
       return <p>Loading review...</p>;
     } else {
@@ -220,27 +303,66 @@ class Review extends Component {
         picture = profileTemp;
       }
       var hasContent = true;
+     
       if(this.state.content == "" || this.state.content == null) hasContent = false;
       return (
         <Container className="reviewholder">
           <div className="reviewheader">
-            <div className="helpfulness">
-              <Button variant="outline-secondary" bsPrefix="voteup">
+            {!this.state.upVote && !this.state.downVote && ( 
+              <div className="helpfulness">
+              <Button variant="outline-secondary" onClick={this.changeVoteUp} bsPrefix="voteup">
               <Image
                   src={upArrow}
                   alt={""}
                   style={{ height: "20px", width: "100%", minWidth:"5px" }}
                 />
               </Button>
-              <div style={{textAlign: "center"}}>5</div>
-              <Button variant="outline-secondary" bsPrefix="votedown">
+              <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
+              <Button variant="outline-secondary" onClick={this.changeVoteDown} bsPrefix="votedown">
               <Image
                   src={downArrow}
                   alt={""}
                   style={{ height: "20px", width: "100%" }}
                 />
               </Button>
-            </div>
+            </div>)}
+            {this.state.upVote && !this.state.downVote && ( 
+              <div className="helpfulness">
+              <Button variant="outline-secondary" onClick={this.changeVoteUp} bsPrefix="voteup">
+              <Image
+                  src={GreenArrow}
+                  alt={""}
+                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                />
+              </Button>
+              <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
+              <Button variant="outline-secondary" onClick={this.changeVoteDown} bsPrefix="votedown">
+              <Image
+                  src={downArrow}
+                  alt={""}
+                  style={{ height: "20px", width: "100%" }}
+                />
+              </Button>
+            </div>)}
+            {!this.state.upVote && this.state.downVote && ( 
+              <div className="helpfulness">
+              <Button variant="outline-secondary" onClick={this.changeVoteUp} bsPrefix="voteup">
+              <Image
+                  src={upArrow}
+                  alt={""}
+                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                />
+              </Button>
+              <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
+              <Button variant="outline-secondary" onClick={this.changeVoteDown} bsPrefix="votedown">
+              <Image
+                  src={RedArrow}
+                  alt={""}
+                  style={{ height: "20px", width: "100%" }}
+                />
+              </Button>
+            </div>)}
+           
             <div style={{ flex: "2", margin: "1%" }}>
               <Image
                 src={picture}
