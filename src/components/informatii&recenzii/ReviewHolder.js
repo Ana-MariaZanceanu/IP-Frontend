@@ -46,6 +46,9 @@ export class Menu extends Component {
                   userID={item.reviewerId}
                   score={item.score}
                   content={item.description}
+                  helpfulness={item.helpfulness}
+                  upvotes={item.upvotes}
+                  downvotes = {item.downvotes}
                 />
               </div>
               ))

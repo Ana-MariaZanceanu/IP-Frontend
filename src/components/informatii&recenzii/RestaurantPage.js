@@ -65,21 +65,42 @@ export class RestaurantPage extends Component {
     };
   }
 
+
   componentDidMount() {
     axios
       .get("https://ip-accounts.herokuapp.com/api/providers/" + this.state.providerId)
       .then((response) => {
-        this.setState({
-          courses: response.data.data.provider.details.menu.courses,
-          providerName: response.data.data.provider.name,
-          providerImages: response.data.data.provider.details.images,
-          schedule: response.data.data.provider.details.schedule.schedule,
-          description: response.data.data.provider.details.description,
-          rating: response.data.data.provider.details.rating,
-          specials: response.data.data.provider.details.specials,
-          isLoading: false,
-        });
-      });
+        if(response.data.data.provider.details === null){
+          this.setState({
+            providerName: response.data.data.provider.name,
+            isLoading: false,
+          });
+        }
+        else{
+          if(response.data.data.provider.details.schedule === null){
+            this.setState({
+              courses: response.data.data.provider.details.menu.courses,
+              providerName: response.data.data.provider.name,
+              providerImages: response.data.data.provider.details.images,
+              description: response.data.data.provider.details.description,
+              rating: response.data.data.provider.details.rating,
+              specials: response.data.data.provider.details.specials,
+              isLoading: false,
+            });
+          }
+          else{
+            this.setState({
+            courses: response.data.data.provider.details.menu.courses,
+            providerName: response.data.data.provider.name,
+            providerImages: response.data.data.provider.details.images,
+            schedule: response.data.data.provider.details.schedule.schedule,
+            description: response.data.data.provider.details.description,
+            rating: response.data.data.provider.details.rating,
+            specials: response.data.data.provider.details.specials,
+            isLoading: false,
+          });}
+      }
+    });
   }
 
   render() {
@@ -126,6 +147,16 @@ export class RestaurantPage extends Component {
                   <Schedule schedule={this.state.schedule} providerId={this.state.providerId} />
                   <ReviewHolder providerId={this.state.providerId} />
                 </Col>
+              </Row>
+              <Row>
+                <iframe
+                  src={"http://159.65.247.164/static/carousel.html?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIxNmZkZjRhZmJmNjU0OTY2Y2I2OGQiLCJpYXQiOjE1ODgyMzc0NTZ9.OG3o5XPIDDGlyFusinKVN11w27b5JYCSwLMl9XhYHeI&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation"}
+                  frameBorder="0"
+                  width="1200"
+                  height="500"
+                  scrolling="no"
+                >
+                </iframe>
               </Row>
             </div>
           </div>
