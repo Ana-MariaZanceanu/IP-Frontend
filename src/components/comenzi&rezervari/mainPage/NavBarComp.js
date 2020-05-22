@@ -164,27 +164,45 @@ export class NavBarComp extends Component {
                   />
                   <Button type="submit" variant="danger">Search</Button>
                 </Form>
+                 {
+                  Object.keys(this.context.user).length === 0 ? 
                   <Button
-                    variant="outline-danger"
-                    style={{ marginLeft: 10 }}
-                    onClick={() => {
-                      localStorage.removeItem("userToken");
-                      this.context.setUser({});
-                      window.location.reload(false);
-                    }}
-                  >
-                    Logout
-                  </Button>
-                  <Button
-                    variant="outline-danger"
-                    style={{ marginLeft: 10 }}
-                    onClick={() => {
-                      window.location.href = "http://localhost:3000/profile";
-                    }}
-                  >
+                      variant="outline-danger"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => {
+                        window.location.href = "http://localhost:3000/login";
+                      }}
+                    >
+                      Login
+                    </Button> : <div></div>
+                 }
+                 {
+                  Object.keys(this.context.user).length === 0 ? <div></div> :
+                    <Button
+                      variant="outline-danger"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => {
+                        localStorage.removeItem("userToken");
+                        this.context.setUser({});
+                        window.location.reload(false);
+                      }}
+                    >
+                      Logout
+                    </Button>
+                 }
+                 {
+                  Object.keys(this.context.user).length === 0 ? <div></div> :
+                    <Button
+                      variant="outline-danger"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => {
+                        window.location.href = "http://localhost:3000/profile";
+                      }}
+                    >
                     Profile
                     {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
                   </Button>
+                 }
               </Navbar.Collapse>
             </Container>
           </Navbar>

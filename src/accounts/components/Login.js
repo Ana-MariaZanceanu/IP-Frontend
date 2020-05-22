@@ -119,10 +119,11 @@ class Login extends React.Component{
 
 			try{
 				this.setState({loading:true})
-				let answer = await api.register(this.state.username,this.state.accountType,this.state.email,this.state.newAccountPassword);
+				let answer = await api.register(this.state.username,this.state.accountType,this.state.newAccountEmail,this.state.newAccountPassword);
 				if(answer.success === true){
-					this.setState({loading:false,userData:answer.user,success:true})
-					alert("Te-ai inregistrat cu succes!")
+					this.setState({loading:false,success:true})
+					alert("Te-ai inregistrat cu succes! Te rugam confirma email-ul!")
+					window.location.href = "http://localhost:3000/login";
 				} else {
 					this.setState({loading:false,success:false,error:answer.errorMessage})
 					alert("error " + answer.errorMessage)
@@ -311,8 +312,8 @@ class Login extends React.Component{
 								<p style={style.createAccountText}>Create account</p>
 
 								<div style={style.roleContainer}>
-									{this.renderRoleButton("Client","client")}
-									{this.renderRoleButton("Provider","provider")}
+									{this.renderRoleButton("Client","Client")}
+									{this.renderRoleButton("Provider","Provider")}
 								</div>
 
 								{this.renderInputfield("Username","username",this.handleChangeUsername,"text",this.state.alertUsername,this.state.username)}
