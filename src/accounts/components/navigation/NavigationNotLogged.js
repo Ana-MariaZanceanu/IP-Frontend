@@ -11,6 +11,8 @@ import Home from "../Home";
 import Register from "../Register";
 import NotFound from '../NotFound';
 import MainPage from "../../../components/comenzi&rezervari/mainPage/MainPage";
+import Restaurants from "../../../components/comenzi&rezervari/restaurantsPage/RestaurantsPage";
+import SearchPage from "../../../components/recomandari/search/Index";
 
 
 class NavigationNotLogged extends React.Component {
@@ -25,6 +27,15 @@ class NavigationNotLogged extends React.Component {
             </Route>
             <Route exact path="/">
               <MainPage width={this.props.width} height={this.props.height} />
+            </Route>
+            <Route exact path="/home">
+              <MainPage width={this.props.width} height={this.props.height} />
+            </Route>
+            <Route exact path="/restaurants">
+              <Restaurants width={this.props.width} height={this.props.height} />
+            </Route>
+            <Route exact path="/search">
+              <SearchPage width={this.props.width} height={this.props.height} />
             </Route>
 
             <Route component={NotFound}/>
