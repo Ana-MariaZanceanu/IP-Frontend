@@ -5,22 +5,21 @@ import Image from 'react-bootstrap/Image';
 import './Wishlist.css';
 import axios from 'axios';
 
-const urlFavorite = 'http://localhost:3101/api/v1/favorites/';
-const urlCart = 'http://localhost:3000/api/v1/cart/';
+const urlFavorite = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
+const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
 class Wishlist extends Component {
   constructor(props) {
     super(props);
     this.message = '';
+    this.userToken = "";
   }
 
-  deleteFavoriteProduct(product) {
-    return async (e) => {
+  deleteFavoriteProduct = async (product) => {
       await axios({
         method: 'delete',
         url: urlFavorite + 'delete-product/' + product.id,
-        withCredentials: true,
         data: {
-          userId: '5eb16fdf4afbf654966cb68d',
+          token: this.userToken
         },
       })
         .then((result) => {
@@ -31,14 +30,11 @@ class Wishlist extends Component {
         .catch((error) => {
           console.log(error);
         });
-    };
   }
-  deleteWishlist(products) {
-    return async (e) => {
+  deleteWishlist = async (products) => {
       await axios({
         method: 'delete',
-        url: urlFavorite + '5eb16fdf4afbf654966cb68d',
-        withCredentials: true,
+        url: urlFavorite + "user?token=" + this.userToken,
       })
         .then((result) => {
           console.log(result);
@@ -50,7 +46,6 @@ class Wishlist extends Component {
         .catch((error) => {
           console.log(error);
         });
-    };
   }
   addToCart = async (idProduct) => {
     await axios({
@@ -87,7 +82,12 @@ class Wishlist extends Component {
               <td>
                 <Button
                   className="deleteProduct"
-                  onClick={this.deleteFavoriteProduct(p)}
+                  onClick={async () => {
+                      if(localStorage.getItem("userToken")){
+                          this.userToken = localStorage.getItem("userToken");
+                          await this.deleteFavoriteProduct(p);
+                      }
+                  }}
                 >
                   <FaTimes />
                 </Button>
@@ -140,7 +140,12 @@ class Wishlist extends Component {
               <td>
                   <Button
                       className="clearWishlist"
-                      onClick={this.deleteWishlist(products)}
+                      onClick={async () => {
+                          if(localStorage.getItem("userToken")){
+                              this.userToken = localStorage.getItem("userToken");
+                              await this.deleteWishlist(products);
+                          }
+                      }}
                   >
                       clear wishlist
                   </Button>

@@ -10,14 +10,62 @@ import { FaCartPlus, FaHeart } from 'react-icons/fa';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './style.css';
 import axios from 'axios';
+import UserContext from '../../UserContext';
 
-const urlCart = 'http://localhost:3000/api/v1/cart/';
-const urlWishlist = 'http://localhost:3101/api/v1/favorites/';
+const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
+const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
 
 class ModalProduct extends Component {
+  static contextType = UserContext;
+
   constructor(props) {
     super(props);
     this.message = '';
+    this.userToken = "";
+    this.emptyCart = false;
+  }
+
+  getCart = async () => {
+    await axios({
+      method: 'get',
+      url: urlCart + "user?token=" + this.userToken,
+      withCredentials: true,
+    }).then((response) => {
+      if(response.data.data.cart.length === 0){
+        this.emptyCart = true;
+      }else{
+        this.emptyCart = false;
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  postSession = async () => {
+    await axios({
+      method: 'post',
+      url: urlCart,
+      withCredentials: true,
+      data: {
+        token : this.userToken
+      }
+    }).then((response) => {
+      console.log(response.data.success);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  patchSession = async () => {
+    await axios({
+      method: 'patch',
+      url: urlCart + "user?token=" + this.userToken,
+      withCredentials: true,
+    }).then((response) => {
+      console.log(response.data.success);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   postProductToCart = async (idProduct) => {
@@ -47,9 +95,8 @@ class ModalProduct extends Component {
     await axios({
       method: 'post',
       url: urlWishlist + 'add-product/' + idProduct,
-      withCredentials: true,
       data: {
-        userId: '5eb16fdf4afbf654966cb68d',
+        token: this.userToken,
       },
     })
       .then((response) => {
@@ -64,7 +111,15 @@ class ModalProduct extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
+        this.message = 'Product already exists in wishlist!';
+        this.forceUpdate(async () => {
+          await setTimeout(() => {
+            this.message = '';
+            console.log(this.message);
+            this.forceUpdate();
+          }, 4000);
+        });
       });
   };
 
@@ -130,8 +185,19 @@ class ModalProduct extends Component {
                   <Col xs={5} md={5}>
                     <Button
                       variant="outline-success"
-                      onClick={() => {
-                        this.postProductToCart(product._id);
+                      onClick={async () => {
+                        if(localStorage.getItem("userToken")){
+                          this.userToken = localStorage.getItem("userToken");
+                          await this.getCart();
+                          await this.postProductToCart(product._id);
+                          if(this.emptyCart){
+                            await this.postSession();
+                          }else{
+                            await this.patchSession();
+                          }
+                        }else{
+                          await this.postProductToCart(product._id);
+                        }
                       }}
                     >
                       <FaCartPlus /> Add to cart
@@ -140,8 +206,11 @@ class ModalProduct extends Component {
                   <Col xs={6} md={6}>
                     <Button
                       variant="outline-danger"
-                      onClick={() => {
-                        this.postProductToWishlist(product._id);
+                      onClick={async () => {
+                        if(localStorage.getItem("userToken")){
+                          this.userToken = localStorage.getItem("userToken");
+                          await this.postProductToWishlist(product._id);
+                        }
                       }}
                     >
                       <FaHeart /> Add to wishlist

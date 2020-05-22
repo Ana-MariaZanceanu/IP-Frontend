@@ -9,7 +9,7 @@ import Fail from "./Fail";
 import axios from "axios";
 import "./orderCheckout.css";
 
-const urlOrders = "http://localhost:3000/api/v1/orders";
+const urlOrders = "https://orderip.herokuapp.com/api/v1/orders";
 
 class Order extends Component {
   constructor(props) {
@@ -247,7 +247,6 @@ class Order extends Component {
         email: email,
         phoneNumber: phoneNumber,
         paymentMethod: paymentMethod,
-        restaurantId: "5eb175094afbf654966cb690"
     };
     if(this.state.homeDelivery){
         formValues.userDeliveryAdress = userDeliveryAdress;
