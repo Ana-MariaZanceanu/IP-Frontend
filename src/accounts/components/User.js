@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Carousel, ListGroup, Button } from "react-bootstrap";
+import { Image, Carousel, ListGroup } from "react-bootstrap";
 import Client from "./Client";
 import Provider from "./Provider";
 import AccountSettings from "./AccountSettings";
@@ -11,10 +11,11 @@ import { useMediaQuery } from "react-responsive";
 
 const User = ({ data }) => {
   console.log(data);
+  const [dataUser, setDataUser] = useState(data);
   const [index, setIndex] = useState(0);
   const [openSetting, setOpenSettings] = useState(false);
-  const [openProfile, setOpenProfile] = useState(false);
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openProfile, setOpenProfile] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
   const [openSchedule, setOpenSchedule] = useState(false);
   const [openStatistics, setOpenStatistics] = useState(false);
 
@@ -70,12 +71,23 @@ const User = ({ data }) => {
           var image = value;
           photoList.push(
             <Carousel.Item key={index}>
-              <Image
-                alt={value}
-                className="provider_image"
-                src={image}
-                roundedCircle
-              />
+              {isBigScreen && (
+                <Image
+                  alt={value}
+                  className="provider_image"
+                  src={image}
+                  roundedCircle
+                />
+              )}
+              {isTabletOrMobile && (
+                <img
+                  height={350}
+                  width={350}
+                  className="d-block w-100 background"
+                  src={image}
+                  alt="First slide"
+                />
+              )}
             </Carousel.Item>
           );
         }
@@ -83,11 +95,11 @@ const User = ({ data }) => {
       }
     } else {
       photoList.push(
-        <Carousel.Item key="1">
+        <Carousel.Item className="carousel_images" key="1">
+          isMo
           <Image
             alt="avatar"
             src={require("../assets/placeholder.jpg")}
-            roundedCircle
             className="provider_image"
           />
         </Carousel.Item>
@@ -118,24 +130,17 @@ const User = ({ data }) => {
         />
       );
   };
-  const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 767 });
-    return isDesktop ? children : null;
-  };
 
-  const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 767 });
-    return isMobile ? children : null;
-    console.log(isMobile);
-  };
+  const isBigScreen = useMediaQuery({ query: "(min-device-width: 747px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 747px)" });
   return (
     <div className="main_div_profile_all">
-      <Desktop>
+      {isBigScreen && (
         <div className="main_div_profile">
           <div className="user_profile">
             <div>
               {data.role === "Provider" ? (
-                <Carousel onSelect={handleSelect}>{listPhotos()}</Carousel>
+                <Carousel>{listPhotos()}</Carousel>
               ) : (
                 <div>{avatarExist()}</div>
               )}
@@ -228,13 +233,15 @@ const User = ({ data }) => {
             )}
           </div>
         </div>
-      </Desktop>
-      <Mobile>
+      )}
+      {isTabletOrMobile && (
         <div className="main_div_profile_phone">
           <div className="user_profile_phone">
             <div>
               {data.role === "Provider" ? (
-                <Carousel onSelect={handleSelect}>{listPhotos()}</Carousel>
+                <Carousel activeIndex={index} onSelect={handleSelect}>
+                  {listPhotos()}
+                </Carousel>
               ) : (
                 <div>{avatarExist()}</div>
               )}
@@ -327,7 +334,7 @@ const User = ({ data }) => {
             )}
           </div>
         </div>
-      </Mobile>
+      )}
     </div>
   );
 };

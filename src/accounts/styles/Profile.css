@@ -91,16 +91,15 @@ border-left:solid #dc3545;
 .main_div_profile_phone{
 	height: auto;
     background-color: #FBF3E6;;
-    width: 100%;
 	display: flex;
 	flex-direction: column;
 	margin-top: 3%;
 }
 
 .user_profile{
-	width: 20%;
+	width: 23%;
     height: fit-content;
-	margin: 2%;
+	margin-left: 2%;
     display: flex;
 	flex-direction: column;
 	background-color: white;
@@ -109,11 +108,14 @@ border-left:solid #dc3545;
 	align-items: center;
 }
 
+.carousel_images{
+	width: 100px;
+	height: 100px;
+}
 .user_profile_phone{
-	width: 100%;
+	width: auto;
     height: fit-content;
 	display: flex;
-	padding: 5%;
 	flex-direction: column;
 	background-color: white;
 	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -135,7 +137,7 @@ border-left:solid #dc3545;
 }
 
 .menu_profile_phone.list-group{
-	width: 100%;
+	width: auto;
 	justify-content: flex-start;
 	display: flex;
 	flex-direction: row;
@@ -159,7 +161,7 @@ border-left:solid #dc3545;
 }
 
 .profile_form_phone{
-	margin-bottom: 15%;
+
 	padding: 5%;
 	width: 100%;
 	height: auto;
@@ -220,7 +222,7 @@ border-left:solid #dc3545;
 	flex-direction: row;
 }
 
-.profile_provider_phone, .profile_client_phone, .schedule_provider_phone{
+.profile_provider_phone, .profile_client_phone, .schedule_provider_phone, .profile_client_phone{
 	margin-bottom: 10%;
 	width: 100%;
 	height: auto;
@@ -230,9 +232,10 @@ border-left:solid #dc3545;
 }
 
 .provider_image{
-	width: 200px;
-	height: 200px;
+	width: 180px;
+	height: 180px;
 	margin: 5%;
+	padding: 5%;
 	align-self: center;
 }
 
@@ -259,7 +262,7 @@ border-left:solid #dc3545;
 }
 
 
-.provider_form_phone, .client_form_phone, .menu_provider_phone, .schedule_form_phone, .menu_form_phone{
+.provider_form_phone,.account_settings_form_phone, .client_form_phone, .menu_provider_phone, .schedule_form_phone, .menu_form_phone{
 	height: auto;
 	width: 100%;
 	background-color: white;

@@ -19,7 +19,9 @@ export class CarouselComp extends Component {
               alt="First slide"
             />
             <Carousel.Caption className="carusel">
-              <h1 className="animated fadeInDown title">Welcome to our website!</h1>
+              <h1 className="animated fadeInDown title">
+                Welcome to our website!
+              </h1>
               <p className="animated fadeInUp paragraf">
                 You'll find a wide range of restaurants...
               </p>
@@ -34,7 +36,9 @@ export class CarouselComp extends Component {
             />
 
             <Carousel.Caption className="carusel">
-              <h1 className="animated fadeInDown title">Choose your favorite one...</h1>
+              <h1 className="animated fadeInDown title">
+                Choose your favorite one...
+              </h1>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -45,7 +49,9 @@ export class CarouselComp extends Component {
               alt="Third slide"
             />
             <Carousel.Caption className="carusel">
-              <h1 className="animated fadeInDown title">Book a table or make an order!</h1>
+              <h1 className="animated fadeInDown title">
+                Book a table or make an order!
+              </h1>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

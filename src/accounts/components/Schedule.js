@@ -279,6 +279,7 @@ const Schedule = ({ data }) => {
       let answer = await api.profile(newData);
       if (answer.success === true) {
         setLoading(false);
+        window.location.reload(true);
       } else {
         setLoading(false);
       }

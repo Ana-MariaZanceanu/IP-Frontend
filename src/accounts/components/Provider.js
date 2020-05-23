@@ -122,10 +122,8 @@ const Provider = ({ data }) => {
       let answer = await api.profile(userData);
 
       if (answer.success === true) {
-        setPriceCategory(answer.userDetails.priceCategory);
-        setLongitude(answer.userDetails.location.longitude);
-        console.log(longitude);
         alert("Congratulation! You just updated your profile");
+        window.location.reload(true);
         setLoading(false);
       } else {
         setLoading(false);
@@ -636,9 +634,11 @@ const Provider = ({ data }) => {
                   <MultipleImageUpload userId={data.userId} />
                 </div>
               </div>
-              <Button variant="outline-danger" onClick={handleSaveDate}>
-                Save
-              </Button>
+              <div className="submit_button">
+                <Button className="actual_button" onClick={handleSaveDate}>
+                  Save
+                </Button>
+              </div>
             </Form>
           </div>
         </div>

@@ -33,13 +33,7 @@ const Menu = ({ data }) => {
           let courseData = {};
           courseData.course = course;
           courseData.index = index;
-          if (course !== null)
-            return (
-              <Course
-                parentCallback={callbackFunction}
-                data={courseData}
-              ></Course>
-            );
+          if (course !== null) return <Course data={courseData}></Course>;
         })}
       </Accordion>
       <div className="submit_button">

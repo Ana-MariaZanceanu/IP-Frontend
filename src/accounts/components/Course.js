@@ -10,7 +10,7 @@ import {
   FormControl,
   FormGroup,
 } from "react-bootstrap";
-const Course = ({ data }, { callbackParent }) => {
+const Course = ({ data }) => {
   const KeyCodes = {
     comma: 188,
     enter: 13,
@@ -140,7 +140,6 @@ const Course = ({ data }, { callbackParent }) => {
       setLoading(false);
       console.log(answer);
       if (answer.success === true) {
-        callbackParent(answer);
         setLoading(false);
       } else {
         setLoading(false);
