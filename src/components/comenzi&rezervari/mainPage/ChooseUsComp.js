@@ -7,8 +7,7 @@ export class ChooseUsComp extends Component {
     super(props);
     this.state = {
       title: "Choose Our Restaurants",
-      desc:
-        "Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.",
+      desc: "",
     };
   }
   render() {

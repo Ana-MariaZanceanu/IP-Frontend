@@ -211,6 +211,15 @@ class ModalProduct extends Component {
                         if(localStorage.getItem("userToken")){
                           this.userToken = localStorage.getItem("userToken");
                           await this.postProductToWishlist(product._id);
+                        }else{
+                          this.message = 'You must to be logged in!';
+                          this.forceUpdate(async () => {
+                            await setTimeout(() => {
+                              this.message = '';
+                              console.log(this.message);
+                              this.forceUpdate();
+                            }, 4000);
+                          });
                         }
                       }}
                     >

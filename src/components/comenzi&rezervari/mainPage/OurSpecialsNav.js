@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Nav from "react-bootstrap/Nav";
-import './mainPage.css';
+import "./mainPage.css";
 export class OurSpecialsNav extends Component {
   render() {
     const { specials, handleChangeKey } = this.props;

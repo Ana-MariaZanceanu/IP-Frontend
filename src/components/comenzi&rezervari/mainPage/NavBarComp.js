@@ -19,8 +19,6 @@ import "./mainPage.css";
 import "./style.css";
 import UserContext from "../../UserContext";
 
-//const urlGetCart = 'http://localhost:3000/api/v1/cart/';
-
 const urlGetCart = "https://orderip.herokuapp.com/api/v1/cart/";
 const getUrlWishlist = "http://favoriteip.herokuapp.com/api/v1/favorites/";
 
@@ -166,12 +164,13 @@ export class NavBarComp extends Component {
                     name="search"
                     required
                   />
-                  <Button type="submit" variant="danger">Search</Button>
+                  <Button type="submit" variant="primary" className="redButton">Search</Button>
                 </Form>
                  {
                   Object.keys(this.context.user).length === 0 ? 
                   <Button
-                      variant="outline-danger"
+                      variant="primary"
+                      className="redButton"
                       style={{ marginLeft: 10 }}
                       onClick={() => {
                         window.location.href = "http://localhost:3000/login";
@@ -183,13 +182,14 @@ export class NavBarComp extends Component {
                  {
                   Object.keys(this.context.user).length === 0 ? <div></div> :
                     <Button
-                      variant="outline-danger"
-                      style={{ marginLeft: 10 }}
-                      onClick={() => {
-                        localStorage.removeItem("userToken");
-                        this.context.setUser({});
-                        window.location.reload(false);
-                      }}
+                        variant="primary"
+                        className="redButton"
+                        style={{ marginLeft: 10 }}
+                        onClick={() => {
+                          localStorage.removeItem("userToken");
+                          this.context.setUser({});
+                          window.location.reload(false);
+                        }}
                     >
                       Logout
                     </Button>
@@ -197,11 +197,12 @@ export class NavBarComp extends Component {
                  {
                   Object.keys(this.context.user).length === 0 ? <div></div> :
                     <Button
-                      variant="outline-danger"
-                      style={{ marginLeft: 10 }}
-                      onClick={() => {
-                        window.location.href = "http://localhost:3000/profile";
-                      }}
+                        variant="primary"
+                        className="redButton"
+                        style={{ marginLeft: 10 }}
+                        onClick={() => {
+                          window.location.href = "http://localhost:3000/profile";
+                        }}
                     >
                     Profile
                     {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}

@@ -9,7 +9,7 @@ export class RecomandationComp extends Component {
     this.state = {
       title: "Restaurants for you",
       desc:
-        "Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.",
+        "",
       randomNumber: Math.floor(Math.random() * 10) % 2,
       alg_type: "",
     };
