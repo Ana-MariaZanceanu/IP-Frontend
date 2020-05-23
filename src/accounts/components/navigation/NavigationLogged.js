@@ -21,6 +21,7 @@ import NotFound from "../NotFound";
 
 import Profile from "../Profile";
 import history from "../../../history";
+import NavBarComp from "../../../components/comenzi&rezervari/mainPage/NavBarComp";
 
 class NavigationLogged extends React.Component {
   render() {
@@ -28,6 +29,7 @@ class NavigationLogged extends React.Component {
       <div>
         <Router history={history}>
           {/* Seteaza ruta initiala a router-ului */}
+          <NavBarComp/>
           <Switch>
             <Route exact path={"/"} component={MainPage} />
 

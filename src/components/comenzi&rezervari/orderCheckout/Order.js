@@ -171,6 +171,7 @@ class Order extends Component {
       method: 'post',
       url: urlOrders,
       data,
+      withCredentials: true,
     })
       .then((res) => {
         this.success = true;
@@ -254,6 +255,9 @@ class Order extends Component {
     }
     if (this.state.card) {
       formValues.paymentToken = tokenId;
+    }
+    if (localStorage.getItem('userToken')) {
+      formValues.token = localStorage.getItem('userToken');
     }
     const { step } = this.state;
     switch (step) {

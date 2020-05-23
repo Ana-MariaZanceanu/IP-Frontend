@@ -6,7 +6,7 @@
     color: #FF0000;
 }
 .buttonFail{
-    background-color: #A71D31;
+    background-color: #A71D31!important;
     color: #F7E7D9;
     border: none;
     margin-right: 1vw;

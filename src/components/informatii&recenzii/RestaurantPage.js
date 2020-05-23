@@ -122,7 +122,6 @@ export class RestaurantPage extends Component {
             ></meta>
           </Helmet>
           <div className="page">
-            <NavBarComp/>
             {/* <BackButton /> */}
             <div id="wrapper">
               <Content

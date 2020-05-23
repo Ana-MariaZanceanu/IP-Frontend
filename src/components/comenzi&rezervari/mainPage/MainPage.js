@@ -15,7 +15,6 @@ export class MainPage extends Component {
 
 		return (
 			<>
-				<NavBarComp />
 				<CarouselComp />
 				<ChooseUsComp />
 				<OurSpecials />

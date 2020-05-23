@@ -46,6 +46,9 @@ const Course = ({ data }, { callbackParent }) => {
   const [newAllergen, setNewAllergen] = useState("");
   const [selectedIngredient, setSelectedIngredient] = useState("");
   const [selectedAllergene, setSelectedAllergene] = useState("");
+  const [inUseImage, setInUseImage] = useState(
+    data.course.image ? data.course.image : placeholder
+  );
 
   const handleRemoveIngredient = (event) => {
     setSelectedIngredient(event.target.value);
@@ -151,10 +154,7 @@ const Course = ({ data }, { callbackParent }) => {
   return (
     <Card>
       <Card.Header className="header_menu">
-        <img
-          className="image_menu"
-          src={data.course.image ? data.course.image : placeholder}
-        />
+        <img className="image_menu" src={inUseImage} />
         <Accordion.Toggle
           as={Button}
           variant="link"
@@ -339,7 +339,10 @@ const Course = ({ data }, { callbackParent }) => {
               </FormGroup>
             </div>
           </div>
-          <UploadMenuPhoto idCourse={data.course._id} />
+          <UploadMenuPhoto
+            idCourse={data.course._id}
+            setInUseImage={setInUseImage}
+          />
           <div className="submit_button">
             <Button className="actual_button" onClick={handleSaveDate}>
               Save

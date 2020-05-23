@@ -206,6 +206,7 @@ const profile = async (userData) => {
 
 const uploadMenuPhoto = async (data) => {
   try {
+    let imageUrl = {};
     const formData = new FormData();
     formData.append("myImage", data.file);
     const config = {
@@ -220,11 +221,13 @@ const uploadMenuPhoto = async (data) => {
         config
       )
       .then((response) => {
+        imageUrl = response.data.name.newPath;
+        console.log(response.data.name.newPath);
         alert("The file is successfully uploaded");
       })
       .catch((error) => {});
 
-    return { success: true };
+    return { success: true, response: imageUrl };
   } catch (error) {
     return { success: false, errorMessage: error.message };
   }

@@ -12,10 +12,7 @@ import './style.css';
 import axios from 'axios';
 import UserContext from '../../UserContext';
 
- const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
-// const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
-
-//const urlCart = 'http://localhost:3000/api/v1/cart/';
+const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
 const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
 
 class ModalProduct extends Component {
@@ -214,6 +211,15 @@ class ModalProduct extends Component {
                         if(localStorage.getItem("userToken")){
                           this.userToken = localStorage.getItem("userToken");
                           await this.postProductToWishlist(product._id);
+                        }else{
+                          this.message = 'You must to be logged in!';
+                          this.forceUpdate(async () => {
+                            await setTimeout(() => {
+                              this.message = '';
+                              console.log(this.message);
+                              this.forceUpdate();
+                            }, 4000);
+                          });
                         }
                       }}
                     >

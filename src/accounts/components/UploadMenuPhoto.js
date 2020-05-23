@@ -15,7 +15,9 @@ class UploadMenuPhoto extends React.Component {
 
   onFormSubmit(e) {
     e.preventDefault();
-    api.uploadMenuPhoto(this.state);
+    api.uploadMenuPhoto(this.state).then((response) => {
+      this.props.setInUseImage(response.response);
+    });
   }
 
   onChange(e) {

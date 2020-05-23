@@ -10,7 +10,7 @@ export class FooterComp extends Component {
     this.state = {
       title: "Our Site Name",
       desc:
-        "Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci.",
+        "",
     };
   }
   render() {

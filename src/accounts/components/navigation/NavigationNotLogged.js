@@ -13,13 +13,17 @@ import NotFound from '../NotFound';
 import MainPage from "../../../components/comenzi&rezervari/mainPage/MainPage";
 import Restaurants from "../../../components/comenzi&rezervari/restaurantsPage/RestaurantsPage";
 import SearchPage from "../../../components/recomandari/search/Index";
+import NavBarComp from "../../../components/comenzi&rezervari/mainPage/NavBarComp";
+import RestaurantPage from "../../../components/informatii&recenzii/RestaurantPage";
 
 
 class NavigationNotLogged extends React.Component {
   render() {
     return (
+      <div>
       <Router>
         {/* Seteaza ruta initiala a router-ului */}
+        <NavBarComp/>
         <div>
           <Switch>
             <Route exact path="/login">
@@ -37,11 +41,18 @@ class NavigationNotLogged extends React.Component {
             <Route exact path="/search">
               <SearchPage width={this.props.width} height={this.props.height} />
             </Route>
+            <Route
+                path="/restaurant/:id"
+                component={(routerProps) => (
+                    <RestaurantPage providerId={routerProps.match.params.id} />
+                )}
+            />
 
             <Route component={NotFound}/>
           </Switch>
         </div>
       </Router>
+      </div>
     );
   }
 }
