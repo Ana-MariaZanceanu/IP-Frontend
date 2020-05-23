@@ -6,7 +6,7 @@ import axios from "axios";
 import ReviewButton from './ReviewButton';
 import UserContext from "../UserContext";
 
-export class Menu extends Component {
+export class ReviewHolder extends Component {
 
   constructor(props){
     super(props);
@@ -24,13 +24,15 @@ export class Menu extends Component {
   static contextType = UserContext;
  
   componentDidMount() {
-    axios.get("https://ip-i-r-api.herokuapp.com/api/reviews/?providerId=" + this.state.providerId + "&reviewerId=" + this.context.user._id)
-         .then((response) => { 
-          if(response.data.data.averageScore === null) this.setState({isEditing: false, isLoadedSimple: true});
-          else this.setState({isEditing: true,
-                              revId: response.data.data.reviews[0]._id,
-                              isLoadedSimple: true});
-         });
+      if(this.context.user._id != null || this.context.user._id != undefined){
+      axios.get("https://ip-i-r-api.herokuapp.com/api/reviews/?providerId=" + this.state.providerId + "&reviewerId=" + this.context.user._id)
+          .then((response) => { 
+            if(response.data.data.averageScore === null) this.setState({isEditing: false, isLoadedSimple: true});
+            else this.setState({isEditing: true,
+                                revId: response.data.data.reviews[0]._id,
+                                isLoadedSimple: true});
+          });
+        }
     axios
       .get("https://ip-i-r-api.herokuapp.com/api/reviews/?providerId=" + this.state.providerId)
       .then((response) => {
@@ -45,13 +47,43 @@ export class Menu extends Component {
   
 
   render() {
-    if (!this.state.isLoaded || !this.state.isLoadedSimple) {
-      return <p>Loading...</p>;
-    } else {
+    if(this.context.user._id != null || this.context.user._id != undefined){
+      if (!this.state.isLoaded || !this.state.isLoadedSimple) {
+        return <p>Loading...</p>;
+      }
+      else{
+        return (
+          <div id="reviewsdiv" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
+          <p className="menuTitle">Reviews</p>
+          {/* {this.state.isLoadedSimple && (<ReviewButton providerId={this.state.providerId} isEditing={this.state.isEditing} revId={this.state.revId}/>)} */}
+          <ReviewButton providerId={this.state.providerId} isEditing={this.state.isEditing} revId={this.state.revId}/>
+          {this.state.reviews.map(item =>(
+              <div>
+                <div className="line"></div>
+                <Review
+                  id={item._id}
+                  userID={item.reviewerId}
+                  score={item.score}
+                  content={item.description}
+                  helpfulness={item.helpfulness}
+                  upvotes={item.upvotes}
+                  downvotes = {item.downvotes}
+                />
+              </div>
+              ))
+          }
+        </div>
+      );
+    }
+      }
+    else if (!this.state.isLoaded) 
+        return <p>Loading...</p>;
+     else {
       return (
           <div id="reviewsdiv" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
           <p className="menuTitle">Reviews</p>
-         <ReviewButton providerId={this.state.providerId} isEditing={this.state.isEditing} revId={this.state.revId}/>
+          {this.state.isLoadedSimple && (<ReviewButton providerId={this.state.providerId} isEditing={this.state.isEditing} revId={this.state.revId}/>)}
+          
           {this.state.reviews.map(item =>(
               <div>
                 <div className="line"></div>
@@ -73,4 +105,4 @@ export class Menu extends Component {
 }
 }
 
-export default Menu;
+export default ReviewHolder;

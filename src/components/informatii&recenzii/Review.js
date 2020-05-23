@@ -303,31 +303,41 @@ class Review extends Component {
         picture = profileTemp;
       }
       var hasContent = true;
-     
+      var isConnected = true;
+      if(this.context.user._id == null || this.context.user._id == undefined) isConnected = false;
       if(this.state.content == "" || this.state.content == null) hasContent = false;
       return (
         <Container className="reviewholder">
           <div className="reviewheader">
+          <div className="helpfulness">
             {!this.state.upVote && !this.state.downVote && ( 
-              <div className="helpfulness">
-              <Button variant="outline-secondary" onClick={this.changeVoteUp} bsPrefix="voteup">
+              <div>
+              {isConnected && ( <Button variant="outline-secondary" onClick={this.changeVoteUp} bsPrefix="voteup">
               <Image
                   src={upArrow}
                   alt={""}
+                  style={{ height: "20px", width: "100%", minWidth:"5px"}}
+                />
+              </Button>)}
+              {!isConnected && (
+              <Image
+                  src={""}
+                  alt={""}
                   style={{ height: "20px", width: "100%", minWidth:"5px" }}
                 />
-              </Button>
+              )}
               <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
-              <Button variant="outline-secondary" onClick={this.changeVoteDown} bsPrefix="votedown">
+              {isConnected && ( <Button variant="outline-secondary" onClick={this.changeVoteDown} bsPrefix="votedown">
               <Image
                   src={downArrow}
                   alt={""}
                   style={{ height: "20px", width: "100%" }}
                 />
-              </Button>
-            </div>)}
+              </Button>)}
+              </div>
+            )}
             {this.state.upVote && !this.state.downVote && ( 
-              <div className="helpfulness">
+              <div>
               <Button variant="outline-secondary" onClick={this.changeVoteUp} bsPrefix="voteup">
               <Image
                   src={GreenArrow}
@@ -343,9 +353,10 @@ class Review extends Component {
                   style={{ height: "20px", width: "100%" }}
                 />
               </Button>
-            </div>)}
-            {!this.state.upVote && this.state.downVote && ( 
-              <div className="helpfulness">
+              </div>
+           )}
+            {!this.state.upVote && this.state.downVote && isConnected && ( 
+             <div>
               <Button variant="outline-secondary" onClick={this.changeVoteUp} bsPrefix="voteup">
               <Image
                   src={upArrow}
@@ -361,8 +372,9 @@ class Review extends Component {
                   style={{ height: "20px", width: "100%" }}
                 />
               </Button>
-            </div>)}
-           
+              </div>
+            )}
+            </div>
             <div style={{ flex: "2", margin: "1%" }}>
               <Image
                 src={picture}
