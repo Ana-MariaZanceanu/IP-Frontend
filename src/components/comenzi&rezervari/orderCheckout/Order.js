@@ -255,6 +255,9 @@ class Order extends Component {
     if (this.state.card) {
       formValues.paymentToken = tokenId;
     }
+    if(localStorage.getItem("userToken")){
+        formValues.token = localStorage.getItem("userToken");
+    }
     const { step } = this.state;
     switch (step) {
       case 1:
