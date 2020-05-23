@@ -16,7 +16,6 @@ const login = async (email, password) => {
 				password,
 			},
 		});
-
 		localStorage.setItem('userToken', token);
 
 		return { success: true, user };
@@ -26,7 +25,6 @@ const login = async (email, password) => {
 };
 
 const lostPassword = async (email) => {
-	console.log('trimit' + email);
 	try {
 		await axios({
 			method: 'post',
@@ -43,7 +41,6 @@ const lostPassword = async (email) => {
 };
 
 const register = async (username, role, email, password) => {
-	console.log(username + " " + role + " " + email + " " + password)
 	try{
 		const data = await axios.post(host + 'api/users/register', {
 			email:email,
@@ -54,15 +51,34 @@ const register = async (username, role, email, password) => {
 		.then( async (response) => {
 			console.log(response);
 		}).catch(error => {
-
+			console.log(error);
 		});
 		return { success: true };
 	} catch(error){
 		return {success:false ,errorMessage: error.message};
 	}
-
-
 };
+
+const getUserByEmail = async (email) => {
+	try{
+		let responseSuccess;
+		let responseData;
+		const data = await axios.post(host + 'api/users/verifyLoginFacebook', {
+			email:email
+		})
+		.then( async (response) => {
+			responseData = response;
+			responseSuccess = true;
+		}).catch(error => {
+			responseSuccess = false;
+			console.log(error.response.data)
+		});
+		return { success: responseSuccess , data:responseData.data.data };
+	} catch(error){
+		return {success:false ,errorMessage: error.message};
+	}
+}
+
 
 const getUser = async () => {
 	try {
@@ -338,5 +354,6 @@ export {
 	lostPassword,
 	addCourse,
 	updateCourse,
+	getUserByEmail,
 	deleteCourse,
 };
