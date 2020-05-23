@@ -9,6 +9,7 @@ const Statistic = ({ data }) => {
   const [showOrder, setShowOrder] = useState("");
   const [limit, setLimit] = useState(2);
   const [order, setOrder] = useState("");
+
   const ordersPerHourAll =
     "http://159.65.247.164/recommendations/stats/orders-per-hour?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWFhOTQ2ODMwYThmMTI5OGQ0ZmMyZjgiLCJpYXQiOjE1ODgyMzc0NTZ9.Ll2HDuN79KKWr5OoQTiZVWBemyDqdo3kDz74Bvi6lOA";
   const ordersPerHourRestaurant = `http://159.65.247.164/recommendations/stats/orders-per-hour/${token}?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWFhOTQ2ODMwYThmMTI5OGQ0ZmMyZjgiLCJpYXQiOjE1ODgyMzc0NTZ9.Ll2HDuN79KKWr5OoQTiZVWBemyDqdo3kDz74Bvi6lOA`;
@@ -16,7 +17,7 @@ const Statistic = ({ data }) => {
 
   const coursesOrderedResturant = `http://159.65.247.164/recommendations/stats/food-per-restaurant/${token}?${showCount}${showOrder}token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWFhOTQ2ODMwYThmMTI5OGQ0ZmMyZjgiLCJpYXQiOjE1ODgyMzc0NTZ9.Ll2HDuN79KKWr5OoQTiZVWBemyDqdo3kDz74Bvi6lOA`;
 
-  //const recommendations = `http://159.65.247.164/static/carousel.html?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJjZTkxYTI2ZTMyNTE3YzQ2ZWZmZWQiLCJpYXQiOjE1ODk0Mzg3NDZ9.M0seLr5OmfgkLcoEoqN95ZNqUVjvdwMkHMwSRT68Gkw&provider_id=${}&alg_type=recommend_food_for_restaurants`
+  const recommendations = `http://159.65.247.164/static/carousel.html?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJjZTkxYTI2ZTMyNTE3YzQ2ZWZmZWQiLCJpYXQiOjE1ODk0Mzg3NDZ9.M0seLr5OmfgkLcoEoqN95ZNqUVjvdwMkHMwSRT68Gkw&provider_id=${data.id}&alg_type=recommend_food_for_restaurants`;
   const [ordersPerHour, setOrdersPerHour] = useState(ordersPerHourAll);
   const [coursesOrdered, setCoursesOrdered] = useState(coursesOrderedAll);
   const handleARestaurantCoursesOrdered = () => {
@@ -157,6 +158,27 @@ const Statistic = ({ data }) => {
               </div>
             </div>
           </div>
+          <div className="statistics_element">
+            <div className="profile_element">
+              <h5>Buy more of these</h5>
+              <p className="profile_explanations">
+                <small>
+                  Given your latest activity we recommand you to buy more of
+                  these.
+                </small>
+              </p>
+            </div>
+            <iframe
+              className="frame_recomandation"
+              src={recommendations}
+              title={recommendations}
+              frameBorder="0"
+              width="90%"
+              height="500"
+              scrolling="no"
+              margin="100px"
+            ></iframe>
+          </div>
         </div>
       )}{" "}
       {isTabletOrMobile && (
@@ -265,6 +287,40 @@ const Statistic = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="statistics_element">
+            <div className="profile_element">
+              <h5>Number of orders per hour</h5>
+              <p className="profile_explanations">
+                <small>
+                  Get a visual representation on how orders are distributed
+                  through the day
+                </small>
+              </p>
+            </div>
+            <iframe
+              src={recommendations}
+              title={recommendations}
+              frameborder="0"
+              width="100%"
+              height="auto"
+              margin-left="100px"
+              scrolling="no"
+            ></iframe>
+            <div className="statistics_button">
+              <Button
+                className="actual_statistics_button"
+                onClick={handleAllRestaurants}
+              >
+                All Restaurants
+              </Button>
+              <Button
+                className="actual_statistics_button"
+                onClick={handleARestaurant}
+              >
+                Your Restaurant
+              </Button>
             </div>
           </div>
         </div>
