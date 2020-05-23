@@ -90,22 +90,23 @@ border-left:solid #dc3545;
 
 .main_div_profile_phone{
 	height: auto;
-    background-color: white;
+    background-color: #FBF3E6;;
     width: 100%;
 	display: flex;
 	flex-direction: column;
 	margin-top: 3%;
 }
+
 .user_profile{
-	width: 25%;
+	width: 20%;
     height: fit-content;
-	padding: 5px;
-	margin-left: 2%;
+	margin: 2%;
     display: flex;
 	flex-direction: column;
 	background-color: white;
 	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 10px 10px 10px 10px;
+	align-items: center;
 }
 
 .user_profile_phone{
@@ -231,7 +232,7 @@ border-left:solid #dc3545;
 .provider_image{
 	width: 200px;
 	height: 200px;
-	margin: 5px;
+	margin: 5%;
 	align-self: center;
 }
 
@@ -484,12 +485,17 @@ iframe{
 }
 
 .statistics_element{
-	align-self: start;
+	align-self: center;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	margin-bottom: 20px;
 }
+
+.frame_recomandation{
+	margin: 30px;
+}
+
 
 .statistics_button{
 	display: flex;

@@ -19,11 +19,10 @@ import './mainPage.css';
 import './style.css';
 import UserContext from '../../UserContext';
 
-//const urlGetCart = 'http://localhost:3000/api/v1/cart/';
 
 const urlGetCart = 'https://orderip.herokuapp.com/api/v1/cart/';
 const getUrlWishlist =
-	'http://favoriteip.herokuapp.com/api/v1/favorites/';
+	'https://favoriteip.herokuapp.com/api/v1/favorites/';
 const URL = 'https://proiect-ip.herokuapp.com/';
 
 export class NavBarComp extends Component {
@@ -35,8 +34,7 @@ export class NavBarComp extends Component {
 			modalShow: false,
 			products: [],
 			wishedProducts: [],
-			redirectUrl: window.location.href.substring(21),
-			windowUrl: '',
+			windowUrl: window.location.href.substring(window.location.href.indexOf(".com") + 4)
 		};
 		this.userToken = '';
 	}
@@ -133,8 +131,6 @@ export class NavBarComp extends Component {
 										onClick={() => {
 											this.setState({
 												modalShow: true,
-												windowUrl: this.state
-													.redirectUrl,
 											});
 											if (
 												localStorage.getItem(
@@ -176,8 +172,6 @@ export class NavBarComp extends Component {
 										onClick={() => {
 											this.setState({
 												modalShow: true,
-												windowUrl: this.state
-													.redirectUrl,
 											});
 											if (
 												localStorage.getItem(
