@@ -12,10 +12,7 @@ import './style.css';
 import axios from 'axios';
 import UserContext from '../../UserContext';
 
- const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
-// const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
-
-//const urlCart = 'http://localhost:3000/api/v1/cart/';
+const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
 const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
 
 class ModalProduct extends Component {
