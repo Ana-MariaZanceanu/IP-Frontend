@@ -7,7 +7,9 @@ class ReviewButton extends Component{
     super(props);
     this.state = {
       expanded: false,
-      providerId: props.providerId
+      providerId: props.providerId,
+      isEditing: props.isEditing,
+      revId: props.revId
     }
   }
 
@@ -18,11 +20,14 @@ class ReviewButton extends Component{
   render(){
     return(
       <div>
-        {!this.state.expanded && (
+        {!this.state.expanded && !this.state.isEditing && (
           <Button variant="outline-success" onClick={this.showButton} block>Add a review! </Button>
         )}
+        {!this.state.expanded && this.state.isEditing && (
+          <Button variant="outline-success" onClick={this.showButton} block>Edit your review! </Button>
+        )}
         {this.state.expanded && (
-          <FormReview provider={this.state.providerId}/>
+          <FormReview provider={this.state.providerId} isEditing={this.state.isEditing} revId={this.state.revId}/>
         )}
       </div>
     );

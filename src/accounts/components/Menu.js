@@ -22,6 +22,9 @@ const Menu = ({ data }) => {
       setLoading(false);
     }
   };
+  const callbackFunction = async (childData) => {
+    setCourses(childData);
+  };
 
   return (
     <div className="menu_form">
@@ -30,7 +33,13 @@ const Menu = ({ data }) => {
           let courseData = {};
           courseData.course = course;
           courseData.index = index;
-          if (course !== null) return <Course data={courseData}></Course>;
+          if (course !== null)
+            return (
+              <Course
+                parentCallback={callbackFunction}
+                data={courseData}
+              ></Course>
+            );
         })}
       </Accordion>
       <div className="submit_button">

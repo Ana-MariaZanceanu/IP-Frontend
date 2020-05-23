@@ -17,6 +17,7 @@ export default ({ location }) => {
 
   const getSearchResultItems = async (search) => {
     setIsLoading(true);
+    setSearchResultItems([]);
     try {
       // const TOKEN = localStorage.getItem('userToken');
       const TOKEN = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiX2lkIjoiNWViY2U5MWEyNmUzMjUxN2M0NmVmZmVkIn0.eu0f5Vv_h8OYaslYyXKdb_2Rl8hv9FPnH3dXXEQzykQ`;
@@ -26,7 +27,9 @@ export default ({ location }) => {
           Authorization: `Bearer ${TOKEN}`,
         },
       });
-      setSearchResultItems([data['data']['name_recommended_restaurant']]);
+      if(data['success'] && data['success'] === 'true') {
+        setSearchResultItems(data['data']);
+      }
     } catch (e) {
       console.log(e);
     }

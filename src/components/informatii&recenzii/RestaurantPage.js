@@ -10,7 +10,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import NavBarComp from "../comenzi&rezervari/mainPage/NavBarComp";
-import ReviewHolder from "./ReviewHolder"
+import ReviewHolder from "./ReviewHolder";
+import UserContext from "../UserContext";
 
 /*  var courses = [ {name: "Supa crema de procini cu julien de pancetta", price: 19, image: "https://savoriurbane.com/wp-content/uploads/2017/08/supa-crema-de-legume-reteta-simpla-savori-urbane.jpg"},
   {name: "Bifteki de legume", price: 25, image: "http://petrisorcatering.ro/wp-content/uploads/2017/11/biftec_cu_legume_la_gratar_petrisor_catering-51-01-600x600.jpg"},
@@ -103,10 +104,14 @@ export class RestaurantPage extends Component {
     });
   }
 
+  static contextType = UserContext;
+
   render() {
     if (this.state.isLoading) {
       return <p>Loading...</p>;
     } else {
+      var url = "http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation";
+      console.log(url);
       return (
         <div>
           <Helmet>
@@ -150,7 +155,7 @@ export class RestaurantPage extends Component {
               </Row>
               <Row>
                 <iframe
-                  src={"http://159.65.247.164/static/carousel.html?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIxNmZkZjRhZmJmNjU0OTY2Y2I2OGQiLCJpYXQiOjE1ODgyMzc0NTZ9.OG3o5XPIDDGlyFusinKVN11w27b5JYCSwLMl9XhYHeI&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation"}
+                  src={"http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=5ebcf11126e32517c46effff&alg_type=restaurant_food_recommendation"}
                   frameBorder="0"
                   width="1200"
                   height="500"

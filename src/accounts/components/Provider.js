@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { WithContext as ReactTags } from "react-tag-input"; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+import { WithContext as ReactTags } from "react-tag-input";
 import { useMediaQuery } from "react-responsive";
 import * as api from "../api";
 import {
@@ -340,7 +340,7 @@ const Provider = ({ data }) => {
                 <div className="align_left_profile_input">
                   <FormGroup>
                     <div className="list_of_objects">
-                      {/* <ReactTags!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                      <ReactTags
                         placeholder="Add new dish"
                         allowDeleteFromEmptyInput={false}
                         allowUnique={true}
@@ -349,7 +349,7 @@ const Provider = ({ data }) => {
                         handleDelete={handleDeleteTags}
                         handleAddition={handleAddTag}
                         delimiters={delimiters}
-                      /> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                      />
                     </div>
                   </FormGroup>
                 </div>
@@ -606,7 +606,7 @@ const Provider = ({ data }) => {
                   <small>Upload some photos</small>
                 </p>
                 <div className="align_left_profile_input">
-                  <MultipleImageUpload />
+                  <MultipleImageUpload userId={data.userId} />
                 </div>
               </div>
               <Button variant="outline-danger" onClick={handleSaveDate}>

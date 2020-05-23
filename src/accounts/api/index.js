@@ -16,7 +16,6 @@ const login = async (email, password) => {
 				password,
 			},
 		});
-
 		localStorage.setItem('userToken', token);
 
 		return { success: true, user };
@@ -26,7 +25,6 @@ const login = async (email, password) => {
 };
 
 const lostPassword = async (email) => {
-	console.log('trimit' + email);
 	try {
 		await axios({
 			method: 'post',
@@ -43,32 +41,44 @@ const lostPassword = async (email) => {
 };
 
 const register = async (username, role, email, password) => {
-	try {
-		const {
-			data: { user, token },
-		} = await axios({
-			method: 'post',
-			url: host + 'api/users/register',
-			data: {
-				email,
-				username,
-				password,
-				role: role[0].toUpperCase() + role.slice(1),
-			},
+	try{
+		const data = await axios.post(host + 'api/users/register', {
+			email:email,
+			password:password,
+			role:role,
+			name:username,
+		})
+		.then( async (response) => {
+			console.log(response);
+		}).catch(error => {
+			console.log(error);
 		});
-
-		console.log('\n\n\n\n');
-		console.log(user);
-		console.log(token);
-		console.log('\n\n\n\n');
-
-		localStorage.setItem('userToken', token);
-
-		return { success: true, user };
-	} catch (error) {
-		return { success: false, errorMessage: error.message };
+		return { success: true };
+	} catch(error){
+		return {success:false ,errorMessage: error.message};
 	}
 };
+
+const getUserByEmail = async (email) => {
+	try{
+		let responseSuccess;
+		let responseData;
+		const data = await axios.post(host + 'api/users/verifyLoginFacebook', {
+			email:email
+		})
+		.then( async (response) => {
+			responseData = response;
+			responseSuccess = true;
+		}).catch(error => {
+			responseSuccess = false;
+			console.log(error.response.data)
+		});
+		return { success: responseSuccess , data:responseData.data.data };
+	} catch(error){
+		return {success:false ,errorMessage: error.message};
+	}
+}
+
 
 const getUser = async () => {
 	try {
@@ -344,5 +354,6 @@ export {
 	lostPassword,
 	addCourse,
 	updateCourse,
+	getUserByEmail,
 	deleteCourse,
 };

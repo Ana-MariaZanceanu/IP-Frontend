@@ -74,23 +74,23 @@ border-left:solid #dc3545;
 
 .main_div_profile{
 	height: 100%;
-    background-color: #fff;
+    background-color: #FBF3E6;
     width: 100%;
 	display: flex;
 	flex-direction: row;
-	margin-top: 4%;
+	margin-top: 6%;
 }
 
 .main_div_profile_all{
 	height: 100%;
-    background-color: #fff;
+    background-color: #FBF3E6;
     width: 100%;
-	display: flex
+	display: flex;
 }
 
 .main_div_profile_phone{
 	height: auto;
-    background-color: #FBF3E6;
+    background-color: white;
     width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -317,7 +317,7 @@ border-left:solid #dc3545;
 }
 
 .avertisment{
-	color: #dc3545;
+	color: #a71d31;
 }
 
 .account_settings_elements{
@@ -355,9 +355,9 @@ option:active, option:hover, option:focus{
 }
 
 div.ReactTags__selected span.ReactTags__tag {
-	border: 2px solid #dc3545;
-	color: #dc3545;
-	background: #fbf3e6;
+	border: 2px solid #a71d31;
+	color: #a71d31;
+	background: white;
     font-size: 13px;
     display: inline-block;
     padding: 6px;
@@ -441,10 +441,6 @@ div.ReactTags__selected a.ReactTags__remove {
 	margin-right: 15%;
 	font-weight: 100;
 	color: #dc3545
-}
-
-#file-upload-button{
-	color: red;
 }
 
 .course_header {

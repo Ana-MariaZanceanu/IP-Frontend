@@ -84,16 +84,22 @@ class Login extends React.Component{
 					alert("Te-ai logat cu succes!");
 				} else {
 					this.setState({loading:false,success:false,error:answer.errorMessage})
-					alert("Error " + answer.errorMessage);
+					alert("Login failed!");
 				}
 				
 			} catch(err){
 				console.log(err);
 				this.setState({error:err,loading:false,success:false})
-				alert("error " + err);
+				alert("Login failed!");
 			}
 		}
 	}
+
+
+     validateEmail = (email) => {
+		const regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return regexp.test(email);
+	  }
 
 	async handleRegisterClick(){
 		console.log(JSON.stringify(this.state,null,'...'))
@@ -101,9 +107,13 @@ class Login extends React.Component{
 		this.setState({success:""})
 		if(this.state.username === ""){
 			this.setState({alertUsername:'red'})
+		} else if(this.state.username.length < 5){
+			alert("Username-ul trebuie sa contina minim 5 caractere!")
 		} else if(this.state.newAccountEmail === "" ){
 			this.setState({alertEmail:'red'})
-		} else if(this.state.newAccountPassword === ""){
+		} else if(this.validateEmail(this.state.newAccountEmail) === false){
+			alert("Email invalid!")
+		}else if(this.state.newAccountPassword === ""){
 			this.setState({alertPassword:'red'})
 		} else if(this.state.newAccountConfirmPassword === ""){
 			this.setState({alertNewPassword:"red"});
@@ -119,10 +129,11 @@ class Login extends React.Component{
 
 			try{
 				this.setState({loading:true})
-				let answer = await api.register(this.state.username,this.state.accountType,this.state.email,this.state.newAccountPassword);
+				let answer = await api.register(this.state.username,this.state.accountType,this.state.newAccountEmail,this.state.newAccountPassword);
 				if(answer.success === true){
-					this.setState({loading:false,userData:answer.user,success:true})
-					alert("Te-ai inregistrat cu succes!")
+					this.setState({loading:false,success:true})
+					alert("Te-ai inregistrat cu succes! Te rugam confirma email-ul!")
+					window.location.href = "http://localhost:3000/login";
 				} else {
 					this.setState({loading:false,success:false,error:answer.errorMessage})
 					alert("error " + answer.errorMessage)
@@ -311,8 +322,8 @@ class Login extends React.Component{
 								<p style={style.createAccountText}>Create account</p>
 
 								<div style={style.roleContainer}>
-									{this.renderRoleButton("Client","client")}
-									{this.renderRoleButton("Provider","provider")}
+									{this.renderRoleButton("Client","Client")}
+									{this.renderRoleButton("Provider","Provider")}
 								</div>
 
 								{this.renderInputfield("Username","username",this.handleChangeUsername,"text",this.state.alertUsername,this.state.username)}
@@ -373,9 +384,9 @@ class Login extends React.Component{
 								:
 								<div className="shadow p-3 mb-5 bg-white rounded"  style={styleMobile.whiteContainer}>
 									<div style={styleMobile.buttonsRoleContainer}>
-										{this.renderRoleButton("Client","client")}
+										{this.renderRoleButton("Client","Client")}
 										<p style={styleMobile.createAccountText}>Create account</p>
-										{this.renderRoleButton("Provider","provider")}
+										{this.renderRoleButton("Provider","Provider")}
 									</div>
 
 									{this.renderInputFieldPhone("Username","username",this.handleChangeUsername,"text",this.state.alertUsername,this.state.username)}

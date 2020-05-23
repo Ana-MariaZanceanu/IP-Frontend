@@ -11,6 +11,8 @@ class FormDetails extends Component {
     super(props);
     this.state = {
       validated: false,
+      isEditing: props.isEditing,
+      revId: props.revId
     };
   }
   continue = (e) => {
