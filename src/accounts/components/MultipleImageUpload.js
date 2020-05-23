@@ -34,7 +34,9 @@ class MultipleImageUpload extends React.Component {
           multiple
           onChange={this.onChange}
         />
-        <Button variant="outline-danger">Upload</Button>
+        <Button type="submit" variant="outline-danger">
+          Upload
+        </Button>
       </form>
     );
   }

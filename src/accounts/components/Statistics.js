@@ -16,6 +16,7 @@ const Statistic = ({ data }) => {
 
   const coursesOrderedResturant = `http://159.65.247.164/recommendations/stats/food-per-restaurant/${token}?${showCount}${showOrder}token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWFhOTQ2ODMwYThmMTI5OGQ0ZmMyZjgiLCJpYXQiOjE1ODgyMzc0NTZ9.Ll2HDuN79KKWr5OoQTiZVWBemyDqdo3kDz74Bvi6lOA`;
 
+  //const recommendations = `http://159.65.247.164/static/carousel.html?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJjZTkxYTI2ZTMyNTE3YzQ2ZWZmZWQiLCJpYXQiOjE1ODk0Mzg3NDZ9.M0seLr5OmfgkLcoEoqN95ZNqUVjvdwMkHMwSRT68Gkw&provider_id=${}&alg_type=recommend_food_for_restaurants`
   const [ordersPerHour, setOrdersPerHour] = useState(ordersPerHourAll);
   const [coursesOrdered, setCoursesOrdered] = useState(coursesOrderedAll);
   const handleARestaurantCoursesOrdered = () => {

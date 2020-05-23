@@ -166,47 +166,59 @@ export class NavBarComp extends Component {
                     name="search"
                     required
                   />
-                  <Button type="submit" variant="danger">Search</Button>
+                  <Button type="submit" variant="danger">
+                    Search
+                  </Button>
                 </Form>
-                 {
-                  Object.keys(this.context.user).length === 0 ? 
+                {Object.keys(this.context.user).length === 0 ? (
                   <Button
-                      variant="outline-danger"
-                      style={{ marginLeft: 10 }}
-                      onClick={() => {
-                        window.location.href = "http://localhost:3000/login";
-                      }}
-                    >
-                      Login
-                    </Button> : <div></div>
-                 }
-                 {
-                  Object.keys(this.context.user).length === 0 ? <div></div> :
-                    <Button
-                      variant="outline-danger"
-                      style={{ marginLeft: 10 }}
-                      onClick={() => {
-                        localStorage.removeItem("userToken");
-                        this.context.setUser({});
+                    variant="outline-danger"
+                    style={{ marginLeft: 10 }}
+                    onClick={() => {
+                      window.location.href = "http://localhost:3000/login";
+                    }}
+                  >
+                    Login
+                  </Button>
+                ) : (
+                  <div></div>
+                )}
+                {Object.keys(this.context.user).length === 0 ? (
+                  <div></div>
+                ) : (
+                  <Button
+                    variant="outline-danger"
+                    style={{ marginLeft: 10 }}
+                    onClick={() => {
+                      localStorage.removeItem("userToken");
+                      this.context.setUser({});
+                      if (
+                        window.location.href === "http://localhost:3000/profile"
+                      ) {
+                        console.log("Here");
+                        window.location.href = "http://localhost:3000/home";
+                      } else {
                         window.location.reload(false);
-                      }}
-                    >
-                      Logout
-                    </Button>
-                 }
-                 {
-                  Object.keys(this.context.user).length === 0 ? <div></div> :
-                    <Button
-                      variant="outline-danger"
-                      style={{ marginLeft: 10 }}
-                      onClick={() => {
-                        window.location.href = "http://localhost:3000/profile";
-                      }}
-                    >
+                      }
+                    }}
+                  >
+                    Logout
+                  </Button>
+                )}
+                {Object.keys(this.context.user).length === 0 ? (
+                  <div></div>
+                ) : (
+                  <Button
+                    variant="outline-danger"
+                    style={{ marginLeft: 10 }}
+                    onClick={() => {
+                      window.location.href = "http://localhost:3000/profile";
+                    }}
+                  >
                     Profile
                     {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
                   </Button>
-                 }
+                )}
               </Navbar.Collapse>
             </Container>
           </Navbar>

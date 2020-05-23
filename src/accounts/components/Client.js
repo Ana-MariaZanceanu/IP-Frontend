@@ -204,7 +204,7 @@ const Client = ({ data }) => {
             <div className="align_left_profile_input">
               <FormGroup>
                 <div className="list_of_objects">
-                  {/* <ReactTags
+                  <ReactTags
                     placeholder="Add new preference"
                     inline={false}
                     inputFieldPosition="top"
@@ -212,7 +212,7 @@ const Client = ({ data }) => {
                     handleDelete={handleDeletePreferencesTags}
                     handleAddition={handleAddPreferencesTag}
                     delimiters={delimiters}
-                  /> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+                  />
                 </div>
               </FormGroup>
             </div>

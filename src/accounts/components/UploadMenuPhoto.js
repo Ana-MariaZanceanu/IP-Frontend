@@ -28,7 +28,9 @@ class UploadMenuPhoto extends React.Component {
         <p>Upload a photo</p>
         <input type="file" name="myImage" onChange={this.onChange} />
         <div className="add_button">
-          <Button className="actual_button">Upload</Button>
+          <Button type="submit" className="actual_button">
+            Upload
+          </Button>
         </div>
       </form>
     );
