@@ -30,7 +30,7 @@ class ShoppingCartModal extends Component {
           <Router>
             <Switch>
               <Route>
-                  <Redirect to={this.props.windowUrl} />
+                  <Redirect to={this.props.windowUrl}/>
               </Route>
             </Switch>
           </Router>
