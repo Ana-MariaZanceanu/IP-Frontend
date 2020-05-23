@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Container from "react-bootstrap/Container";
-import profileTemp from "./Images/derp.jpg";
+import profileTemp from "./Images/DefaultProfile.png";
 import {Button} from 'react-bootstrap';
 import emptyStar from "./Images/Empty_Star.png";
 import goldStar from "./Images/Gold_Star.png";
@@ -316,14 +316,14 @@ class Review extends Component {
               <Image
                   src={upArrow}
                   alt={""}
-                  style={{ height: "20px", width: "100%", minWidth:"5px"}}
+                  style={{ height: "20px", width: "100%", minWidth:"15px"}}
                 />
               </Button>)}
               {!isConnected && (
               <Image
                   src={""}
                   alt={""}
-                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                  style={{ height: "20px", width: "100%", minWidth:"5px", opacity: "0" }}
                 />
               )}
               <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
@@ -342,7 +342,7 @@ class Review extends Component {
               <Image
                   src={GreenArrow}
                   alt={""}
-                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                  style={{ height: "20px", width: "100%", minWidth:"15px" }}
                 />
               </Button>
               <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
@@ -361,7 +361,7 @@ class Review extends Component {
               <Image
                   src={upArrow}
                   alt={""}
-                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                  style={{ height: "20px", width: "100%", minWidth:"15px" }}
                 />
               </Button>
               <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>

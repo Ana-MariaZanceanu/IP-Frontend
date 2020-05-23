@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Image } from 'react-bootstrap';
 import ModalProduct from '../comenzi&rezervari/productModal/ModalProduct';
 import axios from 'axios';
+import profileTemp from "./Images/MenuDefault.png"
 
 const urlApiCourses = 'https://ip-accounts.herokuapp.com/api/courses/';
 
@@ -34,6 +35,10 @@ class Item extends Component {
   }
 
   render() {
+    var picture = this.state.itemPicture;
+    if(picture == "" || picture == null){
+      picture = profileTemp;
+    }
     return (
       <div id="menuitem">
         <div
@@ -47,7 +52,7 @@ class Item extends Component {
           }}
         >
           <div class="photo">
-            <img src={this.state.itemPicture} alt={'Item Picture'}></img>
+            <img src={picture} alt={'Item Picture'}></img>
           </div>
           <div class="utility">
             <div class="name">{this.state.itemName}</div>

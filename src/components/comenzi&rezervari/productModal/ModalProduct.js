@@ -13,7 +13,7 @@ import axios from 'axios';
 import UserContext from '../../UserContext';
 
 const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
-const urlWishlist = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
+const urlWishlist = 'https://favoriteip.herokuapp.com/api/v1/favorites/';
 
 class ModalProduct extends Component {
   static contextType = UserContext;

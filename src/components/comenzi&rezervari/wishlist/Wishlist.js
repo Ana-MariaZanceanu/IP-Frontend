@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 import './Wishlist.css';
 import axios from 'axios';
 
-const urlFavorite = 'http://favoriteip.herokuapp.com/api/v1/favorites/';
+const urlFavorite = 'https://favoriteip.herokuapp.com/api/v1/favorites/';
 const urlCart = 'https://orderip.herokuapp.com/api/v1/cart/';
 class Wishlist extends Component {
   constructor(props) {

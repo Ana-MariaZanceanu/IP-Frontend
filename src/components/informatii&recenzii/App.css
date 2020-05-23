@@ -387,3 +387,12 @@ ul span {
   display: flex;
   flex-direction:column;
 }
+
+.editButton{
+  background-color: #A71D31!important;
+  border: none!important;
+}
+
+.submitButton{
+  margin-left: 40%;
+}

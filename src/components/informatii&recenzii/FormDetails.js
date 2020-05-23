@@ -83,9 +83,9 @@ class FormDetails extends Component {
           
         <Button
           onClick={this.handleClick}
-          variant="outline-success"
+          variant="outline-danger"
           type="submit"
-          
+          className="submitButton"
         >
           Submit
         </Button>
