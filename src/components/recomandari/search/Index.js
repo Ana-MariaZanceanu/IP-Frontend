@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavBarComp from '../../comenzi&rezervari/mainPage/NavBarComp';
 import FooterComp from '../../comenzi&rezervari/mainPage/FooterComp';
 import RestaurantCard from '../../comenzi&rezervari/mainPage/RestaurantCard';
-import { chunk } from 'lodash';
+import { chunk, uniqBy } from 'lodash';
 import { Row, Container, Col } from 'react-bootstrap';
 import './style.css';
 
@@ -28,7 +28,7 @@ export default ({ location }) => {
         },
       });
       if(data['success'] && data['success'] === 'true') {
-        setSearchResultItems(data['data']);
+        setSearchResultItems(uniqBy(data['data'], '_id'));
       }
     } catch (e) {
       console.log(e);
