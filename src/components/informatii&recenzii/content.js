@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Carousel from 'react-bootstrap/Carousel'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Carousel from 'react-bootstrap/Carousel';
+
 
 export class Content extends Component {
 

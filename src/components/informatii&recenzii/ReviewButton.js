@@ -21,10 +21,12 @@ class ReviewButton extends Component{
     return(
       <div>
         {!this.state.expanded && !this.state.isEditing && (
-          <Button variant="outline-success" onClick={this.showButton} block>Add a review! </Button>
+          <Button className="editButton"
+          variant="primary"onClick={this.showButton} block>Add a review! </Button>
         )}
         {!this.state.expanded && this.state.isEditing && (
-          <Button variant="outline-success" onClick={this.showButton} block>Edit your review! </Button>
+          <Button className="editButton"
+          variant="primary"onClick={this.showButton} block>Edit your review! </Button>
         )}
         {this.state.expanded && (
           <FormReview provider={this.state.providerId} isEditing={this.state.isEditing} revId={this.state.revId}/>
