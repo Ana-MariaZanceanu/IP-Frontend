@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import * as api from "../api";
 
 class SingleImageUpload extends React.Component {
@@ -27,9 +28,11 @@ class SingleImageUpload extends React.Component {
       <form onSubmit={this.onFormSubmit}>
         <p>Upload a photo</p>
         <input type="file" name="myImage" onChange={this.onChange} />
-        <button type="submit" class="btn btn-outline-primary">
-          Upload
-        </button>
+        <div className="add_button">
+          <Button type="submit" className="actual_button">
+            Upload
+          </Button>
+        </div>
       </form>
     );
   }

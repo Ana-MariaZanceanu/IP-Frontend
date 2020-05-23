@@ -21,36 +21,59 @@ const Provider = ({ data }) => {
 
   const [newSpecial, setNewSpecial] = useState("");
   const [selectedSpecial, setSelectedSpecial] = useState("");
-  const [specials, setSpecials] = useState(data.specials ? data.specials : []);
+  const [specials, setSpecials] = useState(
+    data ? (data.specials ? data.specials : []) : []
+  );
 
   const [specialsTagItems, setSpecialTagItems] = useState(
-    data.specials
-      ? specials.map((element) => {
-          let newSpecialTag = {};
-          newSpecialTag["id"] = element;
-          newSpecialTag["text"] = element;
-          return newSpecialTag;
-        })
+    data
+      ? data.specials
+        ? specials.map((element) => {
+            let newSpecialTag = {};
+            newSpecialTag["id"] = element;
+            newSpecialTag["text"] = element;
+            return newSpecialTag;
+          })
+        : []
       : []
   );
-  const [capacity, setCapacity] = useState(data.capacity ? data.capacity : 0);
-  const [type, setType] = useState(data.type ? data.type : 0);
+  const [capacity, setCapacity] = useState(
+    data ? (data.capacity ? data.capacity : 0) : 0
+  );
+  const [type, setType] = useState(data ? (data.type ? data.type : "") : "");
   const [latitude, setLatitude] = useState(
-    data.location ? (data.location.latitude ? data.location.latitude : 0) : 0
+    data
+      ? data.location
+        ? data.location.latitude
+          ? data.location.latitude
+          : 0
+        : 0
+      : 0
   );
   const [longitude, setLongitude] = useState(
-    data.location ? (data.location.longitude ? data.location.longitude : 0) : 0
+    data
+      ? data.location
+        ? data.location.longitude
+          ? data.location.longitude
+          : 0
+        : 0
+      : 0
   );
   const [adress, setAdress] = useState(
-    data.location ? (data.location.adress ? data.location.adress : "") : ""
+    data
+      ? data.location
+        ? data.location.adress
+          ? data.location.adress
+          : ""
+        : ""
+      : ""
   );
-
   const [priceCategory, setPriceCategory] = useState(
-    data.priceCategory ? data.priceCategory : ""
+    data ? (data.priceCategory ? data.priceCategory : "") : ""
   );
-  const [CUI, setCUI] = useState(data.CUI ? data.CUI : "");
+  const [CUI, setCUI] = useState(data ? (data.CUI ? data.CUI : "") : "");
   const [description, setDescription] = useState(
-    data.description ? data.description : ""
+    data ? (data.description ? data.description : "") : ""
   );
 
   const [loading, setLoading] = useState(false);
@@ -97,7 +120,11 @@ const Provider = ({ data }) => {
     setLoading(true);
     try {
       let answer = await api.profile(userData);
+
       if (answer.success === true) {
+        setPriceCategory(answer.userDetails.priceCategory);
+        setLongitude(answer.userDetails.location.longitude);
+        console.log(longitude);
         alert("Congratulation! You just updated your profile");
         setLoading(false);
       } else {

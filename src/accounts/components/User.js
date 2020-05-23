@@ -10,6 +10,7 @@ import Menu from "./Menu";
 import { useMediaQuery } from "react-responsive";
 
 const User = ({ data }) => {
+  console.log(data);
   const [index, setIndex] = useState(0);
   const [openSetting, setOpenSettings] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
@@ -217,7 +218,7 @@ const User = ({ data }) => {
               <Provider data={data.details}></Provider>
             )}
             {openMenu && data.role === "Provider" && (
-              <Menu data={data.details.menu} />
+              <Menu data={data.details ? data.details.menu : {}} />
             )}
             {openSchedule && data.role === "Provider" && (
               <Schedule data={data.details.schedule} />
@@ -314,7 +315,9 @@ const User = ({ data }) => {
               <Provider data={data.details}></Provider>
             )}
             {openMenu && data.role === "Provider" && (
-              <Menu data={data.details.menu} />
+              <Menu
+                data={data ? (data.details ? data.details.menu : {}) : {}}
+              />
             )}
             {openSchedule && data.role === "Provider" && (
               <Schedule data={data.details.schedule} />

@@ -19,6 +19,8 @@ import "./mainPage.css";
 import "./style.css";
 import UserContext from "../../UserContext";
 
+//const urlGetCart = 'http://localhost:3000/api/v1/cart/';
+
 const urlGetCart = "https://orderip.herokuapp.com/api/v1/cart/";
 const getUrlWishlist = "http://favoriteip.herokuapp.com/api/v1/favorites/";
 
@@ -44,12 +46,12 @@ export class NavBarComp extends Component {
       url: urlGetCart + "session",
       withCredentials: true,
     })
-      .then((response) => {
-        products = response.data.data.items;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          products = response.data.data.items;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     return products;
   };
 
@@ -60,12 +62,12 @@ export class NavBarComp extends Component {
       url: urlGetCart + "user?token=" + this.userToken,
       withCredentials: true,
     })
-      .then((response) => {
-        products = response.data.data.cart[0].items;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          products = response.data.data.cart[0].items;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     return products;
   };
 
@@ -75,13 +77,13 @@ export class NavBarComp extends Component {
       method: "get",
       url: getUrlWishlist + "user?token=" + this.userToken,
     })
-      .then((response) => {
-        console.log(response);
-        products = response.data.data.favorites[0].items;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          products = response.data.data.favorites[0].items;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     return products;
   };
   handleSearchSubmit = (e) => {
@@ -99,144 +101,156 @@ export class NavBarComp extends Component {
     } = this.props;
     search = new URLSearchParams(search).get("q");
     return (
-      <Router>
-        <div>
-          <Navbar className="bg-navbar" variant="dark" expand="md" fixed="top">
-            <Container>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                  <Nav.Link className="nav" href="/home">
-                    Home
-                  </Nav.Link>
-                  <Nav.Link className="nav" href="/restaurants">
-                    Restaurants
-                  </Nav.Link>
+        <Router>
+          <div>
+            <Navbar className="bg-navbar" variant="dark" expand="md" fixed="top">
+              <Container>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                    <Nav.Link className="nav" href="/home">
+                      Home
+                    </Nav.Link>
+                    <Nav.Link className="nav" href="/restaurants">
+                      Restaurants
+                    </Nav.Link>
 
-                  <Nav.Link
-                    className="nav"
-                    onClick={() => {
-                      this.setState({
-                        modalShow: true,
-                        windowUrl: this.state.redirectUrl,
-                      });
-                      if (localStorage.getItem("userToken")) {
-                        this.userToken = localStorage.getItem("userToken");
-                        this.getCartForUser().then((result) =>
-                          this.setState({ products: result })
-                        );
-                      } else {
-                        this.getCart().then((result) =>
-                          this.setState({ products: result })
-                        );
-                      }
-                    }}
-                  >
-                    <Link to={"/cart"} className="iconCart">
-                      <FaShoppingCart />
-                    </Link>
-                  </Nav.Link>
-                  <Nav.Link
-                    className="nav"
-                    onClick={() => {
-                      this.setState({
-                        modalShow: true,
-                        windowUrl: this.state.redirectUrl,
-                      });
-                      if (localStorage.getItem("userToken")) {
-                        this.userToken = localStorage.getItem("userToken");
-                        this.getWishlist().then((result) =>
-                          this.setState({ wishedProducts: result })
-                        );
-                      }
-                    }}
-                  >
-                    <Link to="/wishlist" className="iconHeart">
-                      <FaHeart />
-                    </Link>
-                  </Nav.Link>
-                </Nav>
-                <Form onSubmit={this.handleSearchSubmit} inline>
-                  <Form.Control
-                    type="text"
-                    placeholder={search ? search : "Search"}
-                    className="mr-sm-2"
-                    name="search"
-                    required
-                  />
-                  <Button type="submit" variant="primary" className="redButton">Search</Button>
-                </Form>
-                 {
-                  Object.keys(this.context.user).length === 0 ? 
-                  <Button
-                      variant="primary"
-                      className="redButton"
-                      style={{ marginLeft: 10 }}
-                      onClick={() => {
-                        window.location.href = "http://localhost:3000/login";
-                      }}
-                    >
-                      Login
-                    </Button> : <div></div>
-                 }
-                 {
-                  Object.keys(this.context.user).length === 0 ? <div></div> :
-                    <Button
-                        variant="primary"
-                        className="redButton"
-                        style={{ marginLeft: 10 }}
+                    <Nav.Link
+                        className="nav"
                         onClick={() => {
-                          localStorage.removeItem("userToken");
-                          this.context.setUser({});
-                          window.location.reload(false);
+                          this.setState({
+                            modalShow: true,
+                            windowUrl: this.state.redirectUrl,
+                          });
+                          if (localStorage.getItem("userToken")) {
+                            this.userToken = localStorage.getItem("userToken");
+                            this.getCartForUser().then((result) =>
+                                this.setState({ products: result })
+                            );
+                          } else {
+                            this.getCart().then((result) =>
+                                this.setState({ products: result })
+                            );
+                          }
                         }}
                     >
-                      Logout
+                      <Link to={"/cart"} className="iconCart">
+                        <FaShoppingCart />
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link
+                        className="nav"
+                        onClick={() => {
+                          this.setState({
+                            modalShow: true,
+                            windowUrl: this.state.redirectUrl,
+                          });
+                          if (localStorage.getItem("userToken")) {
+                            this.userToken = localStorage.getItem("userToken");
+                            this.getWishlist().then((result) =>
+                                this.setState({ wishedProducts: result })
+                            );
+                          }
+                        }}
+                    >
+                      <Link to="/wishlist" className="iconHeart">
+                        <FaHeart />
+                      </Link>
+                    </Nav.Link>
+                  </Nav>
+                  <Form onSubmit={this.handleSearchSubmit} inline>
+                    <Form.Control
+                        type="text"
+                        placeholder={search ? search : "Search"}
+                        className="mr-sm-2"
+                        name="search"
+                        required
+                    />
+                    <Button type="submit" variant="primary" className="redButton">
+                      Search
                     </Button>
-                 }
-                 {
-                  Object.keys(this.context.user).length === 0 ? <div></div> :
-                    <Button
-                        variant="primary"
-                        className="redButton"
-                        style={{ marginLeft: 10 }}
-                        onClick={() => {
-                          window.location.href = "http://localhost:3000/profile";
-                        }}
-                    >
-                    Profile
-                    {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
-                  </Button>
-                 }
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
+                  </Form>
+                  {Object.keys(this.context.user).length === 0 ? (
+                      <Button
+                          variant="primary"
+                          className="redButton"
+                          style={{ marginLeft: 10 }}
+                          onClick={() => {
+                            window.location.href = "http://localhost:3000/login";
+                          }}
+                      >
+                        Login
+                      </Button>
+                  ) : (
+                      <div></div>
+                  )}
+                  {Object.keys(this.context.user).length === 0 ? (
+                      <div></div>
+                  ) : (
+                      <Button
+                          variant="primary"
+                          className="redButton"
+                          style={{ marginLeft: 10 }}
+                          onClick={() => {
+                            localStorage.removeItem("userToken");
+                            this.context.setUser({});
+                            if (
+                                window.location.href === "http://localhost:3000/profile"
+                            ) {
+                              console.log("Here");
+                              window.location.href = "http://localhost:3000/home";
+                            } else {
+                              window.location.reload(false);
+                            }
+                          }}
+                      >
+                        Logout
+                      </Button>
+                  )}
+                  {Object.keys(this.context.user).length === 0 ? (
+                      <div></div>
+                  ) : (
+                      <Button
+                          variant="primary"
+                          className="redButton"
+                          style={{ marginLeft: 10 }}
+                          onClick={() => {
+                            window.location.href = "http://localhost:3000/profile";
+                          }}
+                      >
+                        Profile
+                        {/* BUTONUL ASTA CRED CA O SA SARA DIN BARA , TREBUIE MODIFICAT DESIGNUL CRED */}
+                      </Button>
+                  )}
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
 
-          <Switch>
-            <Route path={"/cart"}>
-              <ShoppingCartModal
-                show={this.state.modalShow}
-                onHide={() => {
-                  this.setState({ modalShow: false });
-                }}
-                products={this.state.products}
-                windowUrl={this.state.windowUrl}
-              />
-            </Route>
+            <Switch>
+              <Route path={"/cart"}>
+                <ShoppingCartModal
+                    show={this.state.modalShow}
+                    onHide={() => {
+                      this.setState({ modalShow: false });
+                    }}
+                    products={this.state.products}
+                    windowUrl={this.state.windowUrl}
+                />
+              </Route>
 
-            <Route path={"/wishlist"}>
-              <WishlistModal
-                show={this.state.modalShow}
-                onHide={() => {
-                  this.setState({ modalShow: false });
-                }}
-                products={this.state.wishedProducts}
-                windowUrl={this.state.windowUrl}
-              />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+              <Route path={"/wishlist"}>
+                <WishlistModal
+                    show={this.state.modalShow}
+                    onHide={() => {
+                      this.setState({ modalShow: false });
+                    }}
+                    products={this.state.wishedProducts}
+                    windowUrl={this.state.windowUrl}
+                />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
     );
   }
 }
