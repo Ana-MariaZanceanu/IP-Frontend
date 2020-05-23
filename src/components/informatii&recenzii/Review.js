@@ -316,7 +316,7 @@ class Review extends Component {
               <Image
                   src={upArrow}
                   alt={""}
-                  style={{ height: "20px", width: "100%", minWidth:"5px"}}
+                  style={{ height: "20px", width: "100%", minWidth:"15px"}}
                 />
               </Button>)}
               {!isConnected && (
@@ -342,7 +342,7 @@ class Review extends Component {
               <Image
                   src={GreenArrow}
                   alt={""}
-                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                  style={{ height: "20px", width: "100%", minWidth:"15px" }}
                 />
               </Button>
               <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
@@ -361,7 +361,7 @@ class Review extends Component {
               <Image
                   src={upArrow}
                   alt={""}
-                  style={{ height: "20px", width: "100%", minWidth:"5px" }}
+                  style={{ height: "20px", width: "100%", minWidth:"15px" }}
                 />
               </Button>
               <div style={{textAlign: "center"}}>{this.state.helpfulness}</div>
