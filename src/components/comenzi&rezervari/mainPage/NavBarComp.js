@@ -33,7 +33,7 @@ export class NavBarComp extends Component {
       modalShow: false,
       products: [],
       wishedProducts: [],
-      redirectUrl: window.location.href.substring(21),
+      redirectUrl: window.location.href.substring(0,window.location.href.indexOf('/')),
       windowUrl: "",
     };
     this.userToken = "";
