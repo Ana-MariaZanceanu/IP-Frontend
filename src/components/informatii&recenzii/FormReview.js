@@ -3,6 +3,7 @@ import FormDetails from "./FormDetails";
 import FormConfirm from "./FormConfirm";
 import FormSucces from "./FormSucces";
 import FormFail from "./FormFail";
+
 class UserForm extends Component {
   constructor(props) {
     super(props);
