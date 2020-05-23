@@ -4,27 +4,133 @@ import { FormGroup, FormControl, Form, Button } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 
 const Schedule = ({ data }) => {
-  const [startMonday, setStartMonday] = useState(data.schedule[0].startHour);
-  const [startTuesday, setStartTuesday] = useState(data.schedule[1].startHour);
+  const [startMonday, setStartMonday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[0]
+          ? data.schedule[0].startHour
+          : 0
+        : 0
+      : 0
+  );
+  const [startTuesday, setStartTuesday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[1]
+          ? data.schedule[1].startHour
+          : 0
+        : 0
+      : 0
+  );
   const [startWednesday, setStartWednesday] = useState(
-    data.schedule[2].startHour
+    data
+      ? data.schedule
+        ? data.schedule[2]
+          ? data.schedule[2].startHour
+          : 0
+        : 0
+      : 0
   );
   const [startThursday, setStartThursday] = useState(
-    data.schedule[3].startHour
+    data
+      ? data.schedule
+        ? data.schedule[3]
+          ? data.schedule[3].startHour
+          : 0
+        : 0
+      : 0
   );
-  const [startFriday, setStartFriday] = useState(data.schedule[4].startHour);
+  const [startFriday, setStartFriday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[4]
+          ? data.schedule[4].startHour
+          : 0
+        : 0
+      : 0
+  );
   const [startSaturday, setStartSaturday] = useState(
-    data.schedule[5].startHour
+    data
+      ? data.schedule
+        ? data.schedule[5]
+          ? data.schedule[5].startHour
+          : 0
+        : 0
+      : 0
   );
-  const [startSunday, setStartSunday] = useState(data.schedule[6].startHour);
+  const [startSunday, setStartSunday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[6]
+          ? data.schedule[6].startHour
+          : 0
+        : 0
+      : 0
+  );
 
-  const [endMonday, setEndMonday] = useState(data.schedule[0].endHour);
-  const [endTuesday, setEndTuesday] = useState(data.schedule[1].endHour);
-  const [endWednesday, setEndWednesday] = useState(data.schedule[2].endHour);
-  const [endThursday, setEndThursday] = useState(data.schedule[3].endHour);
-  const [endFriday, setEndFriday] = useState(data.schedule[4].endHour);
-  const [endSaturday, setEndSaturday] = useState(data.schedule[5].endHour);
-  const [endSunday, setEndSunday] = useState(data.schedule[6].endHour);
+  const [endMonday, setEndMonday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[0]
+          ? data.schedule[0].endHour
+          : 0
+        : 0
+      : 0
+  );
+  const [endTuesday, setEndTuesday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[1]
+          ? data.schedule[1].endHour
+          : 0
+        : 0
+      : 0
+  );
+  const [endWednesday, setEndWednesday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[2]
+          ? data.schedule[2].endHour
+          : 0
+        : 0
+      : 0
+  );
+  const [endThursday, setEndThursday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[3]
+          ? data.schedule[3].endHour
+          : 0
+        : 0
+      : 0
+  );
+  const [endFriday, setEndFriday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[4]
+          ? data.schedule[4].endHour
+          : 0
+        : 0
+      : 0
+  );
+  const [endSaturday, setEndSaturday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[5]
+          ? data.schedule[5].endHour
+          : 0
+        : 0
+      : 0
+  );
+  const [endSunday, setEndSunday] = useState(
+    data
+      ? data.schedule
+        ? data.schedule[6]
+          ? data.schedule[6].endHour
+          : 0
+        : 0
+      : 0
+  );
   const [loading, setLoading] = useState(false);
 
   const [succesTime, setSuccesTime] = useState(true);
