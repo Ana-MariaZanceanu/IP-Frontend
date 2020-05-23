@@ -3,18 +3,12 @@ import "../assets/btnStyle.css";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import {
   FormControl,
-  Container,
-  Col,
-  Row,
   Button,
-  Card,
   Form,
-  Image,
-  ListGroup,
   FormGroup,
   FormLabel,
 } from "react-bootstrap";
-// import { WithContext as ReactTags } from "react-tag-input"; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+import { WithContext as ReactTags } from "react-tag-input";
 import * as api from "../api";
 
 const Client = ({ data }) => {
@@ -232,7 +226,7 @@ const Client = ({ data }) => {
             <div className="align_left_profile_input">
               <FormGroup>
                 <div className="list_of_objects">
-                  {/* <ReactTags
+                  <ReactTags
                     placeholder="Add new allergy"
                     inline={false}
                     inputFieldPosition="top"
@@ -240,7 +234,7 @@ const Client = ({ data }) => {
                     handleDelete={handleDeleteAllergiesTags}
                     handleAddition={handleAddAllergiesTag}
                     delimiters={delimiters}
-                  /> !!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                  />
                 </div>
               </FormGroup>
             </div>

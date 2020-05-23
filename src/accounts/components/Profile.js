@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-
+import NavBarComp from "../../components/comenzi&rezervari/mainPage/NavBarComp";
 import User from "./User";
-import * as api from "../api";
 import { Spinner } from "react-bootstrap";
-import UserContext from '../../components/UserContext';
+import UserContext from "../../components/UserContext";
 class Profile extends Component {
   static contextType = UserContext;
   constructor(props) {
@@ -14,15 +13,23 @@ class Profile extends Component {
   }
 
   async componentWillMount() {
-    this.setState({userData:this.context.user });
+    this.setState({ userData: this.context.user });
   }
 
-
   render() {
-    return this.state.loading === false ? (
-      <User data={this.state.userData} />
-    ) : (
-      <Spinner animation="grow" variant="danger" style={{ marginTop: "5%" }} />
+    return (
+      <>
+        <NavBarComp />
+        {this.state.loading === false ? (
+          <User data={this.state.userData} />
+        ) : (
+          <Spinner
+            animation="grow"
+            variant="danger"
+            style={{ marginTop: "5%" }}
+          />
+        )}
+      </>
     );
   }
 }

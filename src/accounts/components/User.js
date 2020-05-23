@@ -198,17 +198,7 @@ const User = ({ data }) => {
                       Account Settings
                     </Link>
                   </ListGroup.Item>
-                  <ListGroup.Item className="menu_element_profile">
-                    <Button
-                      variant="outline-danger"
-                      style={{ marginLeft: 10 }}
-                      onClick={() => {
-                        window.location.href = "http://localhost:3000";
-                      }}
-                    >
-                      Home
-                    </Button>
-                  </ListGroup.Item>
+                  <ListGroup.Item className="menu_element_profile"></ListGroup.Item>
                 </ListGroup>
               )}
             </div>

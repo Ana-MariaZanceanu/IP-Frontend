@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { WithContext as ReactTags } from "react-tag-input"; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111
+import { WithContext as ReactTags } from "react-tag-input";
 import UploadMenuPhoto from "./UploadMenuPhoto";
 import * as api from "../api";
 
@@ -10,14 +10,15 @@ import {
   FormControl,
   FormGroup,
 } from "react-bootstrap";
-const Course = ({ data }) => {
+const Course = ({ data }, { callbackParent }) => {
   const KeyCodes = {
     comma: 188,
     enter: 13,
   };
   const delimiters = [KeyCodes.comma, KeyCodes.enter];
   const [loading, setLoading] = useState(false);
-  const placeholder = "http://localhost:4000/images/placeholder_menu.png";
+  const placeholder =
+    "https://ip-accounts.herokuapp.com/images/placeholder_menu.png";
   const [name, setName] = useState(data.course.name);
   const [price, setPrice] = useState(data.course.price);
   const [category, setCategory] = useState(
@@ -133,8 +134,10 @@ const Course = ({ data }) => {
     try {
       setLoading(true);
       let answer = await api.deleteCourse(data.course._id);
-      //setCourses(answer.courses);
+      setLoading(false);
+      console.log(answer);
       if (answer.success === true) {
+        callbackParent(answer);
         setLoading(false);
       } else {
         setLoading(false);
@@ -210,7 +213,7 @@ const Course = ({ data }) => {
             <div className="align_left_profile_input">
               <FormGroup>
                 <div className="list_of_objects">
-                  {/* <ReactTags
+                  <ReactTags
                     allowDeleteFromEmptyInput={false}
                     placeholder="Add new category"
                     inputFieldPosition="top"
@@ -218,7 +221,7 @@ const Course = ({ data }) => {
                     handleDelete={handleDeleteTags}
                     handleAddition={handleAddTag}
                     delimiters={delimiters}
-                  /> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                  />
                 </div>
               </FormGroup>
             </div>
