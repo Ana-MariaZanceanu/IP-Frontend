@@ -45,7 +45,7 @@ export class ChooseUsRestaurants extends Component {
         const name = item.name ? item.name : "Restaurant";
         const desc = item.details?.description
           ? item.details.description.substring(0, 150)
-          : "default description";
+          : "Our restaurant is a place where you will be warmly welcomed. The menu offers a broad spectrum of flavours that you will fall in love with.";
         const img = item.details?.images[0] ? item.details.images[0] : res1;
         return (
           <Col md>
