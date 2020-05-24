@@ -22,6 +22,12 @@ const Menu = ({ data }) => {
       setLoading(false);
     }
   };
+
+  const handleDeleteCourse = async (_id) => {
+    const newCourses = courses.filter((course) => course._id !== _id);
+    setCourses(newCourses);
+  };
+
   const callbackFunction = async (childData) => {
     setCourses(childData);
   };
@@ -33,7 +39,10 @@ const Menu = ({ data }) => {
           let courseData = {};
           courseData.course = course;
           courseData.index = index;
-          if (course !== null) return <Course data={courseData}></Course>;
+          if (course !== null)
+            return (
+              <Course data={courseData} onDelete={handleDeleteCourse}></Course>
+            );
         })}
       </Accordion>
       <div className="submit_button">
