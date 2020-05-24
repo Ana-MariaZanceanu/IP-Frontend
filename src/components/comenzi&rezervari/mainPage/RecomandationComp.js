@@ -8,8 +8,7 @@ export class RecomandationComp extends Component {
     super(props);
     this.state = {
       title: "Restaurants for you",
-      desc:
-        "",
+      desc: "",
       randomNumber: Math.floor(Math.random() * 10) % 2,
       alg_type: "",
     };
@@ -18,9 +17,9 @@ export class RecomandationComp extends Component {
   render() {
     var src = "";
     if (this.state.randomNumber === 0) {
-      src = `http://159.65.247.164/static/carousel.html?token=${this.context.user.emailToken}&alg_type=recom7`;
+      src = `https://still-anchorage-92193.herokuapp.com/static/carousel.html?token=${this.context.user.emailToken}&alg_type=recom7`;
     } else {
-      src = `http://159.65.247.164/static/carousel.html?token=${this.context.user.emailToken}&alg_type=recommendations_restaurants`;
+      src = `https://still-anchorage-92193.herokuapp.com/static/carousel.html?token=${this.context.user.emailToken}&alg_type=recommendations_restaurants`;
     }
     console.log("PATH", src);
     /*console.log("USER", localStorage.getItem("userToken"));*/

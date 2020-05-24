@@ -66,19 +66,20 @@ export class RestaurantPage extends Component {
     };
   }
 
-
   componentDidMount() {
     axios
-      .get("https://ip-accounts.herokuapp.com/api/providers/" + this.state.providerId)
+      .get(
+        "https://ip-accounts.herokuapp.com/api/providers/" +
+          this.state.providerId
+      )
       .then((response) => {
-        if(response.data.data.provider.details === null){
+        if (response.data.data.provider.details === null) {
           this.setState({
             providerName: response.data.data.provider.name,
             isLoading: false,
           });
-        }
-        else{
-          if(response.data.data.provider.details.schedule === null){
+        } else {
+          if (response.data.data.provider.details.schedule === null) {
             this.setState({
               courses: response.data.data.provider.details.menu.courses,
               providerName: response.data.data.provider.name,
@@ -88,20 +89,20 @@ export class RestaurantPage extends Component {
               specials: response.data.data.provider.details.specials,
               isLoading: false,
             });
-          }
-          else{
+          } else {
             this.setState({
-            courses: response.data.data.provider.details.menu.courses,
-            providerName: response.data.data.provider.name,
-            providerImages: response.data.data.provider.details.images,
-            schedule: response.data.data.provider.details.schedule.schedule,
-            description: response.data.data.provider.details.description,
-            rating: response.data.data.provider.details.rating,
-            specials: response.data.data.provider.details.specials,
-            isLoading: false,
-          });}
-      }
-    });
+              courses: response.data.data.provider.details.menu.courses,
+              providerName: response.data.data.provider.name,
+              providerImages: response.data.data.provider.details.images,
+              schedule: response.data.data.provider.details.schedule.schedule,
+              description: response.data.data.provider.details.description,
+              rating: response.data.data.provider.details.rating,
+              specials: response.data.data.provider.details.specials,
+              isLoading: false,
+            });
+          }
+        }
+      });
   }
 
   static contextType = UserContext;
@@ -110,8 +111,13 @@ export class RestaurantPage extends Component {
     if (this.state.isLoading) {
       return <p>Loading...</p>;
     } else {
-      var url = "http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation";
-      console.log(url);
+      var usertok = this.context.user.emailToken;
+      if (
+        this.context.user.emailToken == null ||
+        this.context.user.emailToken == undefined
+      )
+        usertok =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJjZTkxYTI2ZTMyNTE3YzQ2ZWZmZWQiLCJpYXQiOjE1ODk0Mzg3NDZ9.M0seLr5OmfgkLcoEoqN95ZNqUVjvdwMkHMwSRT68Gkw";
       return (
         <div>
           <Helmet>
@@ -147,20 +153,29 @@ export class RestaurantPage extends Component {
                     description={this.state.description}
                     rating={this.state.rating}
                     specials={this.state.specials}
+                    providerId={this.state.providerId}
                   />
-                  <Schedule schedule={this.state.schedule} providerId={this.state.providerId} />
+                  <Schedule
+                    schedule={this.state.schedule}
+                    providerId={this.state.providerId}
+                  />
                   <ReviewHolder providerId={this.state.providerId} />
                 </Col>
               </Row>
               <Row>
                 <iframe
-                  src={"http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=5ebcf11126e32517c46effff&alg_type=restaurant_food_recommendation"}
+                  src={
+                    "https://still-anchorage-92193.herokuapp.com/static/carousel.html?token=" +
+                    usertok +
+                    "&provider_id=" +
+                    this.state.providerId +
+                    "&alg_type=restaurant_food_recommendation"
+                  }
                   frameBorder="0"
                   width="1200"
                   height="500"
                   scrolling="no"
-                >
-                </iframe>
+                ></iframe>
               </Row>
             </div>
           </div>
