@@ -19,6 +19,135 @@ const User = ({ data }) => {
 	const [openSchedule, setOpenSchedule] = useState(false);
 	const [openStatistics, setOpenStatistics] = useState(false);
 
+	const scheduleData = data.details.schedule;
+	const [startMonday, setStartMonday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[0]
+					? scheduleData.schedule[0].startHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [startTuesday, setStartTuesday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[1]
+					? scheduleData.schedule[1].startHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [startWednesday, setStartWednesday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[2]
+					? scheduleData.schedule[2].startHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [startThursday, setStartThursday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[3]
+					? scheduleData.schedule[3].startHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [startFriday, setStartFriday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[4]
+					? scheduleData.schedule[4].startHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [startSaturday, setStartSaturday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[5]
+					? scheduleData.schedule[5].startHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [startSunday, setStartSunday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[6]
+					? scheduleData.schedule[6].startHour
+					: 0
+				: 0
+			: 0,
+	);
+
+	const [endMonday, setEndMonday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[0]
+					? scheduleData.schedule[0].endHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [endTuesday, setEndTuesday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[1]
+					? scheduleData.schedule[1].endHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [endWednesday, setEndWednesday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[2]
+					? scheduleData.schedule[2].endHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [endThursday, setEndThursday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[3]
+					? scheduleData.schedule[3].endHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [endFriday, setEndFriday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[4]
+					? scheduleData.schedule[4].endHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [endSaturday, setEndSaturday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[5]
+					? scheduleData.schedule[5].endHour
+					: 0
+				: 0
+			: 0,
+	);
+	const [endSunday, setEndSunday] = useState(
+		scheduleData
+			? scheduleData.schedule
+				? scheduleData.schedule[6]
+					? scheduleData.schedule[6].endHour
+					: 0
+				: 0
+			: 0,
+	);
+
 	const handleOpenStatistics = () => {
 		setOpenStatistics(true);
 		setOpenMenu(false);
@@ -97,6 +226,7 @@ const User = ({ data }) => {
 				return photoList;
 			}
 		}
+
 		photoList.push(
 			<Carousel.Item className="carousel_images" key="1">
 				isMo
@@ -116,13 +246,18 @@ const User = ({ data }) => {
 				return (
 					<Image
 						alt="avatar"
-						src={data.details.avatar}
+						src={
+							data.details.avatar
+								? data.details.avatar
+								: require('../assets/placeholder.jpg')
+						}
 						roundedCircle
 						className="provider_image"
 					/>
 				);
 			}
 		}
+
 		return (
 			<Image
 				alt="avatar"
@@ -269,7 +404,37 @@ const User = ({ data }) => {
 							/>
 						)}
 						{openSchedule && data.role === 'Provider' && (
-							<Schedule data={data.details.schedule} />
+							<Schedule
+								data={data.details.schedule}
+								setStartMonday={setStartMonday}
+								setStartTuesday={setStartTuesday}
+								setStartThursday={setStartThursday}
+								setStartFriday={setStartFriday}
+								setStartWednesday={setStartWednesday}
+								setStartSunday={setStartSunday}
+								setStartSaturday={setStartSaturday}
+								setEndMonday={setEndMonday}
+								setEndTuesday={setEndTuesday}
+								setEndThursday={setEndThursday}
+								setEndFriday={setEndFriday}
+								setEndWednesday={setEndWednesday}
+								setEndSunday={setEndSunday}
+								setEndSaturday={setEndSaturday}
+								startMonday={startMonday}
+								startTuesday={startTuesday}
+								startWednesday={startWednesday}
+								startThursday={startThursday}
+								startFriday={startFriday}
+								startSaturday={startSaturday}
+								startSunday={startSunday}
+								endMonday={endMonday}
+								endThursday={endThursday}
+								endTuesday={endTuesday}
+								endWednesday={endWednesday}
+								endSaturday={endSaturday}
+								endSunday={endSunday}
+								endFriday={endFriday}
+							/>
 						)}
 						{openStatistics &&
 							data.role === 'Provider' && (

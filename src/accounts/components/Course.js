@@ -10,7 +10,7 @@ import {
   FormControl,
   FormGroup,
 } from "react-bootstrap";
-const Course = ({ data }) => {
+const Course = ({ data, onDelete }) => {
   const KeyCodes = {
     comma: 188,
     enter: 13,
@@ -143,6 +143,7 @@ const Course = ({ data }) => {
       } else {
         setLoading(false);
       }
+      onDelete(data.course._id);
     } catch (err) {
       console.log(err);
       setLoading(false);
