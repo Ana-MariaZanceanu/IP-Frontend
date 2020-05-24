@@ -4,12 +4,13 @@ import NavBarComp from '../../comenzi&rezervari/mainPage/NavBarComp';
 import FooterComp from '../../comenzi&rezervari/mainPage/FooterComp';
 import RestaurantCard from '../../comenzi&rezervari/mainPage/RestaurantCard';
 import { chunk, uniqBy } from 'lodash';
+import { withRouter } from 'react-router-dom';
 import { Row, Container, Col } from 'react-bootstrap';
 import './style.css';
 
-const SEARCH_API_URL = 'http://159.65.247.164/search/restaurant';
+const SEARCH_API_URL = 'https://still-anchorage-92193.herokuapp.com/search/restaurant';
 
-export default ({ location }) => {
+const Search = ({ location }) => {
   const [searchResultItems, setSearchResultItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   let { search } = location;
@@ -42,24 +43,23 @@ export default ({ location }) => {
 
   let searchResults = null;
   if (!search) {
-    searchResults = <h2>Nu ai cautat nimic.</h2>;
+    searchResults = <h2>No search entry.</h2>;
   } else if (isLoading) {
-    searchResults = <h2>Se incarca...</h2>;
+    searchResults = <h2>Loading...</h2>;
   } else if (!searchResultItems.length) {
-    searchResults = <h1>Nu exista rezultate ale cautarii: "{search}"</h1>;
+    searchResults = <h1>No results for: "{search}"</h1>;
   } else {
     searchResults = (
       <>
         <h2>
-          {searchResultItems.length} restaurant{searchResultItems.length > 1 && 'e'}
+          {searchResultItems.length} restaurant{searchResultItems.length > 1 && 's'}
         </h2>
         <hr />
         {chunk(searchResultItems, 3).map((resultChunk) => (
           <Row>
             {resultChunk.map((resultItem) => (
-              <Col xs={4}>
+              <Col xs={4} key={resultItem._id}>
                 <RestaurantCard 
-                  key={resultItem._id} 
                   id={resultItem._id} 
                   title={resultItem.name} d
                   desc={resultItem.details.description || 'Default description'} 
@@ -82,3 +82,4 @@ export default ({ location }) => {
     </>
   );
 };
+export default withRouter(Search);

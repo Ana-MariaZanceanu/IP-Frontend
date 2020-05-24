@@ -5,7 +5,6 @@ import * as api from "../api";
 class MultipleImageUpload extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.userId);
     this.state = {
       userId: props.userId,
       file: null,
@@ -16,8 +15,9 @@ class MultipleImageUpload extends React.Component {
 
   onFormSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
-    api.uploadMultiple(this.state);
+    api.uploadMultiple(this.state).then(() => {
+      window.location.reload(true);
+    });
   }
 
   onChange(e) {

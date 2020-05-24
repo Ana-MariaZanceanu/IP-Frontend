@@ -10,6 +10,7 @@ import {
 import { WithContext as ReactTags } from "react-tag-input";
 import * as api from "../api";
 import { useMediaQuery } from "react-responsive";
+import SingleImageUpload from "./SingleImageUpload";
 
 const Client = ({ data }) => {
   const KeyCodes = {
@@ -248,6 +249,11 @@ const Client = ({ data }) => {
                   Save
                 </Button>
               </div>
+              <hr></hr>
+              <div className="profile_element">
+                <h5>Photos</h5>
+                <SingleImageUpload userId={data.userId} />
+              </div>
             </div>
           </Form>
         </div>
@@ -347,6 +353,11 @@ const Client = ({ data }) => {
                 <Button className="actual_button" onClick={handleSaveDate}>
                   Save
                 </Button>
+              </div>
+              <hr></hr>
+              <div className="profile_element">
+                <h5>Photos</h5>
+                <SingleImageUpload userId={data.userId} />
               </div>
             </div>
           </Form>

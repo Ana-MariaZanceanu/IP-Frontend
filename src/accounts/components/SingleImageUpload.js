@@ -5,7 +5,6 @@ import * as api from "../api";
 class SingleImageUpload extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.userId);
     this.state = {
       userId: props.userId,
       file: null,
@@ -16,7 +15,9 @@ class SingleImageUpload extends React.Component {
 
   onFormSubmit(e) {
     e.preventDefault();
-    api.uploadMenuPhoto(this.state);
+    api.uploadSingle(this.state).then(() => {
+      window.location.reload(true);
+    });
   }
 
   onChange(e) {
