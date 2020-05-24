@@ -254,9 +254,10 @@ const Client = ({ data }) => {
                 <h5>Photos</h5>
                 <SingleImageUpload userId={data.userId} />
               </div>
+              <hr></hr>
               <div className="submit_button">
                 <Button className="actual_button" onClick={handleSaveDate}>
-                  Save
+                  Delete Photo
                 </Button>
               </div>
             </div>
@@ -364,6 +365,7 @@ const Client = ({ data }) => {
                 <h5>Photos</h5>
                 <SingleImageUpload userId={data.userId} />
               </div>
+              <hr></hr>
               <div className="submit_button">
                 <Button className="actual_button">Delete Photo</Button>
               </div>
