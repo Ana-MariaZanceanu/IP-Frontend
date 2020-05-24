@@ -110,8 +110,10 @@ export class RestaurantPage extends Component {
     if (this.state.isLoading) {
       return <p>Loading...</p>;
     } else {
-      var url = "http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation";
-      console.log(url);
+      var url = "https://still-anchorage-92193.herokuapp.com/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation";
+      console.log("URL REC: " + url);
+      var usertok = this.context.user.emailToken;
+      if(this.context.user.emailToken == null || this.context.user.emailToken == undefined) usertok="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJjZTkxYTI2ZTMyNTE3YzQ2ZWZmZWQiLCJpYXQiOjE1ODk0Mzg3NDZ9.M0seLr5OmfgkLcoEoqN95ZNqUVjvdwMkHMwSRT68Gkw";
       return (
         <div>
           <Helmet>
@@ -147,6 +149,7 @@ export class RestaurantPage extends Component {
                     description={this.state.description}
                     rating={this.state.rating}
                     specials={this.state.specials}
+                    providerId={this.state.providerId}
                   />
                   <Schedule schedule={this.state.schedule} providerId={this.state.providerId} />
                   <ReviewHolder providerId={this.state.providerId} />
@@ -154,7 +157,7 @@ export class RestaurantPage extends Component {
               </Row>
               <Row>
                 <iframe
-                  src={"http://159.65.247.164/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=5ebcf11126e32517c46effff&alg_type=restaurant_food_recommendation"}
+                  src={"https://still-anchorage-92193.herokuapp.com/static/carousel.html?token=" + usertok + "&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation"}
                   frameBorder="0"
                   width="1200"
                   height="500"
