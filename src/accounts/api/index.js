@@ -223,7 +223,11 @@ const uploadMenuPhoto = async (data) => {
       .then((response) => {
         imageUrl = response.data.name.newPath;
         console.log(response.data.name.newPath);
-        alert("The file is successfully uploaded");
+        if (response.data.success) {
+          alert("The file is successfully uploaded");
+        } else {
+          alert(response.data.error);
+        }
       })
       .catch((error) => {});
 
@@ -245,7 +249,11 @@ const uploadSingle = async (data) => {
     await axios
       .post(host + "api/upload/uploadSingle/" + data.userId, formData, config)
       .then((response) => {
-        alert("The file is successfully uploaded");
+        if (response.data.success) {
+          alert("The file is successfully uploaded");
+        } else {
+          alert(response.data.error);
+        }
       })
       .catch((error) => {});
 
@@ -287,8 +295,11 @@ const uploadMultiple = async (data) => {
     await axios
       .post(host + "api/upload/uploadMultiple/" + data.userId, formData, config)
       .then((response) => {
-        console.log(response);
-        alert("The file is successfully uploaded");
+        if (response.data.succes) {
+          alert("The file is successfully uploaded");
+        } else {
+          alert(response.data.error);
+        }
       })
       .catch((error) => {
         console.log(error);
