@@ -27,19 +27,21 @@ const Menu = ({ data }) => {
   };
 
   return (
-    <div className="menu_form">
-      <Accordion style={{ width: "100%" }}>
-        {courses.map((course, index) => {
-          let courseData = {};
-          courseData.course = course;
-          courseData.index = index;
-          if (course !== null) return <Course data={courseData}></Course>;
-        })}
-      </Accordion>
-      <div className="submit_button">
-        <Button className="actual_button" onClick={handleAddCourse}>
-          New Course
-        </Button>
+    <div className="menu_provider">
+      <div className="menu_form">
+        <Accordion style={{ width: "100%" }}>
+          {courses.map((course, index) => {
+            let courseData = {};
+            courseData.course = course;
+            courseData.index = index;
+            if (course !== null) return <Course data={courseData}></Course>;
+          })}
+        </Accordion>
+        <div className="submit_button">
+          <Button className="actual_button" onClick={handleAddCourse}>
+            New Course
+          </Button>
+        </div>
       </div>
     </div>
   );
