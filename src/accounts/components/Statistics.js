@@ -163,8 +163,8 @@ const Statistic = ({ data }) => {
               <h5>Buy more of these</h5>
               <p className="profile_explanations">
                 <small>
-                  Given your latest activity we recommand you to buy more of
-                  these.
+                  This are the most wanted courses right now. Introduce them in
+                  your menu.
                 </small>
               </p>
             </div>
