@@ -412,6 +412,9 @@ const Provider = ({ data }) => {
                 </p>
                 <MultipleImageUpload userId={data.userId} />
               </div>
+              <div className="submit_button">
+                <Button className="actual_button">Delete Photos</Button>
+              </div>
             </Form>
           </div>
         </div>
@@ -638,6 +641,9 @@ const Provider = ({ data }) => {
                 <div className="align_left_profile_input">
                   <MultipleImageUpload userId={data.userId} />
                 </div>
+              </div>
+              <div className="submit_button">
+                <Button className="actual_button">Delete Photos</Button>
               </div>
             </Form>
           </div>
