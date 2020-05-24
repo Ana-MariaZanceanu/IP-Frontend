@@ -28,10 +28,6 @@ const Menu = ({ data }) => {
     setCourses(newCourses);
   };
 
-  const callbackFunction = async (childData) => {
-    setCourses(childData);
-  };
-
   return (
     <div className="menu_form">
       <Accordion style={{ width: "100%" }}>
