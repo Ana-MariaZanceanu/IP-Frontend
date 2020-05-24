@@ -148,6 +148,13 @@ const Client = ({ data }) => {
     setLongitude(event.target.value);
   };
 
+  const handleDeletePhoto = (event) => {
+    let answer = api.deleteSingle(data.userId).then(() => {
+      window.location.reload(true);
+    });
+    console.log(answer);
+  };
+
   const isBigScreen = useMediaQuery({ query: "(min-device-width: 747px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 747px)" });
 
@@ -256,7 +263,7 @@ const Client = ({ data }) => {
               </div>
               <hr></hr>
               <div className="submit_button">
-                <Button className="actual_button" onClick={handleSaveDate}>
+                <Button className="actual_button" onClick={handleDeletePhoto}>
                   Delete Photo
                 </Button>
               </div>
@@ -367,7 +374,9 @@ const Client = ({ data }) => {
               </div>
               <hr></hr>
               <div className="submit_button">
-                <Button className="actual_button">Delete Photo</Button>
+                <Button className="actual_button" onClick={handleDeletePhoto}>
+                  Delete Photo
+                </Button>
               </div>
             </div>
           </Form>
