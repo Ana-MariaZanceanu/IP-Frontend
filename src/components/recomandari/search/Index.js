@@ -42,16 +42,16 @@ export default ({ location }) => {
 
   let searchResults = null;
   if (!search) {
-    searchResults = <h2>Nu ai cautat nimic.</h2>;
+    searchResults = <h2>No search entry.</h2>;
   } else if (isLoading) {
-    searchResults = <h2>Se incarca...</h2>;
+    searchResults = <h2>Loading...</h2>;
   } else if (!searchResultItems.length) {
-    searchResults = <h1>Nu exista rezultate ale cautarii: "{search}"</h1>;
+    searchResults = <h1>No results for: "{search}"</h1>;
   } else {
     searchResults = (
       <>
         <h2>
-          {searchResultItems.length} restaurant{searchResultItems.length > 1 && 'e'}
+          {searchResultItems.length} restaurant{searchResultItems.length > 1 && 's'}
         </h2>
         <hr />
         {chunk(searchResultItems, 3).map((resultChunk) => (
