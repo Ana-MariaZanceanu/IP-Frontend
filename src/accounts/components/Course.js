@@ -151,6 +151,7 @@ const Course = ({ data }) => {
 
   const handleDeletePhoto = (event) => {
     api.deleteCoursePhoto(data.idCourse).then(() => {
+      setInUseImage(placeholder);
       window.location.reload(true);
     });
   };
