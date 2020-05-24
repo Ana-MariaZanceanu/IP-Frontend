@@ -442,8 +442,8 @@ const Schedule = ({ data }) => {
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={startSaturday}
-                      value={startSaturday}
+                      placeholder={endSaturday}
+                      value={endSaturday}
                       type="text"
                       onChange={handleEndSaturday}
                     ></FormControl>
