@@ -17,6 +17,7 @@ class SingleImageUpload extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
     api.uploadSingle(this.state);
+    window.location.reload(true);
   }
 
   onChange(e) {
