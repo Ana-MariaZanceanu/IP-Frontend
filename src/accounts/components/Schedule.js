@@ -221,6 +221,7 @@ const Schedule = ({ data }) => {
     } else setSuccesTime(true);
     setEndSaturday(event.target.value);
   };
+
   const handleStartSunday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
