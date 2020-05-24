@@ -23,7 +23,7 @@ const Search = ({ location }) => {
       setIsLoading(true);
       setSearchResultItems([]);
       try {
-        const TOKEN =  localStorage.getItem('userToken') || `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiX2lkIjoiNWViY2U5MWEyNmUzMjUxN2M0NmVmZmVkIn0.eu0f5Vv_h8OYaslYyXKdb_2Rl8hv9FPnH3dXXEQzykQ`;
+        const TOKEN =  `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiX2lkIjoiNWViY2U5MWEyNmUzMjUxN2M0NmVmZmVkIn0.eu0f5Vv_h8OYaslYyXKdb_2Rl8hv9FPnH3dXXEQzykQ`;
         const { data } = await axios({
           url: `${SEARCH_API_URL}/${search}`,
           headers: {
