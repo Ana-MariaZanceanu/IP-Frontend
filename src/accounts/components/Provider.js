@@ -204,7 +204,6 @@ const Provider = ({ data }) => {
     let answer = api.deleteMultiple(data.userId).then(() => {
       window.location.reload(true);
     });
-    console.log(answer);
   };
 
   const handleChangeCapacity = (event) => {

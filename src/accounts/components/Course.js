@@ -149,6 +149,12 @@ const Course = ({ data }) => {
     }
   };
 
+  const handleDeletePhoto = (event) => {
+    api.deleteCoursePhoto(data.idCourse).then(() => {
+      window.location.reload(true);
+    });
+  };
+
   return (
     <Card>
       <Card.Header className="header_menu">
@@ -347,7 +353,9 @@ const Course = ({ data }) => {
             setInUseImage={setInUseImage}
           />
           <div className="submit_button">
-            <Button className="actual_button">Delete Photo</Button>
+            <Button className="actual_button" onChange={handleDeletePhoto}>
+              Delete Photo
+            </Button>
           </div>
         </Card.Body>
       </Accordion.Collapse>

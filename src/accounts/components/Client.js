@@ -149,10 +149,9 @@ const Client = ({ data }) => {
   };
 
   const handleDeletePhoto = (event) => {
-    let answer = api.deleteSingle(data.userId).then(() => {
+    api.deleteSingle(data.userId).then(() => {
       window.location.reload(true);
     });
-    console.log(answer);
   };
 
   const isBigScreen = useMediaQuery({ query: "(min-device-width: 747px)" });
