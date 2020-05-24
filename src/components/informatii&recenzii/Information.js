@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
+import axios from "axios";
 import emptyStar from "./Images/Empty_Star.png";
 import goldStar from "./Images/Gold_Star.png";
 import halfStar from "./Images/Half_Star.png";
 import { Image } from "react-bootstrap";
 import { Badge } from "react-bootstrap";
 import {FaHashtag} from 'react-icons/fa';
+
 
 class StarRating extends Component {
   constructor(props) {
@@ -157,14 +156,29 @@ export class Information extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      providerId: props.providerId,
       description: props.description,
       rating: props.rating,
       specials: props.specials,
+      isLoading: true
     };
   }
 
+  componentDidMount() {
+    axios
+      .get("https://ip-i-r-api.herokuapp.com/api/reviews/averageScore/?providerId=" + this.state.providerId)
+      .then((response) => {
+          this.setState({
+            rating: response.data.data.score,
+            isLoading: false,
+          });
+        })
+  }
+
   render() {
-    return (
+    if(this.state.isLoading) return(<p>Loading score...</p>)
+    else{
+      return (
       <div id="information" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
         <ul className="inline-block">
          
@@ -181,6 +195,7 @@ export class Information extends Component {
         <StarRating score={this.state.rating} />
       </div>
     );
+  }
   }
 }
 
