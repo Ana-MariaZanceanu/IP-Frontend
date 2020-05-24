@@ -254,6 +254,7 @@ const Provider = ({ data }) => {
                       )}
                     </div>
                   </FormGroup>
+                  <hr></hr>
                   <FormGroup>
                     <FormLabel>Latitude</FormLabel>
                     <FormControl
@@ -270,9 +271,10 @@ const Provider = ({ data }) => {
                     </div>
                   </FormGroup>
                 </div>
+                <hr></hr>
                 <div className="align_left_profile_input">
                   <FormGroup>
-                    <FormLabel>Adrees</FormLabel>
+                    <FormLabel>Address</FormLabel>
                     <FormControl
                       placeholder={adress}
                       value={adress}
@@ -282,6 +284,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>CUI</h5>
                 <div className="align_left_profile_input">
@@ -301,6 +304,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Location Type</h5>
                 <p className="profile_explanations">
@@ -320,6 +324,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Category Price</h5>
                 <p className="profile_explanations">
@@ -342,6 +347,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Capacity</h5>
                 <p className="profile_explanations">
@@ -364,6 +370,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Specialities</h5>
                 <p className="profile_explanations">
@@ -386,6 +393,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Description</h5>
                 <p className="profile_explanations">
@@ -407,11 +415,13 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="submit_button">
                 <Button className="actual_button" onClick={handleSaveDate}>
                   Save
                 </Button>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Photos</h5>
                 <p className="profile_explanations">
@@ -419,8 +429,11 @@ const Provider = ({ data }) => {
                 </p>
                 <MultipleImageUpload userId={data.userId} />
               </div>
+              <hr></hr>
               <div className="submit_button">
-                <Button className="actual_button">Delete Photos</Button>
+                <Button className="actual_button" onClick={handleDeletePhoto}>
+                  Delete Photos
+                </Button>
               </div>
             </Form>
           </div>
@@ -482,6 +495,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>CUI</h5>
                 <div className="align_left_profile_input">
@@ -501,6 +515,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Location Type</h5>
                 <p className="profile_explanations">
@@ -520,6 +535,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Category Price</h5>
                 <p className="profile_explanations">
@@ -542,6 +558,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Capacity</h5>
                 <p className="profile_explanations">
@@ -564,6 +581,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Specialities</h5>
                 <p className="profile_explanations">
@@ -615,6 +633,7 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Description</h5>
                 <p className="profile_explanations">
@@ -635,11 +654,13 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
               <div className="submit_button">
                 <Button className="actual_button" onClick={handleSaveDate}>
                   Save
                 </Button>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Photos</h5>
                 <p className="profile_explanations">
@@ -649,6 +670,7 @@ const Provider = ({ data }) => {
                   <MultipleImageUpload userId={data.userId} />
                 </div>
               </div>
+              <hr></hr>
               <div className="submit_button">
                 <Button className="actual_button" onClick={handleDeletePhoto}>
                   Delete Photos
