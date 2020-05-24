@@ -176,7 +176,23 @@ export class Information extends Component {
   }
 
   render() {
-    if(this.state.isLoading) return(<p>Loading score...</p>)
+    var desc = this.state.description;
+    if(desc == null || desc == "") desc = "Default description";
+    if(this.state.isLoading) return(<div id="information" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
+    <ul className="inline-block">
+     
+      {this.state.specials.map((item) => (
+        <Badge pill variant="info" bsPrefix="tag">
+          <FaHashtag/>
+          {item}
+        </Badge>
+      ))}
+    </ul>
+    <hr></hr>
+    <p className="description">{desc}</p>
+    <hr></hr>
+    <StarRating score={0} />
+  </div>)
     else{
       return (
       <div id="information" class="shadow p-3 mb-5 bg-F3F3F3 rounded">
@@ -190,7 +206,7 @@ export class Information extends Component {
           ))}
         </ul>
         <hr></hr>
-        <p className="description">{this.state.description}</p>
+        <p className="description">{desc}</p>
         <hr></hr>
         <StarRating score={this.state.rating} />
       </div>
