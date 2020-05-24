@@ -136,7 +136,9 @@ const Course = ({ data }) => {
   const handleDeleteCourse = async () => {
     try {
       setLoading(true);
-      let answer = await api.deleteCourse(data.course._id);
+      let answer = await api.deleteCourse(data.course._id).then(() => {
+        window.location.reload(true);
+      });
       setLoading(false);
       if (answer.success === true) {
         setLoading(false);
@@ -337,14 +339,17 @@ const Course = ({ data }) => {
               </FormGroup>
             </div>
           </div>
+          <div className="submit_button">
+            <Button className="actual_button" onClick={handleSaveDate}>
+              Save
+            </Button>
+          </div>
           <UploadMenuPhoto
             idCourse={data.course._id}
             setInUseImage={setInUseImage}
           />
           <div className="submit_button">
-            <Button className="actual_button" onClick={handleSaveDate}>
-              Save
-            </Button>
+            <Button className="actual_button">Delete Photo</Button>
           </div>
         </Card.Body>
       </Accordion.Collapse>

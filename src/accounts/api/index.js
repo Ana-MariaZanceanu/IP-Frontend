@@ -255,6 +255,21 @@ const uploadSingle = async (data) => {
   }
 };
 
+const deleteSingle = async (userId) => {
+  try {
+    await axios
+      .post(host + "api/upload/deletePhotoClient/" + userId)
+      .then((response) => {
+        alert("The file is successfully deleted.");
+      })
+      .catch((error) => {});
+
+    return { success: true };
+  } catch (error) {
+    return { success: false, errorMessage: error.message };
+  }
+};
+
 const uploadMultiple = async (data) => {
   try {
     console.log(host + "api/upload/uploadMultiple/" + data.userId);
@@ -285,6 +300,21 @@ const uploadMultiple = async (data) => {
   }
 };
 
+const deleteMultiple = async (userId) => {
+  try {
+    await axios
+      .post(host + "api/upload/deletePhotoProvider/" + userId)
+      .then((response) => {
+        alert("The files are successfully deleted.");
+      })
+      .catch((error) => {});
+
+    return { success: true };
+  } catch (error) {
+    return { success: false, errorMessage: error.message };
+  }
+};
+
 const addCourse = async (idMenu) => {
   try {
     const token = localStorage.getItem("userToken");
@@ -299,6 +329,21 @@ const addCourse = async (idMenu) => {
     });
 
     return { success: true, courses };
+  } catch (error) {
+    return { success: false, errorMessage: error.message };
+  }
+};
+
+const deleteCoursePhoto = async (idCourse) => {
+  try {
+    await axios
+      .post(host + "api/upload/deletePhotoCourse/" + idCourse)
+      .then((response) => {
+        alert("The file is successfully deleted.");
+      })
+      .catch((error) => {});
+
+    return { success: true };
   } catch (error) {
     return { success: false, errorMessage: error.message };
   }
@@ -358,4 +403,7 @@ export {
   updateCourse,
   getUserByEmail,
   deleteCourse,
+  deleteSingle,
+  deleteMultiple,
+  deleteCoursePhoto,
 };
