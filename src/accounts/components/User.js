@@ -114,7 +114,11 @@ const User = ({ data }) => {
         return (
           <Image
             alt="avatar"
-            src={data.details.avatar}
+            src={
+              data.details.avatar
+                ? data.details.avatar
+                : require("../assets/placeholder.jpg")
+            }
             roundedCircle
             className="provider_image"
           />
