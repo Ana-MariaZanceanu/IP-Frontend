@@ -16,28 +16,28 @@ const Search = ({ location }) => {
   let { search } = location;
   search = new URLSearchParams(search).get('q');
 
-  const getSearchResultItems = async (search) => {
-    setIsLoading(true);
-    setSearchResultItems([]);
-    try {
-      // const TOKEN = localStorage.getItem('userToken');
-      const TOKEN = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiX2lkIjoiNWViY2U5MWEyNmUzMjUxN2M0NmVmZmVkIn0.eu0f5Vv_h8OYaslYyXKdb_2Rl8hv9FPnH3dXXEQzykQ`;
-      const { data } = await axios({
-        url: `${SEARCH_API_URL}/${search}`,
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      });
-      if(data['success'] && data['success'] === 'true') {
-        setSearchResultItems(uniqBy(data['data'], '_id'));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    setIsLoading(false);
-  };
+ 
 
   useEffect(() => {
+    const getSearchResultItems = async (search) => {
+      setIsLoading(true);
+      setSearchResultItems([]);
+      try {
+        const TOKEN =  localStorage.getItem('userToken') || `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiX2lkIjoiNWViY2U5MWEyNmUzMjUxN2M0NmVmZmVkIn0.eu0f5Vv_h8OYaslYyXKdb_2Rl8hv9FPnH3dXXEQzykQ`;
+        const { data } = await axios({
+          url: `${SEARCH_API_URL}/${search}`,
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        });
+        if(data['success'] && data['success'] === 'true') {
+          setSearchResultItems(uniqBy(data['data'], '_id'));
+        }
+      } catch (e) {
+        console.log(e);
+      }
+      setIsLoading(false);
+    };
     getSearchResultItems(search);
   }, [search]);
 
