@@ -150,7 +150,7 @@ const Course = ({ data }) => {
   };
 
   const handleDeletePhoto = (event) => {
-    api.deleteCoursePhoto(data.idCourse).then(() => {
+    api.deleteCoursePhoto(data.course._id).then(() => {
       setInUseImage(placeholder);
       window.location.reload(true);
     });
