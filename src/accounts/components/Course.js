@@ -347,6 +347,9 @@ const Course = ({ data }) => {
               Save
             </Button>
           </div>
+          <div className="submit_button">
+            <Button className="actual_button">Delete Photo</Button>
+          </div>
         </Card.Body>
       </Accordion.Collapse>
     </Card>
