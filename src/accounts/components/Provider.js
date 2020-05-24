@@ -200,6 +200,13 @@ const Provider = ({ data }) => {
     setAdress(event.target.value);
   };
 
+  const handleDeletePhoto = (event) => {
+    let answer = api.deleteMultiple(data.userId).then(() => {
+      window.location.reload(true);
+    });
+    console.log(answer);
+  };
+
   const handleChangeCapacity = (event) => {
     if (parseInt(event.target.value) < 0) {
       setSuccesCapacity(false);
@@ -643,7 +650,9 @@ const Provider = ({ data }) => {
                 </div>
               </div>
               <div className="submit_button">
-                <Button className="actual_button">Delete Photos</Button>
+                <Button className="actual_button" onClick={handleDeletePhoto}>
+                  Delete Photos
+                </Button>
               </div>
             </Form>
           </div>
