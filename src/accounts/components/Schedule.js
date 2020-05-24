@@ -3,134 +3,7 @@ import * as api from "../api";
 import { FormGroup, FormControl, Form, Button } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 
-const Schedule = ({ data }) => {
-  const [startMonday, setStartMonday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[0]
-          ? data.schedule[0].startHour
-          : 0
-        : 0
-      : 0
-  );
-  const [startTuesday, setStartTuesday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[1]
-          ? data.schedule[1].startHour
-          : 0
-        : 0
-      : 0
-  );
-  const [startWednesday, setStartWednesday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[2]
-          ? data.schedule[2].startHour
-          : 0
-        : 0
-      : 0
-  );
-  const [startThursday, setStartThursday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[3]
-          ? data.schedule[3].startHour
-          : 0
-        : 0
-      : 0
-  );
-  const [startFriday, setStartFriday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[4]
-          ? data.schedule[4].startHour
-          : 0
-        : 0
-      : 0
-  );
-  const [startSaturday, setStartSaturday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[5]
-          ? data.schedule[5].startHour
-          : 0
-        : 0
-      : 0
-  );
-  const [startSunday, setStartSunday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[6]
-          ? data.schedule[6].startHour
-          : 0
-        : 0
-      : 0
-  );
-
-  const [endMonday, setEndMonday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[0]
-          ? data.schedule[0].endHour
-          : 0
-        : 0
-      : 0
-  );
-  const [endTuesday, setEndTuesday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[1]
-          ? data.schedule[1].endHour
-          : 0
-        : 0
-      : 0
-  );
-  const [endWednesday, setEndWednesday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[2]
-          ? data.schedule[2].endHour
-          : 0
-        : 0
-      : 0
-  );
-  const [endThursday, setEndThursday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[3]
-          ? data.schedule[3].endHour
-          : 0
-        : 0
-      : 0
-  );
-  const [endFriday, setEndFriday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[4]
-          ? data.schedule[4].endHour
-          : 0
-        : 0
-      : 0
-  );
-  const [endSaturday, setEndSaturday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[5]
-          ? data.schedule[5].endHour
-          : 0
-        : 0
-      : 0
-  );
-  const [endSunday, setEndSunday] = useState(
-    data
-      ? data.schedule
-        ? data.schedule[6]
-          ? data.schedule[6].endHour
-          : 0
-        : 0
-      : 0
-  );
+const Schedule = (props) => {
   const [loading, setLoading] = useState(false);
 
   const [succesTime, setSuccesTime] = useState(true);
@@ -151,88 +24,88 @@ const Schedule = ({ data }) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setStartMonday(event.target.value);
+    props.setStartMonday(event.target.value);
   };
 
   const handleEndMonday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setEndMonday(event.target.value);
+    props.setEndMonday(event.target.value);
   };
 
   const handleStartTuesday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setStartTuesday(event.target.value);
+    props.setStartTuesday(event.target.value);
   };
   const handleEndTuesday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setEndTuesday(event.target.value);
+    props.setEndTuesday(event.target.value);
   };
   const handleStartWednesday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setStartWednesday(event.target.value);
+    props.setStartWednesday(event.target.value);
   };
   const handleEndWednesday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setEndWednesday(event.target.value);
+    props.setEndWednesday(event.target.value);
   };
   const handleStartThursday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setStartThursday(event.target.value);
+    props.setStartThursday(event.target.value);
   };
   const handleEndThursday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setEndThursday(event.target.value);
+    props.setEndThursday(event.target.value);
   };
   const handleStartFriday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setStartFriday(event.target.value);
+    props.setStartFriday(event.target.value);
   };
   const handleEndFriday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setEndFriday(event.target.value);
+    props.setEndFriday(event.target.value);
   };
   const handleStartSaturday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setStartSaturday(event.target.value);
+    props.setStartSaturday(event.target.value);
   };
   const handleEndSaturday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setEndSaturday(event.target.value);
+    props.setEndSaturday(event.target.value);
   };
 
   const handleStartSunday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setStartSunday(event.target.value);
+    props.setStartSunday(event.target.value);
   };
   const handleEndSunday = (event) => {
     if (!isTimeFormat(event.target.value)) {
       setSuccesTime(false);
     } else setSuccesTime(true);
-    setEndSunday(event.target.value);
+    props.setEndSunday(event.target.value);
   };
 
   const handleSaveButton = async (event) => {
@@ -240,38 +113,38 @@ const Schedule = ({ data }) => {
       schedule: [
         {
           day: "luni",
-          startHour: startMonday,
-          endHour: endMonday,
+          startHour: props.startMonday,
+          endHour: props.endMonday,
         },
         {
           day: "marti",
-          startHour: startTuesday,
-          endHour: endTuesday,
+          startHour: props.startTuesday,
+          endHour: props.endTuesday,
         },
         {
           day: "miercuri",
-          startHour: startWednesday,
-          endHour: endWednesday,
+          startHour: props.startWednesday,
+          endHour: props.endWednesday,
         },
         {
           day: "joi",
-          startHour: startThursday,
-          endHour: endThursday,
+          startHour: props.startThursday,
+          endHour: props.endThursday,
         },
         {
           day: "vineri",
-          startHour: startFriday,
-          endHour: endFriday,
+          startHour: props.startFriday,
+          endHour: props.endFriday,
         },
         {
           day: "sambata",
-          startHour: startSaturday,
-          endHour: endSaturday,
+          startHour: props.startSaturday,
+          endHour: props.endSaturday,
         },
         {
           day: "duminica",
-          startHour: startSunday,
-          endHour: endSunday,
+          startHour: props.startSunday,
+          endHour: props.endSunday,
         },
       ],
     };
@@ -280,7 +153,6 @@ const Schedule = ({ data }) => {
       let answer = await api.profile(newData);
       if (answer.success === true) {
         setLoading(false);
-        window.location.reload(true);
       } else {
         setLoading(false);
       }
@@ -330,16 +202,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startMonday}
-                      value={startMonday}
+                      placeholder={props.startMonday}
+                      value={props.startMonday}
                       type="text"
                       onChange={handleStartMonday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endMonday}
-                      value={endMonday}
+                      placeholder={props.endMonday}
+                      value={props.endMonday}
                       type="text"
                       onChange={handleEndMonday}
                     ></FormControl>
@@ -351,16 +223,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startTuesday}
-                      value={startTuesday}
+                      placeholder={props.startTuesday}
+                      value={props.startTuesday}
                       type="text"
                       onChange={handleStartTuesday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endTuesday}
-                      value={endTuesday}
+                      placeholder={props.endTuesday}
+                      value={props.endTuesday}
                       type="text"
                       onChange={handleEndTuesday}
                     ></FormControl>
@@ -372,16 +244,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startWednesday}
-                      value={startWednesday}
+                      placeholder={props.startWednesday}
+                      value={props.startWednesday}
                       type="text"
                       onChange={handleStartWednesday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endWednesday}
-                      value={endWednesday}
+                      placeholder={props.endWednesday}
+                      value={props.endWednesday}
                       type="text"
                       onChange={handleEndWednesday}
                     ></FormControl>
@@ -393,16 +265,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startThursday}
-                      value={startThursday}
+                      placeholder={props.startThursday}
+                      value={props.startThursday}
                       type="text"
                       onChange={handleStartThursday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endThursday}
-                      value={endThursday}
+                      placeholder={props.endThursday}
+                      value={props.endThursday}
                       type="text"
                       onChange={handleEndThursday}
                     ></FormControl>
@@ -414,16 +286,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startFriday}
-                      value={startFriday}
+                      placeholder={props.startFriday}
+                      value={props.startFriday}
                       type="text"
                       onChange={handleStartFriday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endFriday}
-                      value={endFriday}
+                      placeholder={props.endFriday}
+                      value={props.endFriday}
                       type="text"
                       onChange={handleEndFriday}
                     ></FormControl>
@@ -435,16 +307,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startSaturday}
-                      value={startSaturday}
+                      placeholder={props.startSaturday}
+                      value={props.startSaturday}
                       type="text"
                       onChange={handleStartSaturday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endSaturday}
-                      value={endSaturday}
+                      placeholder={props.endSaturday}
+                      value={props.endSaturday}
                       type="text"
                       onChange={handleEndSaturday}
                     ></FormControl>
@@ -456,16 +328,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startSunday}
-                      value={startSunday}
+                      placeholder={props.startSunday}
+                      value={props.startSunday}
                       type="text"
                       onChange={handleStartSunday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endSunday}
-                      value={endSunday}
+                      placeholder={props.endSunday}
+                      value={props.endSunday}
                       type="text"
                       onChange={handleEndSunday}
                     ></FormControl>
@@ -509,16 +381,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startMonday}
-                      value={startMonday}
+                      placeholder={props.startMonday}
+                      value={props.startMonday}
                       type="text"
                       onChange={handleStartMonday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endMonday}
-                      value={endMonday}
+                      placeholder={props.endMonday}
+                      value={props.endMonday}
                       type="text"
                       onChange={handleEndMonday}
                     ></FormControl>
@@ -530,16 +402,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startTuesday}
-                      value={startTuesday}
+                      placeholder={props.startTuesday}
+                      value={props.startTuesday}
                       type="text"
                       onChange={handleStartTuesday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endTuesday}
-                      value={endTuesday}
+                      placeholder={props.endTuesday}
+                      value={props.endTuesday}
                       type="text"
                       onChange={handleEndTuesday}
                     ></FormControl>
@@ -551,16 +423,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startWednesday}
-                      value={startWednesday}
+                      placeholder={props.startWednesday}
+                      value={props.startWednesday}
                       type="text"
                       onChange={handleStartWednesday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endWednesday}
-                      value={endWednesday}
+                      placeholder={props.endWednesday}
+                      value={props.endWednesday}
                       type="text"
                       onChange={handleEndWednesday}
                     ></FormControl>
@@ -572,16 +444,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startThursday}
-                      value={startThursday}
+                      placeholder={props.startThursday}
+                      value={props.startThursday}
                       type="text"
                       onChange={handleStartThursday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endThursday}
-                      value={endThursday}
+                      placeholder={props.endThursday}
+                      value={props.endThursday}
                       type="text"
                       onChange={handleEndThursday}
                     ></FormControl>
@@ -593,16 +465,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startFriday}
-                      value={startFriday}
+                      placeholder={props.startFriday}
+                      value={props.startFriday}
                       type="text"
                       onChange={handleStartFriday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endFriday}
-                      value={endFriday}
+                      placeholder={props.endFriday}
+                      value={props.endFriday}
                       type="text"
                       onChange={handleEndFriday}
                     ></FormControl>
@@ -614,16 +486,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startSaturday}
-                      value={startSaturday}
+                      placeholder={props.startSaturday}
+                      value={props.startSaturday}
                       type="text"
                       onChange={handleStartSaturday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={startSaturday}
-                      value={startSaturday}
+                      placeholder={props.startSaturday}
+                      value={props.startSaturday}
                       type="text"
                       onChange={handleEndSaturday}
                     ></FormControl>
@@ -635,16 +507,16 @@ const Schedule = ({ data }) => {
                   </div>
                   <FormGroup>
                     <FormControl
-                      placeholder={startSunday}
-                      value={startSunday}
+                      placeholder={props.startSunday}
+                      value={props.startSunday}
                       type="text"
                       onChange={handleStartSunday}
                     ></FormControl>
                   </FormGroup>
                   <FormGroup>
                     <FormControl
-                      placeholder={endSunday}
-                      value={endSunday}
+                      placeholder={props.endSunday}
+                      value={props.endSunday}
                       type="text"
                       onChange={handleEndSunday}
                     ></FormControl>
