@@ -400,17 +400,17 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <div className="submit_button">
+                <Button className="actual_button" onClick={handleSaveDate}>
+                  Save
+                </Button>
+              </div>
               <div className="profile_element">
                 <h5>Photos</h5>
                 <p className="profile_explanations">
                   <small>Upload some photos</small>
                 </p>
                 <MultipleImageUpload userId={data.userId} />
-              </div>
-              <div className="submit_button">
-                <Button className="actual_button" onClick={handleSaveDate}>
-                  Save
-                </Button>
               </div>
             </Form>
           </div>
@@ -625,6 +625,11 @@ const Provider = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <div className="submit_button">
+                <Button className="actual_button" onClick={handleSaveDate}>
+                  Save
+                </Button>
+              </div>
               <div className="profile_element">
                 <h5>Photos</h5>
                 <p className="profile_explanations">
@@ -633,11 +638,6 @@ const Provider = ({ data }) => {
                 <div className="align_left_profile_input">
                   <MultipleImageUpload userId={data.userId} />
                 </div>
-              </div>
-              <div className="submit_button">
-                <Button className="actual_button" onClick={handleSaveDate}>
-                  Save
-                </Button>
               </div>
             </Form>
           </div>

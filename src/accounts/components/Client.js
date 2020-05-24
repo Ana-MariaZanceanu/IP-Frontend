@@ -252,9 +252,6 @@ const Client = ({ data }) => {
               <hr></hr>
               <div className="profile_element">
                 <h5>Photos</h5>
-                <p className="profile_explanations">
-                  <small>Upload some photos</small>
-                </p>
                 <SingleImageUpload userId={data.userId} />
               </div>
             </div>
@@ -360,9 +357,6 @@ const Client = ({ data }) => {
               <hr></hr>
               <div className="profile_element">
                 <h5>Photos</h5>
-                <p className="profile_explanations">
-                  <small>Upload some photos</small>
-                </p>
                 <SingleImageUpload userId={data.userId} />
               </div>
             </div>
