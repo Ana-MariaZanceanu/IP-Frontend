@@ -110,8 +110,6 @@ export class RestaurantPage extends Component {
     if (this.state.isLoading) {
       return <p>Loading...</p>;
     } else {
-      var url = "https://still-anchorage-92193.herokuapp.com/static/carousel.html?token=" + this.context.user.emailToken + "&provider_id=" + this.state.providerId + "&alg_type=restaurant_food_recommendation";
-      console.log("URL REC: " + url);
       var usertok = this.context.user.emailToken;
       if(this.context.user.emailToken == null || this.context.user.emailToken == undefined) usertok="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWJjZTkxYTI2ZTMyNTE3YzQ2ZWZmZWQiLCJpYXQiOjE1ODk0Mzg3NDZ9.M0seLr5OmfgkLcoEoqN95ZNqUVjvdwMkHMwSRT68Gkw";
       return (
