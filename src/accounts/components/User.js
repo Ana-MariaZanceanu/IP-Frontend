@@ -25,6 +25,7 @@ const User = ({ data }) => {
     setOpenProfile(false);
     setOpenSettings(false);
     setOpenSchedule(false);
+    window.location.reload(true);
   };
 
   const handleOpenSchedule = () => {

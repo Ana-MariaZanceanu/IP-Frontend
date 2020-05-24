@@ -136,9 +136,7 @@ const Course = ({ data }) => {
   const handleDeleteCourse = async () => {
     try {
       setLoading(true);
-      let answer = await api.deleteCourse(data.course._id).then(() => {
-        window.location.reload(true);
-      });
+      let answer = await api.deleteCourse(data.course._id);
       setLoading(false);
       console.log(answer);
       if (answer.success === true) {
