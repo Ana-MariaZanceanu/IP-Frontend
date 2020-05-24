@@ -20,12 +20,12 @@ const User = ({ data }) => {
   const [openStatistics, setOpenStatistics] = useState(false);
 
   const handleOpenStatistics = () => {
+    window.location.reload(true);
     setOpenStatistics(true);
     setOpenMenu(false);
     setOpenProfile(false);
     setOpenSettings(false);
     setOpenSchedule(false);
-    window.location.reload(true);
   };
 
   const handleOpenSchedule = () => {
