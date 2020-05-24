@@ -152,7 +152,6 @@ const Course = ({ data }) => {
   const handleDeletePhoto = (event) => {
     api.deleteCoursePhoto(data.course._id).then(() => {
       setInUseImage(placeholder);
-      window.location.reload(true);
     });
   };
 
@@ -196,7 +195,7 @@ const Course = ({ data }) => {
               </FormGroup>
             </div>
           </div>
-
+          <hr></hr>
           <div className="profile_element">
             <h5>Price</h5>
             <p className="profile_explanations">
@@ -213,6 +212,7 @@ const Course = ({ data }) => {
               </FormGroup>
             </div>
           </div>
+          <hr></hr>
           <div className="profile_element">
             <h5>Categories</h5>
             <div className="align_left_profile_input">
@@ -231,6 +231,7 @@ const Course = ({ data }) => {
               </FormGroup>
             </div>
           </div>
+          <hr></hr>
           <div className="profile_element">
             <h5>Ingredients</h5>
             <p className="profile_explanations">
@@ -285,6 +286,7 @@ const Course = ({ data }) => {
               </FormGroup>
             </div>
           </div>
+          <hr></hr>
           <div className="profile_element">
             <h5>Allergenes</h5>
             <p className="profile_explanations">
@@ -344,17 +346,20 @@ const Course = ({ data }) => {
               </FormGroup>
             </div>
           </div>
+          <hr></hr>
           <div className="submit_button">
             <Button className="actual_button" onClick={handleSaveDate}>
               Save
             </Button>
           </div>
+          <hr></hr>
           <UploadMenuPhoto
             idCourse={data.course._id}
             setInUseImage={setInUseImage}
           />
+          <hr></hr>
           <div className="submit_button">
-            <Button className="actual_button" onChange={handleDeletePhoto}>
+            <Button className="actual_button" onClick={handleDeletePhoto}>
               Delete Photo
             </Button>
           </div>
