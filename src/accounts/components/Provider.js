@@ -427,14 +427,13 @@ const Provider = ({ data }) => {
                 <p className="profile_explanations">
                   <small>Upload some photos</small>
                 </p>
-                <MultipleImageUpload
-                  userId={data.userId}
-                  onClick={handleDeletePhoto}
-                />
+                <MultipleImageUpload userId={data.userId} />
               </div>
               <hr></hr>
               <div className="submit_button">
-                <Button className="actual_button">Delete Photos</Button>
+                <Button className="actual_button" onClick={handleDeletePhoto}>
+                  Delete Photos
+                </Button>
               </div>
             </Form>
           </div>
