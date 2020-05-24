@@ -212,7 +212,7 @@ border-left:solid #dc3545;
 	height: 13%;
 }
 
-.profile_provider, .profile_client, .schedule_provider{
+.profile_provider, .profile_client, .schedule_provider, .menu_provider{
 	margin-left: 2%;
 	margin-bottom: 10%;
 	width: 100%;
@@ -220,6 +220,7 @@ border-left:solid #dc3545;
 	align-content: center;
 	display: flex;
 	flex-direction: row;
+	
 }
 
 .profile_provider_phone, .profile_client_phone, .schedule_provider_phone, .profile_client_phone{

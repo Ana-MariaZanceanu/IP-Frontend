@@ -138,7 +138,6 @@ const Course = ({ data }) => {
       setLoading(true);
       let answer = await api.deleteCourse(data.course._id);
       setLoading(false);
-      console.log(answer);
       if (answer.success === true) {
         setLoading(false);
       } else {
