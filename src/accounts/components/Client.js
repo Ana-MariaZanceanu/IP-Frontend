@@ -243,18 +243,19 @@ const Client = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
+              <hr></hr>
+              <div className="submit_button">
+                <Button className="actual_button" onClick={handleSaveDate}>
+                  Save
+                </Button>
+              </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Photos</h5>
                 <p className="profile_explanations">
                   <small>Upload some photos</small>
                 </p>
                 <SingleImageUpload userId={data.userId} />
-              </div>
-              <hr></hr>
-              <div className="submit_button">
-                <Button className="actual_button" onClick={handleSaveDate}>
-                  Save
-                </Button>
               </div>
             </div>
           </Form>
@@ -350,13 +351,13 @@ const Client = ({ data }) => {
                   </FormGroup>
                 </div>
               </div>
-
               <hr></hr>
               <div className="submit_button">
                 <Button className="actual_button" onClick={handleSaveDate}>
                   Save
                 </Button>
               </div>
+              <hr></hr>
               <div className="profile_element">
                 <h5>Photos</h5>
                 <p className="profile_explanations">
