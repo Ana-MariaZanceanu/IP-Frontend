@@ -338,15 +338,15 @@ const Course = ({ data }) => {
               </FormGroup>
             </div>
           </div>
-          <UploadMenuPhoto
-            idCourse={data.course._id}
-            setInUseImage={setInUseImage}
-          />
           <div className="submit_button">
             <Button className="actual_button" onClick={handleSaveDate}>
               Save
             </Button>
           </div>
+          <UploadMenuPhoto
+            idCourse={data.course._id}
+            setInUseImage={setInUseImage}
+          />
           <div className="submit_button">
             <Button className="actual_button">Delete Photo</Button>
           </div>
